@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         default: "",
-        required: true
+        required: true,
+        minlength:6 // Password must be minimum 6 length
     },
     profilePic: {
         type: String,
@@ -23,9 +24,13 @@ const userSchema = new mongoose.Schema({
     },
     user_type:{
         type: String,
-        default : "Customer"
+        default : "Customer",
     },
-    favourite_songs : {}    
+    favourite_songs : [{
+        type: mongoose.Types.ObjectId, // To store song's id
+        ref: "Song",
+        require:true,
+    }]    
 });
 
 // Instance Methods 
