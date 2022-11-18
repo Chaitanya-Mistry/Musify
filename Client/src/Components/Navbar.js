@@ -43,8 +43,9 @@ export function Navbar() {
                     </NavLink>
                     <nav>
                         <NavLink to='/'>Home</NavLink>
-                        <NavLink to='/myBlogs'>My Blogs</NavLink>
-                        <NavLink to='/addBlog'>Add Blog</NavLink>
+                        <NavLink to='/myBlogs'>My Favourite Songs</NavLink>
+                        <NavLink to='/addBlog'>Search Songs</NavLink>
+                        <NavLink to='/addBlog'>My Account</NavLink>
                         <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
                     </nav>
                 </header>

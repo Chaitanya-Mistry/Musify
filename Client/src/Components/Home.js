@@ -9,7 +9,7 @@ export const Home = () => {
         return (
             <>
                 <main>
-                    <h2>Welcome {/* User's name */}</h2>
+                    <h2>Welcome User {/* User's name */}</h2>
                 </main>
             </>
         )

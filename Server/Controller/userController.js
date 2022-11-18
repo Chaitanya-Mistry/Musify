@@ -1,4 +1,4 @@
-import UserModel from '../Model/userModel.js';
+import { UserModel } from "../Model/UserModel.js";
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -72,5 +72,6 @@ const loginUser = async (req, res) => {
         }
     }
 }
+
 
 export { createUser, loginUser }

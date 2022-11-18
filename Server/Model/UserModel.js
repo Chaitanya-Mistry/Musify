@@ -13,21 +13,21 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength:6 // Password length must be minimum 6 
+        minlength: 6 // Password length must be minimum 6 
     },
     profilePic: {
         type: String,
         default: "https://cdn-icons-png.flaticon.com/128/1077/1077012.png" //https://www.freepik.com/free-icon/user_15334495.htm#query=default%20user&position=27&from_view=keyword
     },
-    user_type:{
+    user_type: {
         type: String,
-        default : "Customer",
+        default: "Customer",
     },
-    favourite_songs : [{
+    favourite_songs: [{
         type: mongoose.Types.ObjectId, // To store song's id
         ref: "song",
-        required:true,
-    }]    
+        required: true,
+    }]
 });
 
 // Instance Methods 
@@ -54,4 +54,5 @@ userSchema.static({
     }
 });
 
-export default mongoose.model('user', userSchema);
+const UserModel = mongoose.model('user', userSchema);
+export { UserModel };
