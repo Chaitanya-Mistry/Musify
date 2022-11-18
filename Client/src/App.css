@@ -1,38 +1,197 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root {
+    --bgColor: rgb(0, 15, 90);
+    --fontFamily: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header {
+    padding: 13px;
+    display: flex;
+    background-color: var(--bgColor);
+    color: white;
+    font-family: var(--fontFamily);
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+#siteLogoContainer{
+    display: flex;
+    gap: 11px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#siteLogo {
+    font-size: 27px;
+    letter-spacing: .5px;
+    word-spacing: .5px;
+    color: white;
+}
+a {
+    text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    font-size: 19px;
+}
+
+.active {
+    color: rgb(114, 201, 255);
+}
+
+nav a:hover {
+    color: rgb(93, 193, 255);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Crimson Pro', serif;
+}
+
+/* Login & Sign Up Component */
+#loginContainer,
+#signUpContainer {
+    box-shadow: 0px 0px 13px rgb(137, 172, 208);
+    width: 60%;
+    height: auto;
+    display: flex;
+}
+
+#loginImage,
+#signUpImage {
+    height: auto;
+    width: 50%;
+}
+
+#loginImage img,
+#signUpImage img {
+    border-right: 1px solid rgb(234, 234, 234);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#loginDetails,
+#signUpDetails {
+    padding: 13px;
+    width: 50%;
+}
+
+#loginTitle,
+#signUpTitle {
+    font-size: 30px;
+    margin: 17px 0px;
+    color: rgb(8, 108, 215);
+}
+
+#signUpTitle {
+    color: black;
+}
+
+#loginForm,
+#signUpForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#loginForm input,
+button,
+span,
+#signUpForm input,
+button,
+span {
+    padding: 4px;
+    font-size: 17.7px;
+    margin: 17px 0px;
+}
+
+#loginForm input,
+#signUpForm input {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--bgColor);
+}
+
+#loginForm input:focus,
+#signUpForm input:focus {
+    box-shadow: 0px 0px 10px rgb(90, 109, 255);
+}
+
+#loginForm #otherLoginOptions {
+    text-align: center;
+}
+
+#otherLoginOptions .faIcons {
+    font-size: 23px;
+    margin: 13px 7px;
+    cursor: pointer;
+}
+
+#loginForm button,
+#signUpForm button {
+    padding: 13px;
+    background-color: rgb(140, 152, 225);
+    color: white;
+    border: none;
+    font-weight: bold;
+    transition-property: background-color;
+    transition-duration: .2s;
+    transition-timing-function: linear;
+    cursor: pointer;
+}
+
+#loginForm button:hover {
+    background-color: rgb(172, 183, 255);
+    color: rgb(43, 43, 43);
+}
+
+/* Sign Up */
+#signUpContainer {
+    height: auto
+}
+
+/* Sign Up Button */
+#signUpForm button {
+    background-color: rgb(255, 88, 96);
+    margin-top: 20px;
+}
+
+#signUpForm button:hover {
+    background-color: orangered
+}
+
+/* Footer */
+footer {
+    background-color: var(--bgColor);
+    color: white;
+    font-weight: bold;
+    font-family: var(--fontFamily);
+    letter-spacing: 1px;
+    padding: 14px;
+    display: grid;
+    place-content: center;
 }

@@ -24,7 +24,7 @@ const createUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             password: hashedPassword,
-            user_type: req.body.user_type
+            user_type: req.body.user_type || "Customer"
         });
 
         try {

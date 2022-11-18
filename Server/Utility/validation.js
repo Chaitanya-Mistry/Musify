@@ -4,10 +4,11 @@ import jwt from "jsonwebtoken";
 
 // Create User
 const validateCreateUser = async (req, res, next) => {
+
     const userObjSchema = yup.object().shape({
         name: yup.string().required(),
-        password: yup.string().required().length(6),
         email: yup.string().email().required(),
+        password: yup.string().required().length(6),
     });
 
     await validate(userObjSchema, req.body, res, next);
@@ -22,6 +23,17 @@ const loginValidation = async (req, res, next) => {
 
     await validate(loginSchema, req.body, res, next);
 }
+
+// Create Artist Validation
+const validateCreateArtist = async (req, res, next) => {
+    const artistObjSchema = yup.object().shape({
+        artist_name: yup.string().required(),
+        artist_image: yup.mixed().required(),       
+    });
+
+    await validate(artistObjSchema, req.body, res, next);
+}
+
 
 // Validate 
 const validate = async (schema, reqData, res, next) => {
@@ -41,5 +53,6 @@ const validate = async (schema, reqData, res, next) => {
 export {
     validateCreateUser,
     loginValidation,
+    validateCreateArtist
     // logoutValidation,
 }

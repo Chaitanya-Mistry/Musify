@@ -5,6 +5,7 @@ import compression from "compression";
 import cors from "cors";
 import * as Validation from "./Utility/validation.js";
 import * as userCntl from "./Controller/userController.js";
+import * as artistCntl from "./Controller/artistController.js";
 
 const app = express();
 
@@ -15,7 +16,7 @@ const PORT = process.env.PORT || 4000; // Server PORT
 mongoose.connect(process.env.MongoDB_URI, { keepAlive: true }).then(() => app.listen(PORT)).then(() => {
     console.log(`Express server is running on port : ${PORT}`);
     console.log(`Express is connected to the database ...`);
-});
+}).catch(error => console.log(error));
 
 // Middlewares
 app.use(cors({
@@ -28,9 +29,33 @@ app.use(compression(9));
 
 // API Routes
 
-// User login
-app.post("/login",Validation.loginValidation,userCntl.loginUser);
-// Create user 
+/* USER */
+app.post("/login", Validation.loginValidation, userCntl.loginUser);
 app.post("/createUser", Validation.validateCreateUser, userCntl.createUser);
+// app.get("/myFavouriteSongs")
+
+/* Artist */
+app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist);
+app.patch("/updateArtist", (req, res) => {
+    res.send("Update artist API ...");
+});
+app.delete("/deleteArtist", (req, res) => {
+    res.send("Delete artist API ...");
+});
+
+/* Song */
+app.get("/getSong", (req, res) => {
+    res.send("Get Song API");
+})
+app.post("/createSong", (req, res) => {
+    res.send("Create Song API");
+});
+app.patch("/updateSong", (req, res) => {
+    res.send("Update Song API");
+});
+app.delete("/deleteSong", (req, res) => {
+    res.send("Delete Song API");
+});
+
 
 

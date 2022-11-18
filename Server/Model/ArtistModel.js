@@ -1,32 +1,25 @@
 import mongoose from "mongoose";
 
 const artistSchema = new mongoose.Schema({
-    name: {
+    artist_name: {
         type: String,
-        default: "",
+        required: true,
+        unique:true // Artist name must be unique
+    },
+    artist_image: {
+        type: String,
         required: true
     },
-    email: {
-        type: String,
-        default: "",
+    sung_songs: [{
+        type: mongoose.Types.ObjectId, // To store song's id
+        ref: "song",
         required: true,
-        unique: true // `email` must be unique
-    },
-    password: {
-        type: String,
-        default: "",
+    }],
+    total_listeners: [{
+        type: mongoose.Types.ObjectId, // To store users's id
+        ref: "user",
         required: true,
-        length:6
-    },
-    profilePic: {
-        type: String,
-        default: "https://cdn-icons-png.flaticon.com/128/1077/1077012.png" //https://www.freepik.com/free-icon/user_15334495.htm#query=default%20user&position=27&from_view=keyword
-    },
-    user_type:{
-        type: String,
-        default : "Customer"
-    },
-    favourite_songs : {}    
+    }]
 });
 
 // Instance Methods 
@@ -53,4 +46,4 @@ artistSchema.static({
     }
 });
 
-export default mongoose.model('user', artistSchema);
+export default mongoose.model('artist', artistSchema);

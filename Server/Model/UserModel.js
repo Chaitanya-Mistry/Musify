@@ -3,20 +3,17 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        default: "",
         required: true
     },
     email: {
         type: String,
-        default: "",
         required: true,
         unique: true // `email` must be unique
     },
     password: {
         type: String,
-        default: "",
         required: true,
-        minlength:6 // Password must be minimum 6 length
+        minlength:6 // Password length must be minimum 6 
     },
     profilePic: {
         type: String,
@@ -28,8 +25,8 @@ const userSchema = new mongoose.Schema({
     },
     favourite_songs : [{
         type: mongoose.Types.ObjectId, // To store song's id
-        ref: "Song",
-        require:true,
+        ref: "song",
+        required:true,
     }]    
 });
 
