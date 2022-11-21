@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserLoginContext } from "../App";
 
 export const LoginAdmin = () => {
-    const { isLoggedIn, setLogIn } = useContext(UserLoginContext);
+    const { setLogIn, setAdminLogIn } = useContext(UserLoginContext);
 
     // To Navigate to a different component 
     const navigate = useNavigate();
@@ -34,7 +34,8 @@ export const LoginAdmin = () => {
         if (response.data.serverResponse.responseCode === 200) {
             alert(`${response.data.serverResponse.message}`);
             setLogIn(true);
-            navigate("/", { state: "Admin" }); // Navigate to the Admin's home page .. 
+            setAdminLogIn(true);
+            navigate("/"); // Navigate to the Admin's home page .. 
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }

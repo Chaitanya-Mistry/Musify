@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { UserLoginContext } from "../App";
 
 export function Navbar() {
-    const { isLoggedIn, setLogIn } = useContext(UserLoginContext);
+    const { isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn } = useContext(UserLoginContext);
     const navigate = useNavigate();
 
     // Logout functionality ..
@@ -21,7 +21,8 @@ export function Navbar() {
         }
 
         if (response.status === 200) {
-            setLogIn(false); // set user login status 
+            setLogIn(false); // set user login status
+            setAdminLogIn(false); // set admin login status
             navigate('/'); // Navigate to default home page after log out .. 
         } else {
             alert('ERROR in logout ..', response);
@@ -29,6 +30,31 @@ export function Navbar() {
     }
 
     if (isLoggedIn) {
+
+        // Admin
+        if (isAdminLoggedIn) {
+            return (
+                <>
+                    <header>
+                        {/* Site Logo */}
+                        <NavLink to="/" style={{ textDecoration: 'none' }}>
+                            {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
+                            {/* Image provided by https://www.flaticon.com/ */}
+                            <div id="siteLogoContainer">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
+                                <h1 id="siteLogo">Musify</h1>
+                            </div>
+                        </NavLink>
+                        <nav>
+                            <NavLink to='/'>Home</NavLink>
+                            <NavLink to='/manageArtist'>My Favourite Songs</NavLink>
+                            <NavLink to='/manageSongs'>Search Songs</NavLink>                   
+                            <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
+                        </nav>
+                    </header>
+                </>
+            )
+        }
         return (
             <>
                 <header>
@@ -43,9 +69,9 @@ export function Navbar() {
                     </NavLink>
                     <nav>
                         <NavLink to='/'>Home</NavLink>
-                        <NavLink to='/myBlogs'>My Favourite Songs</NavLink>
-                        <NavLink to='/addBlog'>Search Songs</NavLink>
-                        <NavLink to='/addBlog'>My Account</NavLink>
+                        <NavLink to='/myFavSongs'>My Favourite Songs</NavLink>
+                        <NavLink to='/serchSongs'>Search Songs</NavLink>
+                        <NavLink to='/myAccount'>My Account</NavLink>
                         <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
                     </nav>
                 </header>

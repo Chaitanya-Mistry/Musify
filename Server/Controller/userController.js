@@ -91,7 +91,6 @@ const adminLogin = async (req, res) => {
         const userType = isAdminExists.user_type;
         // IF password is valid and user type = "ADMIN"
         if (isValidPassword && userType === "Admin") {
-            console.log("Yes user is admin ❤️‍🔥");
             // Generating a JWT(Json Web Token) for user 
             const token = generateToken(isAdminExists);
             sendResponse(res, { email: isAdminExists.email, name: isAdminExists.name, profilePic: isAdminExists.profilePic, user_type: isAdminExists.user_type }, `Welcome, ${isAdminExists.name} `, true, 200, token);

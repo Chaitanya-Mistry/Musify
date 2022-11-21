@@ -13,11 +13,12 @@ const UserLoginContext = createContext();
 
 function App() {
   const [isLoggedIn, setLogIn] = useState();
+  const [isAdminLoggedIn, setAdminLogIn] = useState();
 
   return (
     // Basic Web Page Layout goes here without login..
     <>
-      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn }}>
+      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn,isAdminLoggedIn, setAdminLogIn }}>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />

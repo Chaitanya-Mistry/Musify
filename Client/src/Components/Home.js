@@ -2,17 +2,29 @@ import { useContext } from "react";
 import { UserLoginContext } from "../App";
 
 export const Home = () => {
-    const { isLoggedIn } = useContext(UserLoginContext);
+    const { isLoggedIn, isAdminLoggedIn } = useContext(UserLoginContext);
 
     // if user is logged in greet them
     if (isLoggedIn) {
-        return (
-            <>
-                <main>
-                    <h2>Welcome User {/* User's name */}</h2>
-                </main>
-            </>
-        )
+        // Admin
+        if (isAdminLoggedIn) {
+            return (
+                <>
+                    <main>
+                        <h2>Welcome Admin 🦸‍♂️</h2>
+                    </main>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <main>
+                        <h2>Welcome User {/* User's name */}</h2>
+                    </main>
+                </>
+            )
+        }
+
     } else {
         return (
             <main>
