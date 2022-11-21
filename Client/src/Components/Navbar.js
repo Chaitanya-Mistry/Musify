@@ -67,6 +67,7 @@ export function Navbar() {
                     <nav>
                         <NavLink to='/'>Home</NavLink>
                         <NavLink to='/login'>Login</NavLink>
+                        <NavLink to='/loginAdmin'>Admin Login</NavLink>
                         <NavLink to='/signUp'>Sign Up</NavLink>
                     </nav>
                 </header>

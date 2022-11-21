@@ -7,6 +7,7 @@ import { createContext, useEffect, useState } from 'react';
 import { Login } from './Components/Login';
 import { SignUp } from './Components/SignUp';
 import { Footer } from './Components/Footer';
+import { LoginAdmin } from './Components/loginAdmin';
 
 const UserLoginContext = createContext();
 
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/loginAdmin' element={<LoginAdmin />} />
           <Route path='/signUp' element={<SignUp />} />
           <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
         </Routes>

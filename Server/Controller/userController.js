@@ -3,6 +3,14 @@ import { sendResponse, sendError } from "../Utility/responseMessage.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+// Token generation goes here 
+const generateToken = ({ email }) => {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY;
+
+    const token = jwt.sign({ user_email: email }, jwtSecretKey);
+    return token;
+}
+
 // Create user / Sign UP
 const createUser = async (req, res) => {
     // First check if user is already exist or not 
@@ -40,13 +48,6 @@ const createUser = async (req, res) => {
 
 // Log in 
 const loginUser = async (req, res) => {
-    // Token generation goes here 
-    const generateToken = ({ email }) => {
-        const jwtSecretKey = process.env.JWT_SECRET_KEY;
-
-        const token = jwt.sign({ user_email: email }, jwtSecretKey);
-        return token;
-    }
 
     const { email, password } = req.body;
 
@@ -73,5 +74,34 @@ const loginUser = async (req, res) => {
     }
 }
 
+// Admin log in
+const adminLogin = async (req, res) => {
+    const { email, password } = req.body;
 
-export { createUser, loginUser }
+    // Find admin 
+    const isAdminExists = await UserModel.findOneData({ email });
+
+    // if user is not exists
+    if (!isAdminExists) {
+        return sendError(res, {}, `Invalid credentials`, false, 401);
+    } else {
+        // Password comparison of that particular user ... 
+        const isValidPassword = bcrypt.compareSync(password, isAdminExists.password);
+        // User type
+        const userType = isAdminExists.user_type;
+        // IF password is valid and user type = "ADMIN"
+        if (isValidPassword && userType === "Admin") {
+            console.log("Yes user is admin ❤️‍🔥");
+            // Generating a JWT(Json Web Token) for user 
+            const token = generateToken(isAdminExists);
+            sendResponse(res, { email: isAdminExists.email, name: isAdminExists.name, profilePic: isAdminExists.profilePic, user_type: isAdminExists.user_type }, `Welcome, ${isAdminExists.name} `, true, 200, token);
+        }
+        // If password is NOT valid and user_type is not admin
+        else {
+            sendResponse(res, {}, `Incorrect credentials`, false, 401);
+        }
+    }
+}
+
+
+export { createUser, loginUser, adminLogin }

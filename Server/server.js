@@ -32,11 +32,12 @@ app.use(compression(9));
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 
 // API Routes
-
+// Admin 🦸‍♂️
+app.post("/adminLogin", Validation.loginValidation,userCntl.adminLogin);
 /* USER */
 app.post("/login", Validation.loginValidation, userCntl.loginUser);
 app.post("/createUser", Validation.validateCreateUser, userCntl.createUser);
-app.get("/logout",authMiddleware,logout);
+app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
