@@ -47,36 +47,38 @@ export function Navbar() {
                         </NavLink>
                         <nav>
                             <NavLink to='/'>Home</NavLink>
-                            <NavLink to='/manageArtist'>My Favourite Songs</NavLink>
-                            <NavLink to='/manageSongs'>Search Songs</NavLink>                   
+                            <NavLink to='/manageArtist'>Manage Artist</NavLink>
+                            <NavLink to='/manageSong'>Manage Song</NavLink>
+                            <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
+                        </nav>
+                    </header>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <header>
+                        {/* Site Logo */}
+                        <NavLink to="/" style={{ textDecoration: 'none' }}>
+                            {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
+                            {/* Image provided by https://www.flaticon.com/ */}
+                            <div id="siteLogoContainer">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
+                                <h1 id="siteLogo">Musify</h1>
+                            </div>
+                        </NavLink>
+                        <nav>
+                            <NavLink to='/'>Home</NavLink>
+                            <NavLink to='/myFavSongs'>My Favourite Songs</NavLink>
+                            <NavLink to='/serchSongs'>Search Songs</NavLink>
+                            <NavLink to='/myAccount'>My Account</NavLink>
                             <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
                         </nav>
                     </header>
                 </>
             )
         }
-        return (
-            <>
-                <header>
-                    {/* Site Logo */}
-                    <NavLink to="/" style={{ textDecoration: 'none' }}>
-                        {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
-                        {/* Image provided by https://www.flaticon.com/ */}
-                        <div id="siteLogoContainer">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
-                            <h1 id="siteLogo">Musify</h1>
-                        </div>
-                    </NavLink>
-                    <nav>
-                        <NavLink to='/'>Home</NavLink>
-                        <NavLink to='/myFavSongs'>My Favourite Songs</NavLink>
-                        <NavLink to='/serchSongs'>Search Songs</NavLink>
-                        <NavLink to='/myAccount'>My Account</NavLink>
-                        <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
-                    </nav>
-                </header>
-            </>
-        )
+
     } else {
         return (
             <>

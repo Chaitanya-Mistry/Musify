@@ -69,7 +69,7 @@ const loginUser = async (req, res) => {
         }
         // If password is NOT valid 
         else {
-            sendResponse(res, {}, `Incorrect password `, false, 400);
+            return sendError(res, {}, `Incorrect password `, false, 401);
         }
     }
 }
@@ -91,16 +91,36 @@ const adminLogin = async (req, res) => {
         const userType = isAdminExists.user_type;
         // IF password is valid and user type = "ADMIN"
         if (isValidPassword && userType === "Admin") {
-            // Generating a JWT(Json Web Token) for user 
+            // Generating a JWT(Json Web Token) for admin 
             const token = generateToken(isAdminExists);
             sendResponse(res, { email: isAdminExists.email, name: isAdminExists.name, profilePic: isAdminExists.profilePic, user_type: isAdminExists.user_type }, `Welcome, ${isAdminExists.name} `, true, 200, token);
         }
         // If password is NOT valid and user_type is not admin
         else {
-            sendResponse(res, {}, `Incorrect credentials`, false, 401);
+            return sendError(res, {}, `Incorrect credentials`, false, 401);
         }
     }
 }
 
+// Admin token verifier
+const adminTokenVerifier = async (req, res) => {
+    let foundAdmin;
+    try {
+        const token = req.cookies.jwtokenn;
+        // Verify token
+        const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        foundAdmin = await UserModel.findOneData({ email: verifyToken.user_email });
+    } catch (err) {
+        res.clearCookie('jwtokenn'); // Delete associated cookie ...
+        return sendError(res, {}, `Unauthorized 🔴`, false, 401);
+    }
 
-export { createUser, loginUser, adminLogin }
+    if (foundAdmin && foundAdmin.user_type === "Admin") {
+        return sendResponse(res, {email: foundAdmin.email, name: foundAdmin.name}, `Admin is verified ✔️`, true, 200);
+    } else {
+        res.clearCookie('jwtokenn'); // Clear associated cookie ...
+        return sendError(res, {}, `Unauthorized 🔴`, false, 401);
+    }
+}
+
+export { createUser, loginUser, adminLogin, adminTokenVerifier }

@@ -4,7 +4,7 @@ import {UserModel} from '../Model/UserModel.js';
 export const authMiddleware = async (req, res, next) => {
     let foundUser;
     try {
-        const token = req.cookies.jwtoken;
+        const token = req.cookies.jwtoken || req.cookies.jwtokenn;
         // Verify token
         const verifyToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
         foundUser = await UserModel.findOneData({ email: verifyToken.user_email });      

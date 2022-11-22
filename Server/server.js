@@ -33,6 +33,7 @@ app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an
 
 // API Routes
 // Admin 🦸‍♂️
+app.post("/adminTokenVerifier",userCntl.adminTokenVerifier);
 app.post("/adminLogin", Validation.loginValidation,userCntl.adminLogin);
 /* USER */
 app.post("/login", Validation.loginValidation, userCntl.loginUser);

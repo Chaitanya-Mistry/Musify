@@ -8,6 +8,9 @@ import { Login } from './Components/Login';
 import { SignUp } from './Components/SignUp';
 import { Footer } from './Components/Footer';
 import { LoginAdmin } from './Components/loginAdmin';
+import { ManageArtist } from './Components/ManageArtist';
+import { ManageSong } from './Components/ManageSong';
+import axios from 'axios';
 
 const UserLoginContext = createContext();
 
@@ -15,16 +18,57 @@ function App() {
   const [isLoggedIn, setLogIn] = useState();
   const [isAdminLoggedIn, setAdminLogIn] = useState();
 
+  const adminLogInVerifier = async () => {
+    // Sending POST request to our API server .. ⬆
+    const baseURL = 'http://localhost:4000/adminTokenVerifier';
+    let response;
+
+    try {
+      response = await axios.post(baseURL, {
+        
+      }, { withCredentials: true }); // To send cookies data to our API server ..
+    } catch (err) {
+      response = err.response;
+    }
+
+    if (response.data.serverResponse.responseCode === 200) {
+      // alert(`${response.data.serverResponse.message}`);
+      console.log("ADMIN is geniune ❤️‍🔥");
+      setLogIn(true);
+      setAdminLogIn(true); // user log in with admin type
+    } else {
+      // Logout if not valid admin
+      setLogIn(false);
+      setAdminLogIn(false);
+    }
+  }
+
+  useEffect(() => {
+    // Check whether user is already logged in or not to prevent him/her to re-login every-time
+    if (document.cookie.split("=")[0] === "jwtoken") {
+      setLogIn(true); // user log in without admin type
+    } else if (document.cookie.split("=")[0] === "jwtokenn") {
+      // Verify admin token (To be continued)....
+      adminLogInVerifier();
+    } else {
+      setLogIn(false);
+      setAdminLogIn(false);
+    }
+  }, []);
+
   return (
     // Basic Web Page Layout goes here without login..
     <>
-      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn,isAdminLoggedIn, setAdminLogIn }}>
+      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn }}>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/loginAdmin' element={<LoginAdmin />} />
           <Route path='/signUp' element={<SignUp />} />
+          <Route path='/signUp' element={<SignUp />} />
+          {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
+          {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
           <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
         </Routes>
       </UserLoginContext.Provider>
@@ -34,4 +78,4 @@ function App() {
 }
 
 export default App;
-export {UserLoginContext};
+export { UserLoginContext };

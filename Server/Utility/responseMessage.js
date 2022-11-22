@@ -1,6 +1,8 @@
 const sendResponse = (res, data, msg, success, code, JWT) => {
     // if server wants to send json web token when user is trying to log in 
-    if (JWT) {
+
+    // Customer token
+    if (JWT && data.user_type === "Customer") {
         const responseObj = {
             responseData: data,
             message: msg,
@@ -8,9 +10,22 @@ const sendResponse = (res, data, msg, success, code, JWT) => {
             responseCode: code
         };
         // Sending cookie to the client 🍪
-        return res.cookie("jwtoken", JWT, {
+        return res.cookie("jwtoken", JWT, {        
             // expires: new Date(Date.now() + 300000), // Expires after 5 minutes 
-            // httpOnly: true // Prevents client-side scripts from accessing our token 👮
+            // httpOnly: true // Prevents client-side scripts from accessing our token 
+        }).status(200).json({ serverResponse: responseObj });
+    }
+    // Admin token 
+    else if (JWT && data.user_type === "Admin") {
+        const responseObj = {
+            message: msg,
+            success,
+            responseCode: code
+        };
+        // Sending cookie to the client 🍪
+        return res.cookie("jwtokenn", JWT, {
+            // expires: new Date(Date.now() + 300000), // Expires after 5 minutes 
+            // httpOnly: true // Prevents client-side scripts from accessing our token 
         }).status(200).json({ serverResponse: responseObj });
     } else {
         const responseObj = {
