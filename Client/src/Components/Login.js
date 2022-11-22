@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserLoginContext } from "../App";
 
 export const Login = () => {
-    const { isLoggedIn, setLogIn } = useContext(UserLoginContext);
+    const { isLoggedIn, setLogIn, setLoggedInUserData } = useContext(UserLoginContext);
 
     // To Navigate to a different component 
     const navigate = useNavigate();
@@ -39,8 +39,9 @@ export const Login = () => {
         if (response.data.serverResponse.responseCode === 200) {
             alert(`${response.data.serverResponse.message}`);
             setLogIn(true);
+            setLoggedInUserData(response.data.serverResponse.responseData);
             navigate("/"); // Navigate to the user's home page .. 
-        } else {          
+        } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
     }

@@ -17,23 +17,21 @@ const UserLoginContext = createContext();
 function App() {
   const [isLoggedIn, setLogIn] = useState();
   const [isAdminLoggedIn, setAdminLogIn] = useState();
+  const [loggedInUserData, setLoggedInUserData] = useState();
 
   const adminLogInVerifier = async () => {
+    console.log("Admin log in verifier ❤️‍🔥");
     // Sending POST request to our API server .. ⬆
     const baseURL = 'http://localhost:4000/adminTokenVerifier';
     let response;
 
     try {
-      response = await axios.post(baseURL, {
-        
-      }, { withCredentials: true }); // To send cookies data to our API server ..
+      response = await axios.post(baseURL, {}, { withCredentials: true }); // To send cookies data to our API server ..
     } catch (err) {
       response = err.response;
     }
 
     if (response.data.serverResponse.responseCode === 200) {
-      // alert(`${response.data.serverResponse.message}`);
-      console.log("ADMIN is geniune ❤️‍🔥");
       setLogIn(true);
       setAdminLogIn(true); // user log in with admin type
     } else {
@@ -48,7 +46,7 @@ function App() {
     if (document.cookie.split("=")[0] === "jwtoken") {
       setLogIn(true); // user log in without admin type
     } else if (document.cookie.split("=")[0] === "jwtokenn") {
-      // Verify admin token (To be continued)....
+      // Verify admin token ...
       adminLogInVerifier();
     } else {
       setLogIn(false);
@@ -59,7 +57,7 @@ function App() {
   return (
     // Basic Web Page Layout goes here without login..
     <>
-      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn }}>
+      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />

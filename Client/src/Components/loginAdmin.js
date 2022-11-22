@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserLoginContext } from "../App";
 
 export const LoginAdmin = () => {
-    const { setLogIn, setAdminLogIn } = useContext(UserLoginContext);
+    const { setLogIn, setAdminLogIn, setLoggedInUserData } = useContext(UserLoginContext);
 
     // To Navigate to a different component 
     const navigate = useNavigate();
@@ -35,6 +35,7 @@ export const LoginAdmin = () => {
             alert(`${response.data.serverResponse.message}`);
             setLogIn(true);
             setAdminLogIn(true);
+            setLoggedInUserData(response.data.serverResponse.responseData);
             navigate("/"); // Navigate to the Admin's home page .. 
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);

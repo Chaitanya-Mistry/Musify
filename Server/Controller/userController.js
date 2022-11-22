@@ -93,7 +93,7 @@ const adminLogin = async (req, res) => {
         if (isValidPassword && userType === "Admin") {
             // Generating a JWT(Json Web Token) for admin 
             const token = generateToken(isAdminExists);
-            sendResponse(res, { email: isAdminExists.email, name: isAdminExists.name, profilePic: isAdminExists.profilePic, user_type: isAdminExists.user_type }, `Welcome, ${isAdminExists.name} `, true, 200, token);
+            return sendResponse(res, { email: isAdminExists.email, name: isAdminExists.name, user_type: isAdminExists.user_type }, `Welcome, ${isAdminExists.name}`, true, 200, token);
         }
         // If password is NOT valid and user_type is not admin
         else {
@@ -116,7 +116,7 @@ const adminTokenVerifier = async (req, res) => {
     }
 
     if (foundAdmin && foundAdmin.user_type === "Admin") {
-        return sendResponse(res, {email: foundAdmin.email, name: foundAdmin.name}, `Admin is verified ✔️`, true, 200);
+        return sendResponse(res, { email: foundAdmin.email, name: foundAdmin.name }, `Admin is verified ✔️`, true, 200);
     } else {
         res.clearCookie('jwtokenn'); // Clear associated cookie ...
         return sendError(res, {}, `Unauthorized 🔴`, false, 401);
