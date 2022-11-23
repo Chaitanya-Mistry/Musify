@@ -41,9 +41,7 @@ header {
     word-spacing: .5px;
     color: white;
 }
-a {
-    text-decoration: none;
-}
+a {text-decoration: none}
 
 nav {
     width: 60%;
@@ -72,9 +70,9 @@ main {
     font-family: 'Crimson Pro', serif;
 }
 
-/* Login & Sign Up Component */
+/* Login, Sign Up, Add Artist */
 #loginContainer,
-#signUpContainer {
+#signUpContainer,#addArtistMainContainer {
     box-shadow: 0px 0px 13px rgb(137, 172, 208);
     width: 60%;
     height: auto;
@@ -82,13 +80,13 @@ main {
 }
 
 #loginImage,
-#signUpImage {
+#signUpImage,#addArtistIllustration {
     height: auto;
     width: 50%;
 }
 
 #loginImage img,
-#signUpImage img {
+#signUpImage img,#addArtistIllustration img {
     border-right: 1px solid rgb(234, 234, 234);
     width: 100%;
     height: 100%;
@@ -96,13 +94,13 @@ main {
 }
 
 #loginDetails,
-#signUpDetails {
+#signUpDetails,#artistDetails {
     padding: 13px;
     width: 50%;
 }
 
 #loginTitle,
-#signUpTitle {
+#signUpTitle,#addArtistTitle {
     font-size: 30px;
     margin: 17px 0px;
     color: rgb(8, 108, 215);
@@ -113,7 +111,7 @@ main {
 }
 
 #loginForm,
-#signUpForm {
+#signUpForm,#addArtistForm {
     display: flex;
     flex-direction: column;
 }
@@ -123,21 +121,22 @@ button,
 span,
 #signUpForm input,
 button,
-span {
+span,#addArtistForm input,button,label,#displayArtist {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 4px;
-    font-size: 17.7px;
+    font-size: 14.3px;
     margin: 17px 0px;
 }
 
 #loginForm input,
-#signUpForm input {
+#signUpForm input,#addArtistForm input {
     outline: none;
     border: none;
     border-bottom: 1px solid var(--bgColor);
 }
 
 #loginForm input:focus,
-#signUpForm input:focus {
+#signUpForm input:focus,#addArtistForm input:focus {
     box-shadow: 0px 0px 10px rgb(90, 109, 255);
 }
 
@@ -152,7 +151,7 @@ span {
 }
 
 #loginForm button,
-#signUpForm button {
+#signUpForm button,#addArtistForm button,#displayArtist{
     padding: 13px;
     background-color: rgb(140, 152, 225);
     color: white;
@@ -164,7 +163,7 @@ span {
     cursor: pointer;
 }
 
-#loginForm button:hover {
+#loginForm button:hover,#displayArtist:hover {
     background-color: rgb(172, 183, 255);
     color: rgb(43, 43, 43);
 }
@@ -174,16 +173,47 @@ span {
     height: auto
 }
 
-/* Sign Up Button */
-#signUpForm button {
+/* Sign Up & Add Artist Button */
+#signUpForm button,#addArtistForm button {
     background-color: rgb(255, 88, 96);
     margin-top: 20px;
 }
 
-#signUpForm button:hover {
+#signUpForm button:hover,#addArtistForm button:hover {
     background-color: orangered
 }
 
+/* ADMIN Section */
+/* Manage artist page */
+.mainArtistContainer{    
+    width: 100%;
+    height: 100%;
+}
+.artistListMainContainer,.addArtistMainContainer{
+    border:2px solid rgb(130, 130, 130);
+    padding: 10px;
+    width: 90%;
+    margin: 13px auto;
+}
+.artistListContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.artist{
+    border:2px solid red;
+    padding: 40px;
+}
+
+/* Add Artist */
+.addArtistForm{
+    border:2px solid red;
+    display: flex;
+    flex-direction: column;
+}
+#displayArtist{
+    text-align: center;
+}
 /* Footer */
 footer {
     background-color: var(--bgColor);

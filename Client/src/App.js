@@ -11,6 +11,7 @@ import { LoginAdmin } from './Components/loginAdmin';
 import { ManageArtist } from './Components/ManageArtist';
 import { ManageSong } from './Components/ManageSong';
 import axios from 'axios';
+import { DisplayArtist } from './Components/DisplayArtist';
 
 const UserLoginContext = createContext();
 
@@ -67,6 +68,7 @@ function App() {
           <Route path='/signUp' element={<SignUp />} />
           {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
           {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
+          {isAdminLoggedIn ? <Route path='/displayArtists' element={<DisplayArtist />} /> : ""}
           <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
         </Routes>
       </UserLoginContext.Provider>
