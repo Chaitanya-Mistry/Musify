@@ -10,8 +10,13 @@ import { authMiddleware } from "./Middleware/authMiddleware.js";
 import { logout } from "./Controller/logout.js";
 import cookieParser from 'cookie-parser';
 import fileUpload from "express-fileupload";
+import { fileURLToPath } from 'url';
+import path from "path";
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 const PORT = process.env.PORT || 4000; // Server PORT
@@ -32,11 +37,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression(9));
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 app.use(fileUpload()); // When you upload a file, the file will be accessible from req.files
+// To serve public files
+app.use("/Artist_Image", express.static(path.join(__dirname, "Public/Artist_Images")));
 
 // API Routes
 // Admin 🦸‍♂️
-app.post("/adminTokenVerifier",userCntl.adminTokenVerifier);
-app.post("/adminLogin", Validation.loginValidation,userCntl.adminLogin);
+app.post("/adminTokenVerifier", userCntl.adminTokenVerifier);
+app.post("/adminLogin", Validation.loginValidation, userCntl.adminLogin);
 /* USER */
 app.post("/login", Validation.loginValidation, userCntl.loginUser);
 app.post("/createUser", Validation.validateCreateUser, userCntl.createUser);
@@ -44,6 +51,7 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
+app.get('/getAllArtists',authMiddleware,artistCntl.getAllArtists);
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist);
 app.patch("/updateArtist", (req, res) => {
     res.send("Update artist API ...");

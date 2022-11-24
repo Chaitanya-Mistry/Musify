@@ -1,8 +1,24 @@
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
 import ArtistModel from '../Model/ArtistModel.js';
-import fs from "fs";
 import { resolve } from "path";
 
+// Get all artists
+const getAllArtists = async (req, res) => {
+    let artists;
+    // Fetch all stored artists ...
+    try {
+        // artists = await ArtistModel.findData({}).populate("song");
+        artists = await ArtistModel.findData({});
+    } catch (error) {
+        return sendError(res, {}, `${error}`, false, 500);
+    }
+
+    if (artists) {
+        return sendResponse(res, artists, `Artists fetched successfully ...✅`, true, 200);
+    } else {
+        return sendError(res, {}, `No Artists were created ... 😕`, false, 204);
+    }
+}
 // Create Artist
 const createArtist = async (req, res) => {
     // First check if artist is already exist or not 
@@ -10,12 +26,12 @@ const createArtist = async (req, res) => {
     try {
         isArtistExists = await ArtistModel.findOneData({ artist_name: req.body.artist_name });
     } catch (err) {
-        sendError(res, "", "Error while checking for a duplicate artist", false, 500);
+        return sendError(res, "", "Error while checking for a duplicate artist", false, 500);
     }
 
     // if artist is already exists 
     if (isArtistExists) {
-        sendError(res, "", "Artist is already exists !", false, 409);
+        return sendError(res, "", "Artist is already exists !", false, 409);
     } else {
         const currentTimeStamp = new Date().getTime();
         const artist_image = req.files.artist_image;
@@ -46,4 +62,4 @@ const createArtist = async (req, res) => {
     }
 }
 
-export { createArtist }
+export { getAllArtists, createArtist }

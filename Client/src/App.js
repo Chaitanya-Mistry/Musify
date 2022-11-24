@@ -11,21 +11,13 @@ import { LoginAdmin } from './Components/loginAdmin';
 import { ManageArtist } from './Components/ManageArtist';
 import { ManageSong } from './Components/ManageSong';
 import axios from 'axios';
-import { DisplayArtist } from './Components/DisplayArtist';
+import { DisplayArtists } from './Components/DisplayArtists';
 import SyncLoader from "react-spinners/SyncLoader";
 
 const UserLoginContext = createContext();
 
 function App() {
   const [loading, setloading] = useState(false);
-
-  useEffect(()=> {
-    setloading(true)
-    setTimeout(() => {
-      setloading(false)
-    }, 3000); 
-  }, {})
-
   const [isLoggedIn, setLogIn] = useState();
   const [isAdminLoggedIn, setAdminLogIn] = useState();
   const [loggedInUserData, setLoggedInUserData] = useState();
@@ -53,6 +45,10 @@ function App() {
   }
 
   useEffect(() => {
+    setloading(true)
+    setTimeout(() => {
+      setloading(false)
+    }, 3000);
     // Check whether user is already logged in or not to prevent him/her to re-login every-time
     if (document.cookie.split("=")[0] === "jwtoken") {
       setLogIn(true); // user log in without admin type
@@ -71,42 +67,39 @@ function App() {
       {
         loading ?
 
-        <div className='splashload'>
-        
-        <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="90" />
-        <h1 id="siteLogo">Musify</h1>
-        
-        <SyncLoader
-        color={"blue"}
-        loading={loading}
-        size={20}
-        left-margin={"20px"}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-        />
+          <div className='splashload'>
 
-        </div>
-        
-        :
+            <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="90" />
+            <h1 id="siteLogo">Musify</h1>
 
+            <SyncLoader
+              color={"blue"}
+              loading={loading}
+              size={20}
+              left-margin={"20px"}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
 
-      <>
-      <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/loginAdmin' element={<LoginAdmin />} />
-          <Route path='/signUp' element={<SignUp />} />
-          <Route path='/signUp' element={<SignUp />} />
-          {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
-          {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
-          {isAdminLoggedIn ? <Route path='/displayArtists' element={<DisplayArtist />} /> : ""}
-          <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
-        </Routes>
-      </UserLoginContext.Provider>
-      <Footer />
-      </>
+          </div>
+          :
+          <>
+            <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
+              <Navbar />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/loginAdmin' element={<LoginAdmin />} />
+                <Route path='/signUp' element={<SignUp />} />
+                <Route path='/signUp' element={<SignUp />} />
+                {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
+                {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
+                {isAdminLoggedIn ? <Route path='/displayArtists' element={<DisplayArtists />} /> : ""}
+                <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
+              </Routes>
+            </UserLoginContext.Provider>
+            <Footer />
+          </>
       }
     </>
   );

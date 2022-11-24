@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(26, 25, 25);
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -201,7 +201,7 @@ span,#addArtistForm input,button,label,#displayArtist {
     height: 100%;
 }
 .artistListMainContainer,.addArtistMainContainer{
-    border:2px solid rgb(130, 130, 130);
+    /* border:2px solid rgb(130, 130, 130); */
     padding: 10px;
     width: 90%;
     margin: 13px auto;
@@ -209,11 +209,37 @@ span,#addArtistForm input,button,label,#displayArtist {
 .artistListContainer{
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 50px;
+    cursor: pointer;
 }
 .artist{
-    border:2px solid red;
-    padding: 40px;
+    /* border-bottom:1px solid dodgerblue; */
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.artistImageContainer{
+    border-radius: 50%;
+    /* border:2px solid dodgerblue; */
+    width: 85%;
+    height: 85%;
+    overflow: hidden;    
+}
+.artistImageContainer img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.artistName{
+    text-align: center;
+    color: var(--bgColor);
+    letter-spacing: .7px;
+    font-size: 18px;
+    margin-top: 7px;
 }
 
 /* Add Artist */
