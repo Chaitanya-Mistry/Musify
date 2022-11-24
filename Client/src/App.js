@@ -12,10 +12,20 @@ import { ManageArtist } from './Components/ManageArtist';
 import { ManageSong } from './Components/ManageSong';
 import axios from 'axios';
 import { DisplayArtist } from './Components/DisplayArtist';
+import SyncLoader from "react-spinners/SyncLoader";
 
 const UserLoginContext = createContext();
 
 function App() {
+  const [loading, setloading] = useState(false);
+
+  useEffect(()=> {
+    setloading(true)
+    setTimeout(() => {
+      setloading(false)
+    }, 3000); 
+  }, {})
+
   const [isLoggedIn, setLogIn] = useState();
   const [isAdminLoggedIn, setAdminLogIn] = useState();
   const [loggedInUserData, setLoggedInUserData] = useState();
@@ -58,6 +68,29 @@ function App() {
   return (
     // Basic Web Page Layout goes here without login..
     <>
+      {
+        loading ?
+
+        <div className='splashload'>
+        
+        <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="90" />
+        <h1 id="siteLogo">Musify</h1>
+        
+        <SyncLoader
+        color={"blue"}
+        loading={loading}
+        size={20}
+        left-margin={"20px"}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        />
+
+        </div>
+        
+        :
+
+
+      <>
       <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
         <Navbar />
         <Routes>
@@ -73,6 +106,8 @@ function App() {
         </Routes>
       </UserLoginContext.Provider>
       <Footer />
+      </>
+      }
     </>
   );
 }
