@@ -30,8 +30,7 @@ const validateCreateArtist = async (req, res, next) => {
         artist_name: yup.string().required(),
         artist_image: yup.mixed().required(),       
     });
-
-    await validate(artistObjSchema, req.body, res, next);
+    await validate(artistObjSchema, {artist_name:req.body.artist_name,artist_image:req.files.artist_image}, res, next);
 }
 
 

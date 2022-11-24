@@ -9,6 +9,7 @@ import * as artistCntl from "./Controller/artistController.js";
 import { authMiddleware } from "./Middleware/authMiddleware.js";
 import { logout } from "./Controller/logout.js";
 import cookieParser from 'cookie-parser';
+import fileUpload from "express-fileupload";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression(9));
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
+app.use(fileUpload()); // When you upload a file, the file will be accessible from req.files
 
 // API Routes
 // Admin 🦸‍♂️
