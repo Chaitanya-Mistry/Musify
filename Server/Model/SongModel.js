@@ -9,6 +9,10 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    song_location: {
+        type: String,
+        required: true
+    },
     sung_by: {
         type: mongoose.Types.ObjectId, // To store artist's id
         ref: "artist",
