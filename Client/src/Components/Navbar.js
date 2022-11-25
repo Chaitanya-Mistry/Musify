@@ -36,6 +36,7 @@ export function Navbar() {
             return (
                 <>
                     <header>
+                        <div className="logo">
                         {/* Site Logo */}
                         <NavLink to="/" style={{ textDecoration: 'none' }}>
                             {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
@@ -45,11 +46,12 @@ export function Navbar() {
                                 <h1 id="siteLogo">Musify</h1>
                             </div>
                         </NavLink>
+                        </div>
                         <nav>
-                            <NavLink to='/'>Home</NavLink>
-                            <NavLink to='/manageArtist'>Manage Artist</NavLink>
-                            <NavLink to='/manageSong'>Manage Song</NavLink>
-                            <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
+                        <div className="navlist"><NavLink to='/'>Home</NavLink></div>
+                        <div className="navlist"><NavLink to='/manageArtist'>Manage Artist</NavLink></div>
+                        <div className="navlist"><NavLink to='/manageSong'>Manage Song</NavLink></div>
+                        <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
                         </nav>
                     </header>
                 </>
@@ -58,6 +60,7 @@ export function Navbar() {
             return (
                 <>
                     <header>
+                        <div className="logo">
                         {/* Site Logo */}
                         <NavLink to="/" style={{ textDecoration: 'none' }}>
                             {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
@@ -67,12 +70,13 @@ export function Navbar() {
                                 <h1 id="siteLogo">Musify</h1>
                             </div>
                         </NavLink>
+                        </div>
                         <nav>
-                            <NavLink to='/'>Home</NavLink>
-                            <NavLink to='/myFavSongs'>My Favourite Songs</NavLink>
-                            <NavLink to='/serchSongs'>Search Songs</NavLink>
-                            <NavLink to='/myAccount'>My Account</NavLink>
-                            <NavLink to='' onClick={allowUserToLogout}>Logout</NavLink>
+                        <div className="navlist"><NavLink to='/'>Home</NavLink></div>
+                        <div className="navlist"><NavLink to='/myFavSongs'>My Favourite Songs</NavLink></div>
+                        <div className="navlist"><NavLink to='/serchSongs'>Search Songs</NavLink></div>
+                        <div className="navlist"><NavLink to='/myAccount'>My Account</NavLink></div>
+                        <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
                         </nav>
                     </header>
                 </>
@@ -83,6 +87,7 @@ export function Navbar() {
         return (
             <>
                 <header>
+                    <div className="logo">
                     {/* Site Logo */}
                     <NavLink to="/" style={{ textDecoration: 'none' }}>
                         {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
@@ -92,11 +97,12 @@ export function Navbar() {
                             <h1 id="siteLogo">Musify</h1>
                         </div>
                     </NavLink>
+                    </div>
                     <nav>
-                        <NavLink to='/'>Home</NavLink>
-                        <NavLink to='/login'>Login</NavLink>
-                        <NavLink to='/loginAdmin'>Admin Login</NavLink>
-                        <NavLink to='/signUp'>Sign Up</NavLink>
+                        <div className="navlist"><NavLink to='/'>Home</NavLink></div>
+                        <div className="navlist"><NavLink to='/login'>Login</NavLink></div>
+                        <div className="navlist"><NavLink to='/loginAdmin'>Admin Login</NavLink></div>
+                        <div className="navlist"><NavLink to='/signUp'>Sign Up</NavLink></div>
                     </nav>
                 </header>
             </>
