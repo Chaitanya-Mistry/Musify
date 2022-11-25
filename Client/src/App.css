@@ -203,6 +203,10 @@ span,#addArtistForm input,button,label,#addSongForm input,button,label,#displayA
     width: 67%;
     margin: 13px auto;
 }
+#addArtistTitleContainer{
+    display: flex;
+    flex-direction: row;
+}
 .artistListMainContainer{
     width: 90%;
     /* border: 2px solid red; */
@@ -298,5 +302,45 @@ footer {
 
     #signUpTitle{
         font-size: 25px;
+    }
+
+    #addArtistMainContainer, #addSongMainContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #addArtistIllustration, #addSongIllustration{
+        height: 100%;
+        width: 100%;
+    }
+
+    #addArtistTitle, #addSongTitle{
+        font-size: 25px;
+        align-self: center;
+        text-align: center;
+    }
+
+    #addArtistForm{
+        align-items: center;
+    }
+
+    #artistImage{
+        width: 150%;
+        height: auto;
+        align-items: center;
+    }
+    
+    #artitstChooseImage{
+        width: 150%;
+        height: auto;
+        text-align: center;
+    }
+
+    #songChooseImage, #songChoose{
+        width: auto;
+        height: auto;
+        text-align: center;
     }
 }

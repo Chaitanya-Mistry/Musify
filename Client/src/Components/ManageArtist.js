@@ -59,12 +59,14 @@ export const ManageArtist = () => {
                     </div>
                     {/* To artist details */}
                     <div id="artistDetails">
+                        <div id="addArtistTitleContainer">
                         <h2 id="addArtistTitle">Add Artist 🧑‍🎤</h2>
+                        </div>
 
                         <form id="addArtistForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
                             <input type="text" name="artistName" id="artistName" placeholder="Artist Name " required />
-                            <label htmlFor="artistImage" style={{ fontSize: "19px" }}>
+                            <label htmlFor="artistImage" style={{ fontSize: "19px" }} id="artitstChooseImage">
                                 Choose an image 🖼️
                             </label>
                             <input type="file" name="artistImage" id="artistImage" accept="image/*" required onChange={imageSelected} />
