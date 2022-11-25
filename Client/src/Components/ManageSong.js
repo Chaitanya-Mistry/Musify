@@ -85,13 +85,13 @@ export const ManageSong = () => {
 
                             <input type="text" name="songName" id="songName" placeholder="Song Name " required />
                             {/* Song Image */}
-                            <label htmlFor="songImage" style={{ fontSize: "19px" }}>
+                            <label htmlFor="songImage" style={{ fontSize: "19px" }} id="songChooseImage">
                                 Choose a song image 🖼️
                             </label>
                             <input type="file" name="songImage" id="songImage" accept="image/*" required onChange={songImageSelected} />
 
                             {/* Song File */}
-                            <label htmlFor="songFile" style={{ fontSize: "19px" }}>
+                            <label htmlFor="songFile" style={{ fontSize: "19px" }} id="songChoose">
                                 Choose a song 🎹
                             </label>
                             <input type="file" name="songFile" id="songFile" accept="audio/*" required onChange={songSelected} />

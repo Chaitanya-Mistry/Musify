@@ -54,10 +54,10 @@ header {
 }
 a {text-decoration: none}
 
-nav {
+nav{
     width: 60%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -216,6 +216,10 @@ span,#addArtistForm input,button,label,#addSongForm input,button,label,#displayA
     width: 67%;
     margin: 13px auto;
 }
+#addArtistTitleContainer{
+    display: flex;
+    flex-direction: row;
+}
 .artistListMainContainer{
     width: 90%;
     /* border: 2px solid red; */
@@ -276,4 +280,80 @@ footer {
     padding: 14px;
     display: grid;
     place-content: center;
+}
+
+@media only screen and (max-width: 768px){
+    header{
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .navlist{
+        padding: 10px;  
+    }
+
+    #loginContainer, #signUpContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #loginImage, #signUpImage{
+        height: 100%;
+        width: 100%;
+    }
+
+    #signUpTitle{
+        font-size: 25px;
+    }
+
+    #addArtistMainContainer, #addSongMainContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #addArtistIllustration, #addSongIllustration{
+        height: 100%;
+        width: 100%;
+    }
+
+    #addArtistTitle, #addSongTitle{
+        font-size: 25px;
+        align-self: center;
+        text-align: center;
+    }
+
+    #addArtistForm{
+        align-items: center;
+    }
+
+    #artistImage{
+        width: 150%;
+        height: auto;
+        align-items: center;
+    }
+    
+    #artitstChooseImage{
+        width: 150%;
+        height: auto;
+        text-align: center;
+    }
+
+    #songChooseImage, #songChoose{
+        width: auto;
+        height: auto;
+        text-align: center;
+    }
 }
