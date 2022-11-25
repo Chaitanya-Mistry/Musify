@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ManageSong = () => {
     const navigate = useNavigate();
@@ -8,22 +8,33 @@ export const ManageSong = () => {
     const [selectedSongImage, setSelectedSongImage] = useState("");
     const [sungBy, setSungBy] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
+    const location = useLocation();
+
+    useEffect(() => {
+        // if artist selected ...
+        if (location.state) {
+            setSungBy(location.state);
+        }
+    }, []);
 
     const showSongs = () => navigate("/displaySongs");
 
     const songSelected = (event) => {
         setSelectedSong(event.target.files[0]);  // Get and store selected song   
-        console.log("Selected song ",event.target.files[0]);     
     }
     const songImageSelected = (event) => {
         setSelectedSongImage(event.target.files[0]);  // Get and store song image 
-        console.log("Selected song Image ",event.target.files[0]);          
+    }
+
+    // Select Artist
+    const selectArtist = () => {
+        navigate("/displayArtists", { state: "selectArtist" });
     }
     // Add Song Form Submit Event Handler 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (selectedSong && selectedSongImage) {
+        if (selectedSong && selectedSongImage && sungBy) {
             const baseUrl = `http://localhost:4000/createSong`;
             let response;
             // To be continued ...❤️‍🔥
@@ -33,7 +44,7 @@ export const ManageSong = () => {
                 formData.append('song_file', selectedSong);
                 formData.append('song_image', selectedSongImage);
                 formData.append('sung_by', sungBy);
-                formData.append('genre', event.target['genre'].value);
+                formData.append('genre', event.target['song_genre'].value);
 
                 response = await axios({
                     url: baseUrl,
@@ -54,6 +65,7 @@ export const ManageSong = () => {
                 // Reset state 
                 setSelectedSong("");
                 setSelectedSongImage("");
+                setSungBy("");
             } else {
                 alert(`ERROR : ${response.data.serverResponse.message}`);
             }
@@ -63,6 +75,9 @@ export const ManageSong = () => {
             }
             else if (!selectedSongImage) {
                 alert("Please select an image for a song 😶");
+            }
+            else if (!sungBy) {
+                alert("Please select an artist for a song 😶");
             }
         }
     }
@@ -112,7 +127,9 @@ export const ManageSong = () => {
 
                                 <input type="radio" id="party" name="song_genre" value="Party" />
                                 <label htmlFor="party">Party</label>
+
                             </div>
+                            <p id="selectArtist" onClick={selectArtist}>Select Artist</p>
 
                             <button>Add</button>
 

@@ -32,7 +32,6 @@ export const Artist = ({artistData}) => {
             {/* Artist Image */}
             <section className="artistImageContainer">
                 <img src={`http://localhost:4000/Artist_Image/${artistData.artist_image}`} alt="" loading="lazy" />
-                <img src={artistData.artist_image} alt={artistData.artist_name + `'s pic`} loading="lazy" />
             </section>
 
             <strong className="artistName">{artistData.artist_name}</strong>
