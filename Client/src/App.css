@@ -81,9 +81,9 @@ main {
     font-family: 'Crimson Pro', serif;
 }
 
-/* Login, Sign Up, Add Artist */
+/* Login, Sign Up, Add Artist & Add Song */
 #loginContainer,
-#signUpContainer,#addArtistMainContainer {
+#signUpContainer,#addArtistMainContainer,#addSongMainContainer {
     box-shadow: 0px 0px 13px rgb(137, 172, 208);
     width: 60%;
     height: auto;
@@ -91,38 +91,36 @@ main {
 }
 
 #loginImage,
-#signUpImage,#addArtistIllustration {
+#signUpImage,#addArtistIllustration,#addSongIllustration {
     height: auto;
-    width: 50%;
+    width: 45%;
 }
 
 #loginImage img,
-#signUpImage img,#addArtistIllustration img {
+#signUpImage img,#addArtistIllustration img,#addSongIllustration img{
     border-right: 1px solid rgb(234, 234, 234);
-    width: 100%;
+    width: 100%;    
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 #loginDetails,
-#signUpDetails,#artistDetails {
+#signUpDetails,#artistDetails,#songDetails {
     padding: 13px;
-    width: 50%;
+    width: 55%;
 }
 
 #loginTitle,
-#signUpTitle,#addArtistTitle {
+#signUpTitle,#addArtistTitle,#addSongTitle {
     font-size: 30px;
     margin: 17px 0px;
     color: rgb(8, 108, 215);
 }
 
-#signUpTitle {
-    color: black;
-}
+#signUpTitle {color: black}
 
 #loginForm,
-#signUpForm,#addArtistForm {
+#signUpForm,#addArtistForm,#addSongForm {
     display: flex;
     flex-direction: column;
 }
@@ -132,7 +130,7 @@ button,
 span,
 #signUpForm input,
 button,
-span,#addArtistForm input,button,label,#displayArtist {
+span,#addArtistForm input,button,label,#addSongForm input,button,label,#displayArtist,#displaySong {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 4px;
     font-size: 14.3px;
@@ -140,14 +138,14 @@ span,#addArtistForm input,button,label,#displayArtist {
 }
 
 #loginForm input,
-#signUpForm input,#addArtistForm input {
+#signUpForm input,#addArtistForm input,#addSongForm input {
     outline: none;
     border: none;
     border-bottom: 1px solid var(--bgColor);
 }
 
 #loginForm input:focus,
-#signUpForm input:focus,#addArtistForm input:focus {
+#signUpForm input:focus,#addArtistForm input:focus,#addSongForm input:focus {
     box-shadow: 0px 0px 10px rgb(90, 109, 255);
 }
 
@@ -162,7 +160,7 @@ span,#addArtistForm input,button,label,#displayArtist {
 }
 
 #loginForm button,
-#signUpForm button,#addArtistForm button,#displayArtist{
+#signUpForm button,#addArtistForm button,#addSongForm button,#displayArtist,#displaySong{
     padding: 13px;
     background-color: rgb(140, 152, 225);
     color: white;
@@ -174,45 +172,49 @@ span,#addArtistForm input,button,label,#displayArtist {
     cursor: pointer;
 }
 
-#loginForm button:hover,#displayArtist:hover {
+#loginForm button:hover,#displayArtist:hover,#displaySong:hover {
     background-color: rgb(172, 183, 255);
     color: rgb(43, 43, 43);
 }
 
 /* Sign Up */
 #signUpContainer {
-    height: auto
+    height: auto;
 }
 
 /* Sign Up & Add Artist Button */
-#signUpForm button,#addArtistForm button {
+#signUpForm button,#addArtistForm button,#addSongForm button {
     background-color: rgb(255, 88, 96);
     margin-top: 20px;
 }
 
-#signUpForm button:hover,#addArtistForm button:hover {
-    background-color: orangered
+#signUpForm button:hover,#addArtistForm button:hover,#addSongForm button:hover {
+    background-color: orangered;
 }
 
 /* ADMIN Section */
-/* Manage artist page */
+/* Manage artist & Manage Song */
 .mainArtistContainer{    
     width: 100%;
     height: 100%;
 }
-.artistListMainContainer,.addArtistMainContainer{
-    /* border:2px solid rgb(130, 130, 130); */
+#addArtistMainContainer,#addSongMainContainer{    
     padding: 10px;
-    width: 90%;
+    width: 67%;
     margin: 13px auto;
 }
-.artistListContainer{
+.artistListMainContainer{
+    width: 90%;
+    /* border: 2px solid red; */
+    margin: 20px auto;
+}
+.artistListContainer,.songListContainer{
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 55px;
     cursor: pointer;
 }
-.artist{
+.artist,.song{
     /* border-bottom:1px solid dodgerblue; */
     width: 230px;
     height: 230px;
@@ -222,19 +224,19 @@ span,#addArtistForm input,button,label,#displayArtist {
     justify-content: center;
     align-items: center;
 }
-.artistImageContainer{
+.artistImageContainer,.songImageContainer{
     border-radius: 50%;
     /* border:2px solid dodgerblue; */
     width: 85%;
     height: 85%;
     overflow: hidden;    
 }
-.artistImageContainer img{
+.artistImageContainer img,.songImageContainer img{
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
-.artistName{
+.artistName,.songName{
     text-align: center;
     color: var(--bgColor);
     letter-spacing: .7px;
@@ -242,13 +244,13 @@ span,#addArtistForm input,button,label,#displayArtist {
     margin-top: 7px;
 }
 
-/* Add Artist */
-.addArtistForm{
+/* Add Artist & Add Song */
+.addArtistForm,.addSongForm{
     border:2px solid red;
     display: flex;
     flex-direction: column;
 }
-#displayArtist{
+#displayArtist,#displaySong{
     text-align: center;
 }
 /* Footer */

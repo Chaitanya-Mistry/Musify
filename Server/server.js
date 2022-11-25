@@ -51,8 +51,8 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
-app.get('/getAllArtists',authMiddleware,artistCntl.getAllArtists);
-app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist);
+app.get('/getAllArtists',authMiddleware,artistCntl.getAllArtists); // Done
+app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist", (req, res) => {
     res.send("Update artist API ...");
 });
