@@ -6,11 +6,18 @@ export const ManageSong = () => {
     const navigate = useNavigate();
     const [selectedSong, setSelectedSong] = useState("");
     const [selectedSongImage, setSelectedSongImage] = useState("");
+    const [sungBy, setSungBy] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState("");
 
     const showSongs = () => navigate("/displaySongs");
 
     const songSelected = (event) => {
-        setSelectedSong(event.target.files[0]);  // Get and store selected song        
+        setSelectedSong(event.target.files[0]);  // Get and store selected song   
+        console.log("Selected song ",event.target.files[0]);     
+    }
+    const songImageSelected = (event) => {
+        setSelectedSongImage(event.target.files[0]);  // Get and store song image 
+        console.log("Selected song Image ",event.target.files[0]);          
     }
     // Add Song Form Submit Event Handler 
     const handleSubmit = async (event) => {
@@ -19,11 +26,14 @@ export const ManageSong = () => {
         if (selectedSong && selectedSongImage) {
             const baseUrl = `http://localhost:4000/createSong`;
             let response;
+            // To be continued ...❤️‍🔥
             try {
                 const formData = new FormData();
                 formData.append('song_name', event.target['songName'].value);
                 formData.append('song_file', selectedSong);
                 formData.append('song_image', selectedSongImage);
+                formData.append('sung_by', sungBy);
+                formData.append('genre', event.target['genre'].value);
 
                 response = await axios({
                     url: baseUrl,
@@ -42,8 +52,8 @@ export const ManageSong = () => {
                 // Clear form entries
                 document.getElementById("addSongForm").reset();
                 // Reset state 
-                setSelectedSong("");      
-                setSelectedSongImage("");     
+                setSelectedSong("");
+                setSelectedSongImage("");
             } else {
                 alert(`ERROR : ${response.data.serverResponse.message}`);
             }
@@ -78,13 +88,31 @@ export const ManageSong = () => {
                             <label htmlFor="songImage" style={{ fontSize: "19px" }}>
                                 Choose a song image 🖼️
                             </label>
-                            <input type="file" name="songImage" id="songImage" accept="image/*" required onChange={songSelected} />
+                            <input type="file" name="songImage" id="songImage" accept="image/*" required onChange={songImageSelected} />
 
                             {/* Song File */}
                             <label htmlFor="songFile" style={{ fontSize: "19px" }}>
                                 Choose a song 🎹
                             </label>
                             <input type="file" name="songFile" id="songFile" accept="audio/*" required onChange={songSelected} />
+
+                            {/* Genre */}
+                            <strong>Song Genre:</strong>
+                            <div id="songGenre">
+                                <input type="radio" id="classical" name="song_genre" value="Classical" required />
+                                <label htmlFor="classical">Classical</label><br />
+                                <input type="radio" id="hiphop" name="song_genre" value="HipHop" />
+                                <label htmlFor="hiphop">HipHop</label><br />
+                                <input type="radio" id="rock" name="song_genre" value="Rock" />
+                                <label htmlFor="rock">Rock</label>
+                                <input type="radio" id="instrumental" name="song_genre" value="Instrumental" />
+                                <label htmlFor="instrumental">Instrumental</label>
+                                <input type="radio" id="romance" name="song_genre" value="Romance" />
+                                <label htmlFor="romance">Romance</label>
+
+                                <input type="radio" id="party" name="song_genre" value="Party" />
+                                <label htmlFor="party">Party</label>
+                            </div>
 
                             <button>Add</button>
 

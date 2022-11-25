@@ -136,7 +136,20 @@ span,#addArtistForm input,button,label,#addSongForm input,button,label,#displayA
     font-size: 14.3px;
     margin: 17px 0px;
 }
-
+/* Song Genre */
+#addSongForm #songGenre{
+    border-bottom:2px solid rgb(227, 227, 227);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#songGenre input{    
+    accent-color: orangered;
+}
+#addSongForm strong{    
+    font-size: 18px;
+    font-family: var(--fontFamily);
+}
 #loginForm input,
 #signUpForm input,#addArtistForm input,#addSongForm input {
     outline: none;
