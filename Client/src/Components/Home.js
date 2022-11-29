@@ -1,5 +1,7 @@
 import { useContext } from "react";
 import { UserLoginContext } from "../App";
+import {StackLayout} from "./StackLayout";
+import {genre} from "./ListContent";
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
@@ -19,7 +21,8 @@ export const Home = () => {
             return (
                 <>
                     <main>
-                        <h2>Welcome User {loggedInUserData?.name}</h2>
+                        {/* <h2>Welcome User {loggedInUserData?.name}</h2> */}
+                        <StackLayout list={genre}></StackLayout>
                     </main>
                 </>
             )
@@ -28,9 +31,10 @@ export const Home = () => {
     } else {
         return (
             <main>
-                <h1 id='homePage'>
+                {/* <h1 id='homePage'>
                     Welcome to the Musify <br />
-                </h1>
+                </h1> */}
+                    <StackLayout list={genre}></StackLayout>
             </main>
         )
     }

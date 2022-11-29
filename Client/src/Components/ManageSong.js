@@ -1,4 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { DisplayArtists } from "./DisplayArtists";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -8,44 +10,73 @@ export const ManageSong = () => {
     const [selectedSongImage, setSelectedSongImage] = useState("");
     const [sungBy, setSungBy] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
-    const location = useLocation();
+    const [songDetails, setSongDetails] = useState("");
+    const [showArtist, setShowArtist] = useState(false);
+    // const location = useLocation();
 
     useEffect(() => {
-        // if artist selected ...
-        if (location.state) {
-            setSungBy(location.state);
-        }
+
     }, []);
 
     const showSongs = () => navigate("/displaySongs");
 
-    const songSelected = (event) => {
-        setSelectedSong(event.target.files[0]);  // Get and store selected song   
+    // Song Details Holder
+    const storeSongDetailsInSessionStorage = (key, value) => {
+        let newSongDetails = {};
+        if (sessionStorage.getItem("songTempData")) {
+            newSongDetails = JSON.parse(sessionStorage.getItem("songTempData"));
+            newSongDetails[key] = value;
+            console.log("It already exists ...", sessionStorage.getItem("sontTempData"), newSongDetails);
+            sessionStorage.setItem("songTempData", JSON.stringify(newSongDetails));
+        } else {
+            newSongDetails[key] = value;
+            console.log("New...", newSongDetails, key, value);
+            sessionStorage.setItem("songTempData", JSON.stringify(newSongDetails));
+        }
     }
+    // Song image selection event handler
     const songImageSelected = (event) => {
         setSelectedSongImage(event.target.files[0]);  // Get and store song image 
     }
+    // Song selection event handler
+    const songSelected = (event) => {
+        setSelectedSong(event.target.files[0]);  // Get and store selected song
+    }
+
+    // Song genre on change event handler
+    const handleGenre = event => setSelectedGenre(event.target.value);
 
     // Select Artist
     const selectArtist = () => {
-        navigate("/displayArtists", { state: "selectArtist" });
-    }
+        setSungBy("");
+        setShowArtist(true);
+    };
+
     // Add Song Form Submit Event Handler 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        // Song name validation
+        if (!event.target['songName'].value) {
+            return alert("Please give a name to the song 😶");
+        }
+        // Song genre validation
+        if (!event.target['genre'].value) {
+            return alert("Please assign a genre to the song 😶");
+        }
+
         if (selectedSong && selectedSongImage && sungBy) {
+            const formData = new FormData();
+            const song_name = sungBy;
+            formData.append("sung_by", song_name);            
+            formData.append("song_name", event.target['songName'].value);
+            formData.append("genre", event.target['genre'].value);
+            formData.append("song_file", selectedSong);
+            formData.append("song_image", selectedSongImage);
+
             const baseUrl = `http://localhost:4000/createSong`;
             let response;
-            // To be continued ...❤️‍🔥
             try {
-                const formData = new FormData();
-                formData.append('song_name', event.target['songName'].value);
-                formData.append('song_file', selectedSong);
-                formData.append('song_image', selectedSongImage);
-                formData.append('sung_by', sungBy);
-                formData.append('genre', event.target['song_genre'].value);
-
                 response = await axios({
                     url: baseUrl,
                     method: "POST",
@@ -66,6 +97,7 @@ export const ManageSong = () => {
                 setSelectedSong("");
                 setSelectedSongImage("");
                 setSungBy("");
+                setShowArtist(false);
             } else {
                 alert(`ERROR : ${response.data.serverResponse.message}`);
             }
@@ -85,6 +117,7 @@ export const ManageSong = () => {
     return (
         <>
             <main>
+                {showArtist && !sungBy ? <DisplayArtists selectArtist={true} setArtist={setSungBy} /> : ""}
                 <div id="addSongMainContainer">
 
                     <div id="addSongIllustration">
@@ -98,34 +131,34 @@ export const ManageSong = () => {
 
                         <form id="addSongForm" onSubmit={handleSubmit} encType="multipart/form-data">
 
-                            <input type="text" name="songName" id="songName" placeholder="Song Name " required />
+                            <input type="text" name="song_name" id="songName" placeholder="Song Name " required />
                             {/* Song Image */}
                             <label htmlFor="songImage" style={{ fontSize: "19px" }} id="songChooseImage">
                                 Choose a song image 🖼️
                             </label>
-                            <input type="file" name="songImage" id="songImage" accept="image/*" required onChange={songImageSelected} />
+                            <input type="file" name="song_image" id="songImage" accept="image/*" onChange={songImageSelected} required />
 
                             {/* Song File */}
-                            <label htmlFor="songFile" style={{ fontSize: "19px" }} id="songChoose">
+                            <label htmlFor="song_file" style={{ fontSize: "19px" }} id="songChoose">
                                 Choose a song 🎹
                             </label>
-                            <input type="file" name="songFile" id="songFile" accept="audio/*" required onChange={songSelected} />
+                            <input type="file" name="song_file" id="songFile" accept="audio/*" onChange={songSelected} required />
 
                             {/* Genre */}
                             <strong>Song Genre:</strong>
                             <div id="songGenre">
-                                <input type="radio" id="classical" name="song_genre" value="Classical" required />
+                                <input type="radio" id="classical" name="genre" value="Classical" required defaultChecked />
                                 <label htmlFor="classical">Classical</label><br />
-                                <input type="radio" id="hiphop" name="song_genre" value="HipHop" />
+                                <input type="radio" id="hiphop" name="genre" value="HipHop" onChange={handleGenre} />
                                 <label htmlFor="hiphop">HipHop</label><br />
-                                <input type="radio" id="rock" name="song_genre" value="Rock" />
+                                <input type="radio" id="rock" name="genre" value="Rock" onChange={handleGenre} />
                                 <label htmlFor="rock">Rock</label>
-                                <input type="radio" id="instrumental" name="song_genre" value="Instrumental" />
+                                <input type="radio" id="instrumental" name="genre" value="Instrumental" onChange={handleGenre} />
                                 <label htmlFor="instrumental">Instrumental</label>
-                                <input type="radio" id="romance" name="song_genre" value="Romance" />
+                                <input type="radio" id="romance" name="genre" value="Romance" onChange={handleGenre} />
                                 <label htmlFor="romance">Romance</label>
 
-                                <input type="radio" id="party" name="song_genre" value="Party" />
+                                <input type="radio" id="party" name="genre" value="Party" onChange={handleGenre} />
                                 <label htmlFor="party">Party</label>
 
                             </div>

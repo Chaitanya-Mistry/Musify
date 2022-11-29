@@ -42,7 +42,7 @@ const validateCreateSong = async (req, res, next) => {
         sung_by: yup.string().required(),
         genre: yup.string().required(),
     });
-    await validate(songObjSchema, { song_name: req.body.song_name, song_image: req.files.song_image, song_file: req.files.song_file, sungBy: req.body.sungBy, genre: req.body.genre }, res, next);
+    await validate(songObjSchema, { song_name: req.body.song_name, song_image: req.files.song_image, song_file: req.files.song_file, sung_by: req.body.sung_by, genre: req.body.genre }, res, next);
 }
 
 
@@ -64,6 +64,7 @@ const validate = async (schema, reqData, res, next) => {
 export {
     validateCreateUser,
     loginValidation,
-    validateCreateArtist
+    validateCreateArtist,
+    validateCreateSong
     // logoutValidation,
 }

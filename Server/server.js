@@ -6,6 +6,7 @@ import cors from "cors";
 import * as Validation from "./Utility/validation.js";
 import * as userCntl from "./Controller/userController.js";
 import * as artistCntl from "./Controller/artistController.js";
+import * as songCntl from "./Controller/songController.js";
 import { authMiddleware } from "./Middleware/authMiddleware.js";
 import { logout } from "./Controller/logout.js";
 import cookieParser from 'cookie-parser';
@@ -51,7 +52,7 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
-app.get('/getAllArtists',authMiddleware,artistCntl.getAllArtists); // Done
+app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist", (req, res) => {
     res.send("Update artist API ...");
@@ -64,9 +65,7 @@ app.delete("/deleteArtist", (req, res) => {
 app.get("/getSong", (req, res) => {
     res.send("Get Song API");
 })
-app.post("/createSong", (req, res) => {
-    res.send("Create Song API");
-});
+app.post("/createSong", Validation.validateCreateSong, songCntl.createSong);
 app.patch("/updateSong", (req, res) => {
     res.send("Update Song API");
 });

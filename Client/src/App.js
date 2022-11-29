@@ -48,7 +48,7 @@ function App() {
     setloading(true)
     setTimeout(() => {
       setloading(false)
-    }, 3000);
+    }, 1000);
     // Check whether user is already logged in or not to prevent him/her to re-login every-time
     if (document.cookie.split("=")[0] === "jwtoken") {
       setLogIn(true); // user log in without admin type

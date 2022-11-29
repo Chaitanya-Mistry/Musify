@@ -83,7 +83,29 @@ main {
     justify-content: center;
     align-items: center;
     font-family: 'Crimson Pro', serif;
+    position: relative;
 }
+
+/* Show Artist Component CSS*/
+.showArtist::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.564);
+    z-index: -1;
+}
+
+.showArtist {
+    position: absolute;
+    /* border: 2px solid red; */
+    width: 100%;
+    overflow-y: auto;
+    top: 1px;
+    height: 100%;
+    z-index: 2;
+}
+
 
 /* Login, Sign Up, Add Artist & Add Song */
 #loginContainer,
@@ -190,8 +212,25 @@ label,
 }
 
 /* Tick Artist if admin selects a particular artist */
-.tickArtist{
-    opacity: .7;
+.tickArtist {
+    opacity: .8
+}
+
+.selectArtistBtn {
+    cursor: pointer;
+    width: 20%;
+    border: none;
+    font-size: 17px;
+    background-image: linear-gradient(to right, rgba(30, 143, 255, 0.87), rgba(102, 51, 153, 0.747));
+    color: white;
+    font-weight: bold;
+    border-radius: 13px;
+    padding: 10px;
+    transition: all .2s linear;
+}
+
+.selectArtistBtn:hover {
+    box-shadow: 1px 1px 20px dodgerblue;
 }
 
 #loginForm input:focus,
@@ -216,7 +255,8 @@ label,
 #addArtistForm button,
 #addSongForm button,
 #displayArtist,
-#displaySong,#selectArtist {
+#displaySong,
+#selectArtist {
     padding: 13px;
     background-color: rgb(140, 152, 225);
     color: white;
@@ -227,17 +267,20 @@ label,
     transition-timing-function: linear;
     cursor: pointer;
 }
-#selectArtist{
+
+#selectArtist {
     margin-top: 10px;
     background-color: rgb(36, 36, 193);
 }
-#selectArtist:hover{
+
+#selectArtist:hover {
     background-color: rgb(98, 98, 240);
 }
 
 #loginForm button:hover,
 #displayArtist:hover,
-#displaySong:hover,#selectArtist:hover {
+#displaySong:hover,
+#selectArtist:hover {
     background-color: rgb(172, 183, 255);
     color: rgb(43, 43, 43);
 }
@@ -340,13 +383,15 @@ label,
 }
 
 #displayArtist,
-#displaySong,#selectArtist {
+#displaySong,
+#selectArtist {
     text-align: center;
 }
 
 /* Footer */
 footer {
     background-color: var(--bgColor);
+    font-size: 14px;
     color: white;
     font-weight: bold;
     font-family: var(--fontFamily);

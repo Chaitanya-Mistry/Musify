@@ -3,12 +3,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
-export const DisplayArtists = () => {
+export const DisplayArtists = ({ selectArtist, setArtist }) => {
     const [artists, setArtists] = useState([]);
-    const navigate = useNavigate();
     const [noArtists, setNoArtists] = useState(false);
     const [selectedArtist, setSelectedArtist] = useState(false);
-    const location = useLocation();
 
     // Fetch all blogs
     const fetchAllArtists = async () => {
@@ -30,6 +28,10 @@ export const DisplayArtists = () => {
         }
     }
 
+    const finalArtistSelected = () => {
+        setArtist(selectedArtist);
+    }
+
     const displaySelectCheckMark = (event) => {
         const artistImage = event.target;
         // If admin clicks on artist image
@@ -47,15 +49,10 @@ export const DisplayArtists = () => {
             }
         }
     }
-
-    // Move back to the add song page
-    const sendSelectedArtist = () => {
-        navigate("/manageSong",{state:selectedArtist}); // Navigate to the manage song component
-    }
     useEffect(() => {
         fetchAllArtists();
         // if admin wants to select an artist for a song
-        if (location.state) {
+        if (setArtist) {
             const artistListContainer = document.getElementsByClassName("artistListContainer")[0];
             artistListContainer.addEventListener("click", displaySelectCheckMark);
         }
@@ -73,19 +70,32 @@ export const DisplayArtists = () => {
         });
         return (
             <>
-                <main>
-                    <div className="mainArtistContainer">
-                        {/* List of artists */}
-                        <div className="artistListMainContainer">
-                            {/* <h3 style={{ marginBottom: "10px" }}>List of artists</h3> */}
-                            <div className="artistListContainer">
-                                {/* Dynamically generated */}
-                                {allArtists}
+                {
+                    selectArtist ?
+                        <div className="showArtist">
+                            {/* List of artists */}
+                            <div className="artistListMainContainer">
+                                {/* <h3 style={{ marginBottom: "10px" }}>List of artists</h3> */}
+                                <div className="artistListContainer">
+                                    {/* Dynamically generated */}
+                                    {allArtists}
+                                </div>
+                                {selectedArtist ? <button className="selectArtistBtn" onClick={finalArtistSelected}>Done</button> : ""}
                             </div>
-                            {selectedArtist ? <button onClick={sendSelectedArtist}>Done</button> : ""}
                         </div>
-                    </div>
-                </main>
+                        : <main><div className="mainArtistContainer">
+                            {/* List of artists */}
+                            <div className="artistListMainContainer">
+                                {/* <h3 style={{ marginBottom: "10px" }}>List of artists</h3> */}
+                                <div className="artistListContainer">
+                                    {/* Dynamically generated */}
+                                    {allArtists}
+                                </div>
+                                {selectedArtist ? <button className="selectArtistBtn" onClick={finalArtistSelected}>Done</button> : ""}
+                            </div>
+                        </div>
+                        </main>
+                }
             </>
         )
     }
