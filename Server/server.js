@@ -5,7 +5,7 @@ import compression from "compression";
 import cors from "cors";
 import * as Validation from "./Utility/validation.js";
 import * as userCntl from "./Controller/userController.js";
-// import * as artistCntl from "./Controller/artistController.js";
+import * as artistCntl from "./Controller/artistController.js";
 import * as songCntl from "./Controller/songController.js";
 import { authMiddleware } from "./Middleware/authMiddleware.js";
 import { logout } from "./Controller/logout.js";
@@ -53,8 +53,8 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
-// app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
-// app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
+app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
+app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist", (req, res) => {
     res.send("Update artist API ...");
 });

@@ -1,5 +1,5 @@
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
-import ArtistModel from '../Model/ArtistModel.js';
+import { artist as ArtistModel } from "../Model/Artist_Song_Model.js";
 import { resolve } from "path";
 
 // Get all artists
