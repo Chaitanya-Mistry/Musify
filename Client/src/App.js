@@ -13,6 +13,7 @@ import { ManageSong } from './Components/ManageSong';
 import axios from 'axios';
 import { DisplayArtists } from './Components/DisplayArtists';
 import SyncLoader from "react-spinners/SyncLoader";
+import { DisplaySongs } from './Components/DisplaySongs';
 
 const UserLoginContext = createContext();
 
@@ -95,6 +96,7 @@ function App() {
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/displayArtists' element={<DisplayArtists />} /> : ""}
+                {isAdminLoggedIn ? <Route path='/displaySongs' element={<DisplaySongs />} /> : ""}
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
             </UserLoginContext.Provider>

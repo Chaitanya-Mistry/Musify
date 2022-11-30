@@ -1,14 +1,13 @@
 import { Artist } from "./Artist";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 export const DisplayArtists = ({ selectArtist, setArtist }) => {
     const [artists, setArtists] = useState([]);
     const [noArtists, setNoArtists] = useState(false);
     const [selectedArtist, setSelectedArtist] = useState(false);
 
-    // Fetch all blogs
+    // Fetch all artists
     const fetchAllArtists = async () => {
         const baseURL = 'http://localhost:4000/getAllArtists'; // Our API server 
         let response;

@@ -1,7 +1,23 @@
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
-import ArtistModel from '../Model/ArtistModel.js';
-import SongModel from "../Model/SongModel.js";
+import { song as SongModel } from "../Model/Artist_Song_Model.js";
 import { resolve } from "path";
+
+// Get all songs
+const getAllSongs = async (req, res) => {
+    let songs;
+    // Fetch all stored songs ...
+    try {
+        songs = await SongModel.findData({}).populate("sung_by");        
+    } catch (error) {
+        return sendError(res, {}, `${error}`, false, 500);
+    }
+
+    if (songs) {
+        return sendResponse(res, songs, `Songs fetched successfully ...✅`, true, 200);
+    } else {
+        return sendError(res, {}, `No songs were uploaded ... 😕`, false, 204);
+    }
+}
 
 // Create song
 const createSong = async (req, res) => {
@@ -66,4 +82,4 @@ const createSong = async (req, res) => {
     }
 }
 
-export { createSong }
+export { getAllSongs, createSong }

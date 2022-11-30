@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+// import song from "./SongModel.js";
 
 const artistSchema = new mongoose.Schema({
     artist_name: {
@@ -12,7 +13,7 @@ const artistSchema = new mongoose.Schema({
     },
     sung_songs: [{
         type: mongoose.Types.ObjectId, // To store song's id
-        ref: "song",
+        ref: 'song',
         required: true,
     }],
     total_listeners: [{

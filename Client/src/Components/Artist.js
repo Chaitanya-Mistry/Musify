@@ -1,9 +1,4 @@
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect } from "react";
-
 export const Artist = ({artistData}) => {
-    const navigate = useNavigate();
     // To delete artist
     // const deleteArtist = async (event) => {
     //     const confirmation = window.confirm('Do you really want to delete this ? 🧐');

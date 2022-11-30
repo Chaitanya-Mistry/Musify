@@ -14,8 +14,8 @@ const songSchema = new mongoose.Schema({
         required: true
     },
     sung_by: {
-        type: mongoose.Types.ObjectId, // To store artist's id
-        ref: "artist",
+        type: mongoose.Schema.Types.ObjectId, // To store artist's id
+        ref: 'artist',
         required: true,
     },
     genre: {

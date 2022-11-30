@@ -306,7 +306,7 @@ label,
 
 /* ADMIN Section */
 /* Manage artist & Manage Song */
-.mainArtistContainer {
+.mainArtistContainer,.mainSongContainer {
     width: 100%;
     height: 100%;
 }
@@ -323,7 +323,7 @@ label,
     flex-direction: row;
 }
 
-.artistListMainContainer {
+.artistListMainContainer,.songListMainContainer {
     width: 90%;
     /* border: 2px solid red; */
     margin: 20px auto;
@@ -360,7 +360,7 @@ label,
 
 .artistImageContainer img,
 .songImageContainer img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }

@@ -1,39 +1,18 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { DisplayArtists } from "./DisplayArtists";
-
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const ManageSong = () => {
-    const navigate = useNavigate();
     const [selectedSong, setSelectedSong] = useState("");
     const [selectedSongImage, setSelectedSongImage] = useState("");
     const [sungBy, setSungBy] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
     const [songDetails, setSongDetails] = useState("");
     const [showArtist, setShowArtist] = useState(false);
-    // const location = useLocation();
 
-    useEffect(() => {
+    const navigate = useNavigate();
 
-    }, []);
-
-    const showSongs = () => navigate("/displaySongs");
-
-    // Song Details Holder
-    const storeSongDetailsInSessionStorage = (key, value) => {
-        let newSongDetails = {};
-        if (sessionStorage.getItem("songTempData")) {
-            newSongDetails = JSON.parse(sessionStorage.getItem("songTempData"));
-            newSongDetails[key] = value;
-            console.log("It already exists ...", sessionStorage.getItem("sontTempData"), newSongDetails);
-            sessionStorage.setItem("songTempData", JSON.stringify(newSongDetails));
-        } else {
-            newSongDetails[key] = value;
-            console.log("New...", newSongDetails, key, value);
-            sessionStorage.setItem("songTempData", JSON.stringify(newSongDetails));
-        }
-    }
     // Song image selection event handler
     const songImageSelected = (event) => {
         setSelectedSongImage(event.target.files[0]);  // Get and store song image 
@@ -67,8 +46,8 @@ export const ManageSong = () => {
 
         if (selectedSong && selectedSongImage && sungBy) {
             const formData = new FormData();
-            const song_name = sungBy;
-            formData.append("sung_by", song_name);            
+           
+            formData.append("sung_by", sungBy);            
             formData.append("song_name", event.target['songName'].value);
             formData.append("genre", event.target['genre'].value);
             formData.append("song_file", selectedSong);
@@ -168,7 +147,7 @@ export const ManageSong = () => {
 
                             <strong style={{ fontSize: "21px", textAlign: "center" }}>or</strong> <br />
 
-                            <p id="displaySong" onClick={showSongs}>Display Songs</p>
+                            <p id="displaySong" onClick={()=>navigate("/displaySongs")}>Display Songs</p>
                         </form>
                     </div>
                 </div>
