@@ -334,7 +334,7 @@ label,
     display: flex;
     flex-wrap: wrap;
     gap: 55px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .artist,
@@ -347,7 +347,19 @@ label,
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
+
+/* Artist operations */
+.artistOperations{
+    width: 100%;
+    text-align: center;
+}
+.artistOperations span{
+    cursor: pointer;    
+    opacity: .5;
+}
+.artistOperations span:hover{opacity: 1}
 
 .artistImageContainer,
 .songImageContainer {

@@ -23,7 +23,12 @@ export const DisplaySongs = () => {
         if (response.data.serverResponse.responseCode === 204) {
             setNoSongs(true);
         } else {
-            setSongs(response.data.serverResponse.responseData);            
+            if(response.data.serverResponse.responseData.length > 0){
+                setSongs(response.data.serverResponse.responseData);
+                setNoSongs(false);
+            }else{
+                setNoSongs(true);
+            }
         }
     }
 

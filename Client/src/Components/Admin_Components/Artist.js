@@ -1,4 +1,7 @@
-export const Artist = ({artistData}) => {
+import { useNavigate } from "react-router-dom";
+
+export const Artist = ({ artistData }) => {
+    const navigate = useNavigate();
     // To delete artist
     // const deleteArtist = async (event) => {
     //     const confirmation = window.confirm('Do you really want to delete this ? 🧐');
@@ -28,8 +31,14 @@ export const Artist = ({artistData}) => {
             <section className="artistImageContainer">
                 <img src={`http://localhost:4000/Artist_Image/${artistData.artist_image}`} alt="" loading="lazy" />
             </section>
-
+            {/* Additional Operations */}
+            <p className="artistOperations">
+                {/* Edit artist  ✍️ */}
+                <span onClick={()=>navigate("/editArtist",{state:artistData._id})}>✍️</span>
+                {/* Delete artist ❎ */}
+                <span>🗑️</span>
+            </p>
             <strong className="artistName">{artistData.artist_name}</strong>
-        </div> 
+        </div>
     )
 } 

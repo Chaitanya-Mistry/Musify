@@ -53,6 +53,7 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
+// app.get("/getArtist/:id",artistCntl.getArtist);
 app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist", (req, res) => {
@@ -71,6 +72,3 @@ app.patch("/updateSong", (req, res) => {
 app.delete("/deleteSong", (req, res) => {
     res.send("Delete Song API");
 });
-
-
-

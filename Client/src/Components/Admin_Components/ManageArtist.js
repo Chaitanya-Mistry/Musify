@@ -51,13 +51,13 @@ export const ManageArtist = () => {
         <>
             <main>
                 <div id="addArtistMainContainer">
-                    {/* For login illustration */}
+                    
                     <div id="addArtistIllustration">
                         {/* <a href="https://www.freepik.com/free-vector/add-files-concept-illustration_5573510.htm#query=add&position=0&from_view=keyword">Image by storyset</a> on Freepik */}
                         {/* Image provided by www.freepik.com */}
                         <img src="https://img.freepik.com/free-vector/add-files-concept-illustration_114360-481.jpg?w=1060&t=st=1669225936~exp=1669226536~hmac=7ea43078f3d7068736b350b23b08e1fab49221f6d39388811dcf787c7bd160c9" alt="add illustration" />
                     </div>
-                    {/* To artist details */}
+                    {/* Artist details */}
                     <div id="artistDetails">
                         <div id="addArtistTitleContainer">
                         <h2 id="addArtistTitle">Add Artist 🧑‍🎤</h2>
