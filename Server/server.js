@@ -53,18 +53,16 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
-// app.get("/getArtist/:id",artistCntl.getArtist);
+app.get("/getArtist/:artistID", artistCntl.getArtist);
 app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
-app.patch("/updateArtist", (req, res) => {
-    res.send("Update artist API ...");
-});
+app.patch("/updateArtist/:artistID", artistCntl.updateArtist);
 app.delete("/deleteArtist", (req, res) => {
     res.send("Delete artist API ...");
 });
 
 /* Song */
-app.get("/getAllSongs", authMiddleware,songCntl.getAllSongs);
+app.get("/getAllSongs", authMiddleware, songCntl.getAllSongs);
 app.post("/createSong", Validation.validateCreateSong, songCntl.createSong);
 app.patch("/updateSong", (req, res) => {
     res.send("Update Song API");

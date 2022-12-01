@@ -107,10 +107,10 @@ main {
 }
 
 
-/* Login, Sign Up, Add Artist & Add Song */
+/* Login, Sign Up, Add/Edit Artist & Add Song */
 #loginContainer,
 #signUpContainer,
-#addArtistMainContainer,
+#addArtistMainContainer,#editArtistMainContainer,
 #addSongMainContainer {
     box-shadow: 0px 0px 13px rgb(137, 172, 208);
     width: 60%;
@@ -121,7 +121,7 @@ main {
 #loginImage,
 #signUpImage,
 #addArtistIllustration,
-#addSongIllustration {
+#addSongIllustration,#artistImage {
     height: auto;
     width: 45%;
 }
@@ -129,7 +129,7 @@ main {
 #loginImage img,
 #signUpImage img,
 #addArtistIllustration img,
-#addSongIllustration img {
+#addSongIllustration img,#artistImage img {
     border-right: 1px solid rgb(234, 234, 234);
     width: 100%;
     height: 100%;
@@ -147,7 +147,7 @@ main {
 #loginTitle,
 #signUpTitle,
 #addArtistTitle,
-#addSongTitle {
+#addSongTitle,#editArtistTitle {
     font-size: 30px;
     margin: 17px 0px;
     color: rgb(8, 108, 215);
@@ -160,7 +160,7 @@ main {
 #loginForm,
 #signUpForm,
 #addArtistForm,
-#addSongForm {
+#addSongForm,#editArtistForm {
     display: flex;
     flex-direction: column;
 }
@@ -173,7 +173,7 @@ button,
 span,
 #addArtistForm input,
 button,
-label,
+label,#editArtistForm input,button,label,
 #addSongForm input,
 button,
 label,
@@ -205,7 +205,7 @@ label,
 #loginForm input,
 #signUpForm input,
 #addArtistForm input,
-#addSongForm input {
+#addSongForm input,#editArtistForm input {
     outline: none;
     border: none;
     border-bottom: 1px solid var(--bgColor);
@@ -236,6 +236,7 @@ label,
 #loginForm input:focus,
 #signUpForm input:focus,
 #addArtistForm input:focus,
+#editArtistForm input:focus,
 #addSongForm input:focus {
     box-shadow: 0px 0px 10px rgb(90, 109, 255);
 }
@@ -253,6 +254,7 @@ label,
 #loginForm button,
 #signUpForm button,
 #addArtistForm button,
+#editArtistForm button,
 #addSongForm button,
 #displayArtist,
 #displaySong,
@@ -293,6 +295,7 @@ label,
 /* Sign Up & Add Artist Button */
 #signUpForm button,
 #addArtistForm button,
+#editArtistForm button,
 #addSongForm button {
     background-color: rgb(255, 88, 96);
     margin-top: 20px;
@@ -300,7 +303,7 @@ label,
 
 #signUpForm button:hover,
 #addArtistForm button:hover,
-#addSongForm button:hover {
+#addSongForm button:hover,#editArtistForm button:hover {
     background-color: orangered;
 }
 
