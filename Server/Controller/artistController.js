@@ -1,5 +1,6 @@
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
 import { artist as ArtistModel } from "../Model/Artist_Song_Model.js";
+import { song as SongModel } from "../Model/Artist_Song_Model.js";
 import { resolve } from "path";
 import fs from "fs";
 
@@ -18,7 +19,7 @@ const getArtist = async (req, res) => {
         return sendError(res, "", `Artist not found ...😅`, false, 500);
     }
 }
-// Get all artists
+// Get all Artists
 const getAllArtists = async (req, res) => {
     let artists;
     // Fetch all stored artists ...
@@ -78,7 +79,7 @@ const createArtist = async (req, res) => {
     }
 }
 
-// Update Artist
+// Update Artist 
 const updateArtist = async (req, res) => {
     const { artistID } = req.params; // Artist id
     const { artist_name } = req.body; // Artist name 
@@ -107,7 +108,7 @@ const updateArtist = async (req, res) => {
                 }
             }
         } catch (err) {
-            return sendError(res,{},`${err}`);            
+            return sendError(res, {}, `${err}`);
         }
 
         const currentTimeStamp = new Date().getTime();
@@ -150,11 +151,43 @@ const updateArtist = async (req, res) => {
 
         // IF artist's details updated successfully ..
         if (updatedArtist) {
-            return sendResponse(res, {}, `Artist's detail updated successfully 👍`,true,200);
+            return sendResponse(res, {}, `Artist's detail updated successfully 👍`, true, 200);
         } else {
-            return sendError(res, {}, `Unable to update artist's details 😑`,false,500);
+            return sendError(res, {}, `Unable to update artist's details 😑`, false, 500);
         }
     }
 }
 
-export { getAllArtists, createArtist, getArtist, updateArtist }
+// Delete Artist
+const deleteArtist = async (req, res) => {
+    // Get ID of an artist to be deleted ...
+    const { artistID } = req.params;
+
+    let artist;
+    let artist_sung_songs;
+    try {
+        // Delete artist
+        artist = await ArtistModel.findOneAndDelete({ _id: artistID });
+        // Check if he sang any song
+        if (artist.sung_songs.length > 0) {
+            // Then delete his sung songs 
+            artist_sung_songs = artist.sung_songs;
+            await SongModel.deleteMany({_id:{$in:artist_sung_songs}}); // Delete all the songs 🔥
+        }
+
+        // Then delete artist image as well
+        let artistImagesDirectoryPath = resolve('Public/Artist_Images');
+        const filePath = `${artistImagesDirectoryPath}/${artist.artist_image}`;
+        fs.unlinkSync(filePath); // Remove associated artist image
+    } catch (error) {
+        return sendError(res, {}, `${err} while deleting artist image`, false, 500);
+    }
+
+    if (artist) {
+        return sendResponse(res, {}, `Artist Deleted Successfully ✔️`, true, 200);
+    } else {
+        return sendError(res, {}, `Unable to delete artist`, false, 500);
+    }
+}
+
+export { getAllArtists, createArtist, getArtist, updateArtist, deleteArtist }

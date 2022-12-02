@@ -57,9 +57,7 @@ app.get("/getArtist/:artistID", artistCntl.getArtist);
 app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist/:artistID", artistCntl.updateArtist);
-app.delete("/deleteArtist", (req, res) => {
-    res.send("Delete artist API ...");
-});
+app.delete("/deleteArtist/:artistID", artistCntl.deleteArtist);
 
 /* Song */
 app.get("/getAllSongs", authMiddleware, songCntl.getAllSongs);

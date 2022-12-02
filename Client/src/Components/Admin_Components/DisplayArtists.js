@@ -65,7 +65,7 @@ export const DisplayArtists = ({ selectArtist, setArtist }) => {
         )
     } else {
         const allArtists = artists.map((currentArtist, index) => {
-            return <Artist artistData={currentArtist} key={index} />
+            return <Artist artistData={currentArtist} key={index} fetchArtist={fetchAllArtists} />
         });
         return (
             <>

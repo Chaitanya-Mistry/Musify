@@ -68,7 +68,7 @@ export const EditArtist = () => {
             setCurrentArtist(response.data.serverResponse.responseData);
         }
         else {
-            alert('Something went wrong, Try again later');
+            alert(response.data.serverResponse.message);
         }
     }
 

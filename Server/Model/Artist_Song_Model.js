@@ -46,7 +46,7 @@ songSchema.static({
             setDefaultsOnInsert: true,
             new: true // To return modified document ...
         });
-    }
+    }    
 });
 
 // Artist Schema 🧑‍🎤
@@ -93,10 +93,13 @@ artistSchema.static({
             setDefaultsOnInsert: true,
             new: true // To return modified document ...
         });
+    },
+    findOneDataAndDelete: function (findObj) {
+        return this.findByIdAndDelete(findObj);
     }
 });
 
 const song = mongoose.model('song', songSchema);
 const artist = mongoose.model('artist', artistSchema);
 
-export {song,artist};
+export { song, artist };

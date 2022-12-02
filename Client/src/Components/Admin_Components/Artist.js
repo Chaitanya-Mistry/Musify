@@ -1,29 +1,33 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export const Artist = ({ artistData }) => {
+export const Artist = ({ artistData, fetchArtist }) => {
     const navigate = useNavigate();
-    // To delete artist
-    // const deleteArtist = async (event) => {
-    //     const confirmation = window.confirm('Do you really want to delete this ? 🧐');
-    //     if (confirmation) {
-    //         const currentBlogId = event.target.dataset.blogid;
-    //         const baseURL = `https://blogyfest-chaitanya.herokuapp.com/api/deleteBlog/${currentBlogId}`;
-    //         let response;
-    //         // Send delete request to our API
-    //         try {
-    //             response = await axios.delete(baseURL, { withCredentials: true });
-    //         } catch (err) {
-    //             response = err.response;
-    //         }
 
-    //         if (response.status === 200) {
-    //             alert('Blog deleted successfully ✔️');
-    //             myBlogFetch();
-    //         } else {
-    //             alert(response);
-    //         }
-    //     }
-    // }
+    // To delete artist
+    const deleteArtist = async (event) => {
+        // Get Confirmation from admin 
+        const confirmation = window.confirm('Do you really want to delete this ? 🧐');
+
+        if (confirmation) {
+            const currentArtistId = event.target.dataset.artist_id;
+            const baseURL = `http://localhost:4000/deleteArtist/${currentArtistId}`;
+            let response;
+            // Send delete request to our API
+            try {
+                response = await axios.delete(baseURL, { withCredentials: true });
+            } catch (err) {
+                alert(err);
+            }
+
+            if (response.data.serverResponse.responseCode === 200) {
+                alert('Artist deleted successfully ✔️');
+                fetchArtist();
+            } else {
+                alert(response.data.serverResponse.message);
+            }
+        }
+    }
 
     return (
         <div className="artist">
@@ -34,9 +38,9 @@ export const Artist = ({ artistData }) => {
             {/* Additional Operations */}
             <p className="artistOperations">
                 {/* Edit artist  ✍️ */}
-                <span onClick={()=>navigate("/editArtist",{state:artistData._id})}>✍️</span>
+                <span onClick={() => navigate("/editArtist", { state: artistData._id })}>✍️</span>
                 {/* Delete artist ❎ */}
-                <span>🗑️</span>
+                <span onClick={deleteArtist} data-artist_id={artistData._id}>🗑️</span>
             </p>
             <strong className="artistName">{artistData.artist_name}</strong>
         </div>
