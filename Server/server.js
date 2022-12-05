@@ -61,6 +61,7 @@ app.delete("/deleteArtist/:artistID", artistCntl.deleteArtist);
 
 /* Song */
 app.get("/getAllSongs", authMiddleware, songCntl.getAllSongs);
+app.get("/getSampleSongs", songCntl.getSampleSongs);
 app.post("/createSong", Validation.validateCreateSong, songCntl.createSong);
 app.patch("/updateSong", (req, res) => {
     res.send("Update Song API");

@@ -3,6 +3,22 @@ import { song as SongModel } from "../Model/Artist_Song_Model.js";
 import { artist as ArtistModel } from "../Model/Artist_Song_Model.js";
 // import { resolve } from "path";
 
+// Get Sample Songs
+const getSampleSongs = async (req,res) => {
+    let songs;
+    // Fetch all stored songs ...
+    try {
+        songs = await SongModel.findData({}).limit(3).populate("sung_by");
+    } catch (error) {
+        return sendError(res, {}, `${error}`, false, 500);
+    }
+
+    if (songs) {
+        return sendResponse(res, songs, `Songs fetched successfully ...✅`, true, 200);
+    } else {
+        return sendError(res, {}, `No songs were uploaded ... 😕`, false, 204);
+    }
+}
 // Get all songs
 const getAllSongs = async (req, res) => {
     let songs;
@@ -89,4 +105,4 @@ const createSong = async (req, res) => {
     }
 }
 
-export { getAllSongs, createSong }
+export { getAllSongs, createSong, getSampleSongs }

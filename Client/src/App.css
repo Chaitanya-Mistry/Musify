@@ -108,7 +108,7 @@ main {
 }
 
 /* HOME Screen */
-#featuredArtist{
+#featuredArtist,#featuredSong{
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
@@ -118,7 +118,7 @@ main {
     padding-top: 10px;
     text-align: center;
 }
-#featuredArtist h1,.componentTitle{
+#featuredArtist h1,.componentTitle,#featuredSong h1{
     font-family: var(--fontFamily);
     color: rgb(23, 123, 222);    
     width: 100%;
@@ -128,20 +128,20 @@ main {
 .componentTitle{
     margin-top: 13px;
 }
-#featuredArtist .artist{
+#featuredArtist .artist,#featuredSong .song{
     width: 290px;    
     height: 300px;    
     /* border: 2px solid red; */
 }
-#featuredArtist .artist .artistImageContainer{
+#featuredArtist .artist .artistImageContainer,#featuredSong .song .songImageContainer{
     height: 100%;
     width: 100%;
     border: none;
 }
 
-/* Song */
-#featuredSong{
-    border: 2px solid rgb(0, 106, 255);
+/* Song playing */
+.playingAudio{
+    opacity: .7;
 }
 
 /* Login, Sign Up, Add/Edit Artist & Add Song */

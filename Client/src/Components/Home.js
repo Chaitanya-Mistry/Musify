@@ -1,10 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserLoginContext } from "../App";
 import { StackLayout } from "./StackLayout";
 import { genre } from "./ListContent";
+import { Audio } from "./Audio";
+import axios from "axios";
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
+    const [fetchedSongs,setFetchedSongs] = useState([]);
+
+    // Fetch Demo Songs
+    const fetchDemoSongs = async () => {
+        // GET request to our API server .. ⬆
+        const baseURL = 'http://localhost:4000/getSampleSongs';
+        let response;
+
+        try {
+            response = await axios.get(baseURL);
+        } catch (err) {
+            response = err.response;
+        }
+
+        if (response.data.serverResponse.responseCode === 200) {
+            // alert(`${response.data.serverResponse.message}`);
+            setFetchedSongs(response.data.serverResponse.responseData);
+        } else {
+            alert(`ERROR : ${response.data.serverResponse.message}`);
+        }
+    }
+    useEffect(() => {
+        fetchDemoSongs();
+    }, []);
 
     // if user is logged in greet them
     if (isLoggedIn) {
@@ -66,9 +92,9 @@ export const Home = () => {
                     </div>
                 </div>
                 {/* Songs */}
-                <div id="featuredSong">
-                    {/* <audio controls> */}
-                    <audio src="../../../Music/nimue-the-lady-of-the-lake-medieval-love-ballad-5638.mp3" controls></audio>
+                <div id="featuredSong">       
+                <h1>Demo Songs</h1>
+                    {fetchedSongs ? fetchedSongs.map((currentSong)=> <Audio songData={currentSong} key={currentSong._id}/>) : ""}
                 </div>
             </main>
         )
