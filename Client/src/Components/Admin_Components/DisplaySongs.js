@@ -44,7 +44,7 @@ export const DisplaySongs = () => {
         )
     } else {
         const allSongs = songs.map((currentSong, index) => {
-            return <Song songData={currentSong} key={index} />
+            return <Song songData={currentSong} key={currentSong._id} />
         });
         return (
             <>

@@ -9,22 +9,17 @@ export const ManageArtist = () => {
 
     const showArtists = () => navigate("/displayArtists");
 
-    // 
+    // Base64 Encoder
     const encodeImageFileAsURL = (element) => {
         var file = element.target.files[0];
         var reader = new FileReader();
         reader.onloadend = function () {
-            // console.log('RESULT', reader.result)
             setSelectedImageType(file.type);
             setSelectedImage(reader.result);
         }
         reader.readAsDataURL(file);
     }
 
-    // const imageSelected = (event) => {
-    //     setSelectedImage(event.target.files[0]);  // Get and store selected image  
-    //     encodeImageFileAsURL(selectedImage);
-    // }
     // Add Artist Form Submit Event Handler 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -62,7 +57,6 @@ export const ManageArtist = () => {
             alert("Please select an image 😶");
         }
     }
-
 
     return (
         <>

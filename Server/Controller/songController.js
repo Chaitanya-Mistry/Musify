@@ -23,6 +23,7 @@ const getAllSongs = async (req, res) => {
 // Create song
 const createSong = async (req, res) => {
     // const currentTimeStamp = new Date().getTime();
+    const { song_name } = req.body; // Song name
     const { song_image } = req.body; // Song image
     const { song_image_type } = req.body; // Song image type
     const { song_file } = req.body; // Song file
@@ -48,7 +49,7 @@ const createSong = async (req, res) => {
 
         // Song object
         const songObj = new SongModel({
-            song_name: req.body.song_name,
+            song_name,
             song_image,
             song_image_type,
             song_file,

@@ -38,12 +38,12 @@ const validateCreateArtist = async (req, res, next) => {
 const validateCreateSong = async (req, res, next) => {
     const songObjSchema = yup.object().shape({
         song_name: yup.string().required(),
-        song_image: yup.mixed().required(),
-        song_file: yup.mixed().required(),
+        song_image: yup.string().required(),
+        song_file: yup.string().required(),
         sung_by: yup.string().required(),
         genre: yup.string().required(),
     });
-    await validate(songObjSchema, { song_name: req.body.song_name, song_image: req.files.song_image, song_file: req.files.song_file, sung_by: req.body.sung_by, genre: req.body.genre }, res, next);
+    await validate(songObjSchema, { song_name: req.body.song_name, song_image: req.body.song_image, song_file: req.body.song_file, sung_by: req.body.sung_by, genre: req.body.genre }, res, next);
 }
 
 

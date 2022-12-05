@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 export const ManageSong = () => {
     const [selectedSong, setSelectedSong] = useState("");
+    const [selectedSongType, setSelectedSongType] = useState("");
     const [selectedSongImage, setSelectedSongImage] = useState("");
+    const [selectedSongImageType, setSelectedSongImageType] = useState("");
     const [sungBy, setSungBy] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
     const [songDetails, setSongDetails] = useState("");
@@ -13,19 +15,29 @@ export const ManageSong = () => {
 
     const navigate = useNavigate();
 
+    // Base64 Encoder
+    const encodeImageFileAsURL = (element, stateFileHolder, statefileTypeHolder) => {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            stateFileHolder(reader.result);
+            statefileTypeHolder(element.type);
+        }
+        reader.readAsDataURL(element);
+    }
+
     // Song image selection event handler
     const songImageSelected = (event) => {
-        setSelectedSongImage(event.target.files[0]);  // Get and store song image 
+        encodeImageFileAsURL(event.target.files[0], setSelectedSongImage, setSelectedSongImageType);
     }
     // Song selection event handler
     const songSelected = (event) => {
-        setSelectedSong(event.target.files[0]);  // Get and store selected song
+        encodeImageFileAsURL(event.target.files[0], setSelectedSong, setSelectedSongType);
     }
 
     // Song genre on change event handler
     const handleGenre = event => setSelectedGenre(event.target.value);
 
-    // Select Artist
+    // Show Artist Selection
     const selectArtist = () => {
         setSungBy("");
         setShowArtist(true);
@@ -46,12 +58,14 @@ export const ManageSong = () => {
 
         if (selectedSong && selectedSongImage && sungBy) {
             const formData = new FormData();
-           
-            formData.append("sung_by", sungBy);            
+
+            formData.append("sung_by", sungBy);
             formData.append("song_name", event.target['songName'].value);
             formData.append("genre", event.target['genre'].value);
             formData.append("song_file", selectedSong);
+            formData.append("song_file_type", selectedSongType);
             formData.append("song_image", selectedSongImage);
+            formData.append("song_image_type", selectedSongImageType);
 
             const baseUrl = `http://localhost:4000/createSong`;
             let response;
@@ -147,7 +161,7 @@ export const ManageSong = () => {
 
                             <strong style={{ fontSize: "21px", textAlign: "center" }}>or</strong> <br />
 
-                            <p id="displaySong" onClick={()=>navigate("/displaySongs")}>Display Songs</p>
+                            <p id="displaySong" onClick={() => navigate("/displaySongs")}>Display Songs</p>
                         </form>
                     </div>
                 </div>

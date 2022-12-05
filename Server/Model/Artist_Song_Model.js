@@ -10,7 +10,15 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    song_location: {
+    song_image_type: {
+        type: String,
+        required: true
+    },
+    song_file: {
+        type: String,
+        required: true
+    },
+    song_file_type: {
         type: String,
         required: true
     },
@@ -46,7 +54,7 @@ songSchema.static({
             setDefaultsOnInsert: true,
             new: true // To return modified document ...
         });
-    }    
+    }
 });
 
 // Artist Schema 🧑‍🎤
@@ -60,7 +68,7 @@ const artistSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    artist_image_type:{
+    artist_image_type: {
         type: String,
         required: true
     },
