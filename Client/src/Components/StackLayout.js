@@ -30,8 +30,7 @@ export const StackLayout = ({ list }) => {
             <Stack
                 sx = {{
                     // display: 'flex',
-                    // flexDirection: 'column'
-                    
+                    // flexDirection: 'column'                    
                 }}
                 direction="row"
                 divider={<Divider orientation="vertical" flexItem />}

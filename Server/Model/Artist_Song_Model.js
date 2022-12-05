@@ -60,6 +60,10 @@ const artistSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    artist_image_type:{
+        type: String,
+        required: true
+    },
     sung_songs: [{
         type: mongoose.Schema.Types.ObjectId, // To store song's id
         ref: 'song',

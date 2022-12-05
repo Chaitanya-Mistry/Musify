@@ -12,8 +12,8 @@ export const  PlaylistCard = ({obj}) => {
                 <CardMedia
                     component="img"
                     height="100"
-                    image="../../../Images/Slider2.jpg"
-                    alt="demo images"
+                    image={obj.image}
+                    alt={obj.title}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

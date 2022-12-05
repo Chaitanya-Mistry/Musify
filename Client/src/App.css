@@ -80,6 +80,7 @@ nav a:hover {
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Crimson Pro', serif;
@@ -106,6 +107,42 @@ main {
     z-index: 2;
 }
 
+/* HOME Screen */
+#featuredArtist{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 84%;
+    justify-content: space-between;
+    /* border-top: 1px solid rgba(146, 146, 146, 0.598); */
+    padding-top: 10px;
+    text-align: center;
+}
+#featuredArtist h1,.componentTitle{
+    font-family: var(--fontFamily);
+    color: rgb(23, 123, 222);    
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.componentTitle{
+    margin-top: 13px;
+}
+#featuredArtist .artist{
+    width: 290px;    
+    height: 300px;    
+    /* border: 2px solid red; */
+}
+#featuredArtist .artist .artistImageContainer{
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+/* Song */
+#featuredSong{
+    border: 2px solid rgb(0, 106, 255);
+}
 
 /* Login, Sign Up, Add/Edit Artist & Add Song */
 #loginContainer,
@@ -375,11 +412,10 @@ label,
 
 .artistImageContainer img,
 .songImageContainer img {
-    object-fit: cover;
+    object-fit: cover;    
     width: 100%;
     height: 100%;
 }
-
 .artistName,
 .songName {
     text-align: center;

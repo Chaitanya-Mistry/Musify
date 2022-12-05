@@ -37,21 +37,21 @@ export function Navbar() {
                 <>
                     <header>
                         <div className="logo">
-                        {/* Site Logo */}
-                        <NavLink to="/" style={{ textDecoration: 'none' }}>
-                            {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
-                            {/* Image provided by https://www.flaticon.com/ */}
-                            <div id="siteLogoContainer">
-                                <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
-                                <h1 id="siteLogo">Musify</h1>
-                            </div>
-                        </NavLink>
+                            {/* Site Logo */}
+                            <NavLink to="/" style={{ textDecoration: 'none' }}>
+                                {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
+                                {/* Image provided by https://www.flaticon.com/ */}
+                                <div id="siteLogoContainer">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
+                                    <h1 id="siteLogo">Musify</h1>
+                                </div>
+                            </NavLink>
                         </div>
                         <nav>
-                        <div className="navlist"><NavLink to='/'>Home</NavLink></div>
-                        <div className="navlist"><NavLink to='/manageArtist'>Manage Artist</NavLink></div>
-                        <div className="navlist"><NavLink to='/manageSong'>Manage Song</NavLink></div>
-                        <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
+                            <div className="navlist"><NavLink to='/'>Home</NavLink></div>
+                            <div className="navlist"><NavLink to='/manageArtist'>Manage Artist</NavLink></div>
+                            <div className="navlist"><NavLink to='/manageSong'>Manage Song</NavLink></div>
+                            <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
                         </nav>
                     </header>
                 </>
@@ -61,22 +61,22 @@ export function Navbar() {
                 <>
                     <header>
                         <div className="logo">
-                        {/* Site Logo */}
-                        <NavLink to="/" style={{ textDecoration: 'none' }}>
-                            {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
-                            {/* Image provided by https://www.flaticon.com/ */}
-                            <div id="siteLogoContainer">
-                                <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
-                                <h1 id="siteLogo">Musify</h1>
-                            </div>
-                        </NavLink>
+                            {/* Site Logo */}
+                            <NavLink to="/" style={{ textDecoration: 'none' }}>
+                                {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
+                                {/* Image provided by https://www.flaticon.com/ */}
+                                <div id="siteLogoContainer">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
+                                    <h1 id="siteLogo">Musify</h1>
+                                </div>
+                            </NavLink>
                         </div>
                         <nav>
-                        <div className="navlist"><NavLink to='/'>Home</NavLink></div>
-                        <div className="navlist"><NavLink to='/myFavSongs'>My Favourite Songs</NavLink></div>
-                        <div className="navlist"><NavLink to='/serchSongs'>Search Songs</NavLink></div>
-                        <div className="navlist"><NavLink to='/myAccount'>My Account</NavLink></div>
-                        <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
+                            <div className="navlist"><NavLink to='/'>Home</NavLink></div>
+                            <div className="navlist"><NavLink to='/myFavSongs'>My Favourite Songs</NavLink></div>
+                            <div className="navlist"><NavLink to='/serchSongs'>Search Songs</NavLink></div>
+                            <div className="navlist"><NavLink to='/myAccount'>My Account</NavLink></div>
+                            <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
                         </nav>
                     </header>
                 </>
@@ -88,15 +88,15 @@ export function Navbar() {
             <>
                 <header>
                     <div className="logo">
-                    {/* Site Logo */}
-                    <NavLink to="/" style={{ textDecoration: 'none' }}>
-                        {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
-                        {/* Image provided by https://www.flaticon.com/ */}
-                        <div id="siteLogoContainer">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
-                            <h1 id="siteLogo">Musify</h1>
-                        </div>
-                    </NavLink>
+                        {/* Site Logo */}
+                        <NavLink to="/" style={{ textDecoration: 'none' }}>
+                            {/* https://www.flaticon.com/free-icon/listen_2829076?term=music&related_id=2829076 */}
+                            {/* Image provided by https://www.flaticon.com/ */}
+                            <div id="siteLogoContainer">
+                                <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
+                                <h1 id="siteLogo">Musify</h1>
+                            </div>
+                        </NavLink>
                     </div>
                     <nav>
                         <div className="navlist"><NavLink to='/'>Home</NavLink></div>

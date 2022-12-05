@@ -33,7 +33,8 @@ export const Artist = ({ artistData, fetchArtist }) => {
         <div className="artist">
             {/* Artist Image */}
             <section className="artistImageContainer">
-                <img src={`http://localhost:4000/Artist_Image/${artistData.artist_image}`} alt="" loading="lazy" />
+                {/* <img src={`http://localhost:4000/Artist_Image/${artistData.artist_image}`} alt="" loading="lazy" /> */}
+                <img src={artistData.artist_image} alt={artistData.artist_name} loading="lazy" />
             </section>
             {/* Additional Operations */}
             <p className="artistOperations">

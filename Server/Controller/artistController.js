@@ -50,15 +50,10 @@ const createArtist = async (req, res) => {
     if (isArtistExists) {
         return sendError(res, "", "Artist is already exists !", false, 409);
     } else {
-        const currentTimeStamp = new Date().getTime();
-        const artist_image = req.files.artist_image;
-        let artistImagesDirectoryPath = resolve('Public/Artist_Images');
-
-        artistImagesDirectoryPath = resolve(`${artistImagesDirectoryPath}`, `${currentTimeStamp}_${artist_image.name}`);
-
         const artistObj = new ArtistModel({
             artist_name: req.body.artist_name,
-            artist_image: `${currentTimeStamp}_${artist_image.name}`,
+            artist_image: req.body.artist_image,
+            artist_image_type: req.body.artist_image_type
         });
 
         // Saving artist's data to the database 
@@ -68,13 +63,6 @@ const createArtist = async (req, res) => {
             return sendError(res, {}, `Failed to create an artist: ${err}`, false, 500);
         }
 
-        // Then move artist's image to the public folder ... 📁
-        await artist_image.mv(artistImagesDirectoryPath, function (err) {
-            if (err) {
-                return sendError(res, {}, `${err} while moving artist's pic`, false, 500);
-            }
-        });
-
         return sendResponse(res, {}, `Artist with name: ${artistObj.email} created successfully`, true, 201);
     }
 }
@@ -83,60 +71,43 @@ const createArtist = async (req, res) => {
 const updateArtist = async (req, res) => {
     const { artistID } = req.params; // Artist id
     const { artist_name } = req.body; // Artist name 
-    const artistImage = req?.files?.artist_image;
+    const { artist_image } = req.body; // Artist name 
+    const { artist_image_type } = req.body; // Artist name 
 
-    let oldArtistImage;
     let foundArtist;
     let updatedArtist;
-    let artistImagesDirectoryPath = resolve('Public/Artist_Images');
 
     // if admin wants to update artist's image as well
-    if (artistImage) {
-        // 1st find blog by id 
+    if (artist_image) {
+
         try {
             foundArtist = await ArtistModel.findOneData({ _id: artistID });
-
-            if (foundArtist) {
-                oldArtistImage = foundArtist.artist_image; // Store name of old artist image
-
-                // 2nd remove old associated artist image
-                try {
-                    const filePathToDelete = `${artistImagesDirectoryPath}/${oldArtistImage}`;
-                    fs.unlinkSync(filePathToDelete);
-                } catch (err) {
-                    return sendError(res, "", `${err} while deleting old artist image`);
-                }
-            }
         } catch (err) {
             return sendError(res, {}, `${err}`);
         }
 
-        const currentTimeStamp = new Date().getTime();
-        // 3.1 Move uploaded artist image to specific directory .. 
-        await artistImage.mv(`${artistImagesDirectoryPath}/${currentTimeStamp}_${artistImage.name}`, function (err) {
-            if (err) {
-                return sendError(res, {}, `${err} while moving artist's pic`, false, 500);
+        if (foundArtist) {
+            try {
+                updatedArtist = await ArtistModel.findOneDataAndUpdate({ _id: artistID },
+                    {
+                        $set: {
+                            artist_name,
+                            artist_image,
+                            artist_image_type
+                        }
+                    });
+            } catch (error) {
+                return sendError(res, "", `${error} while updating artist's details`, false, 500);
             }
-        });
-        // 3.2 Update artist along with image reference
-        try {
-            updatedArtist = await ArtistModel.findOneDataAndUpdate({ _id: artistID },
-                {
-                    $set: {
-                        artist_name,
-                        artist_image: `${currentTimeStamp}_${artistImage.name}`
-                    }
-                });
-        } catch (error) {
-            return sendError(res, "", `${error} while updating artist's details`, false, 500);
+
+            // Finally, IF artist's details updated successfully .. 😃
+            if (updateArtist) {
+                return sendResponse(res, {}, "Artist's details along with image successfully updated 👍", true, 200);
+            } else {
+                return sendResponse(res, {}, "Unable to update artist's details ... 😑", false, 500);
+            }
         }
 
-        // Finally, IF artist's details updated successfully .. 😃
-        if (updateArtist) {
-            return sendResponse(res, {}, "Artist's details along with image successfully updated 👍", true, 200);
-        } else {
-            return sendResponse(res, {}, "Unable to update artist's details ... 😑", false, 500);
-        }
     }
     // if admin only wants to update artist's name
     else {
@@ -172,13 +143,13 @@ const deleteArtist = async (req, res) => {
         if (artist.sung_songs.length > 0) {
             // Then delete his sung songs 
             artist_sung_songs = artist.sung_songs;
-            await SongModel.deleteMany({_id:{$in:artist_sung_songs}}); // Delete all the songs 🔥
+            await SongModel.deleteMany({ _id: { $in: artist_sung_songs } }); // Delete all the songs 🔥
         }
 
-        // Then delete artist image as well
-        let artistImagesDirectoryPath = resolve('Public/Artist_Images');
-        const filePath = `${artistImagesDirectoryPath}/${artist.artist_image}`;
-        fs.unlinkSync(filePath); // Remove associated artist image
+        // // Then delete artist image as well
+        // let artistImagesDirectoryPath = resolve('Public/Artist_Images');
+        // const filePath = `${artistImagesDirectoryPath}/${artist.artist_image}`;
+        // fs.unlinkSync(filePath); // Remove associated artist image
     } catch (error) {
         return sendError(res, {}, `${err} while deleting artist image`, false, 500);
     }

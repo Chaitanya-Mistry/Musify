@@ -5,23 +5,39 @@ import { useState } from "react";
 export const ManageArtist = () => {
     const navigate = useNavigate();
     const [selectedImage, setSelectedImage] = useState("");
+    const [selectedImageType, setSelectedImageType] = useState("");
 
     const showArtists = () => navigate("/displayArtists");
 
-    const imageSelected = (event) => {
-        setSelectedImage(event.target.files[0]);  // Get and store selected image        
+    // 
+    const encodeImageFileAsURL = (element) => {
+        var file = element.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            // console.log('RESULT', reader.result)
+            setSelectedImageType(file.type);
+            setSelectedImage(reader.result);
+        }
+        reader.readAsDataURL(file);
     }
+
+    // const imageSelected = (event) => {
+    //     setSelectedImage(event.target.files[0]);  // Get and store selected image  
+    //     encodeImageFileAsURL(selectedImage);
+    // }
     // Add Artist Form Submit Event Handler 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (selectedImage) {
+        if (selectedImage && selectedImageType) {
             const baseUrl = `http://localhost:4000/createArtist`;
             let response;
             try {
                 const formData = new FormData();
                 formData.append('artist_name', event.target['artistName'].value);
                 formData.append('artist_image', selectedImage);
+                formData.append('artist_image_type', selectedImageType);
+
                 response = await axios({
                     url: baseUrl,
                     method: "POST",
@@ -35,7 +51,7 @@ export const ManageArtist = () => {
 
             // IF artist created
             if (response.data.serverResponse.responseCode === 201) {
-                alert('Artist has been added 😀');  
+                alert('Artist has been added 😀');
                 // Clear form entries
                 document.getElementById("addArtistForm").reset();
                 setSelectedImage(""); // Reset state      
@@ -44,14 +60,15 @@ export const ManageArtist = () => {
             }
         } else {
             alert("Please select an image 😶");
-        }        
+        }
     }
+
 
     return (
         <>
             <main>
                 <div id="addArtistMainContainer">
-                    
+
                     <div id="addArtistIllustration">
                         {/* <a href="https://www.freepik.com/free-vector/add-files-concept-illustration_5573510.htm#query=add&position=0&from_view=keyword">Image by storyset</a> on Freepik */}
                         {/* Image provided by www.freepik.com */}
@@ -60,7 +77,7 @@ export const ManageArtist = () => {
                     {/* Artist details */}
                     <div id="artistDetails">
                         <div id="addArtistTitleContainer">
-                        <h2 id="addArtistTitle">Add Artist 🧑‍🎤</h2>
+                            <h2 id="addArtistTitle">Add Artist 🧑‍🎤</h2>
                         </div>
 
                         <form id="addArtistForm" onSubmit={handleSubmit} encType="multipart/form-data">
@@ -69,7 +86,7 @@ export const ManageArtist = () => {
                             <label htmlFor="artistImage" style={{ fontSize: "19px" }} id="artitstChooseImage">
                                 Choose an image 🖼️
                             </label>
-                            <input type="file" name="artistImage" id="artistImage" accept="image/*" required onChange={imageSelected} />
+                            <input type="file" name="artistImage" id="artistImage" accept="image/*" required onChange={encodeImageFileAsURL} />
                             <button>Add</button>
 
                             <strong style={{ fontSize: "21px", textAlign: "center" }}>or</strong> <br />

@@ -28,9 +28,10 @@ const loginValidation = async (req, res, next) => {
 const validateCreateArtist = async (req, res, next) => {
     const artistObjSchema = yup.object().shape({
         artist_name: yup.string().required(),
-        artist_image: yup.mixed().required(),
+        artist_image: yup.string().required(),
+        artist_image_type: yup.string().required(),
     });
-    await validate(artistObjSchema, { artist_name: req.body.artist_name, artist_image: req.files.artist_image }, res, next);
+    await validate(artistObjSchema, { artist_name: req.body.artist_name, artist_image: req.body.artist_image, artist_image_type: req.body.artist_image_type }, res, next);
 }
 
 // Create Song Validation
