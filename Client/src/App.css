@@ -24,7 +24,9 @@
 }
 
 :root {
-    --bgColor: rgb(0, 15, 90);
+    /* --bgColor: rgb(0, 15, 90); */
+    /* --bgColor:rgb(12, 4, 61); */
+    --bgColor:rgb(23, 23, 23);
     --fontFamily: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -61,7 +63,7 @@ a {
 nav {
     width: 60%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -139,9 +141,21 @@ main {
     border: none;
 }
 
-/* Song playing */
+/* Song playing Status*/
+.notPlayingAudio{
+    opacity: .9;
+}
 .playingAudio{
-    opacity: .7;
+    opacity: 1;
+    animation: rotateSongAlbum 8s linear infinite;
+}
+@keyframes rotateSongAlbum {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
 
 /* Login, Sign Up, Add/Edit Artist & Add Song */

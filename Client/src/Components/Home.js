@@ -24,6 +24,7 @@ export const Home = () => {
         if (response.data.serverResponse.responseCode === 200) {
             // alert(`${response.data.serverResponse.message}`);
             setFetchedSongs(response.data.serverResponse.responseData);
+            console.log("wow",response.data.serverResponse.responseData[0].sung_by);
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
