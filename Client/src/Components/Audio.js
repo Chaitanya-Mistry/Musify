@@ -3,14 +3,15 @@ import { useState } from "react";
 
 export const Audio = ({ songData }) => {
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-    
-    const playAndPauseSong = () => {
-        const audioElem = document.getElementById('songAudio');
-        
-        if(!isAudioPlaying){
+
+    // const audioElem = document.createElement("audio");
+    const playAndPauseSong = (event) => {
+        const audioElem = event.target.parentElement.parentElement.querySelector("audio");      
+
+        if (!isAudioPlaying) {
             audioElem.play();
             setIsAudioPlaying(true);
-        }else{
+        } else {
             audioElem.pause();
             setIsAudioPlaying(false);
         }
@@ -18,13 +19,12 @@ export const Audio = ({ songData }) => {
     return (
         <>
             {/* Demo Songs */}
-            <div className="song">
+            <div className="song" onClick={playAndPauseSong}>
                 {/* Song Image */}
                 <section className="songImageContainer">
-                    <img src={songData.song_image} alt={songData.son_name} loading="lazy" onClick={playAndPauseSong} className={isAudioPlaying ? "playingAudio" : ""} />
-                    {/* <audio src="" controls /> */}
+                    <img src={songData.song_image} alt={songData.son_name} loading="lazy" className={isAudioPlaying ? `playingAudio` : ""} />
                 </section>
-                <audio src={songData.song_file} id="songAudio" controls={isAudioPlaying ? true : false} hidden={isAudioPlaying ? false : true} ></audio>
+                <audio src={songData.song_file} controls={isAudioPlaying ? true : false} hidden={isAudioPlaying ? true : true} crossOrigin="anonymous"></audio>
                 <strong className="songName">{songData.song_name}</strong>
             </div>
         </>
