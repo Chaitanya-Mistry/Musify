@@ -21,10 +21,8 @@ export const Home = () => {
             response = err.response;
         }
 
-        if (response.data.serverResponse.responseCode === 200) {
-            // alert(`${response.data.serverResponse.message}`);
-            setFetchedSongs(response.data.serverResponse.responseData);
-            console.log("wow", response.data.serverResponse.responseData[0].sung_by);
+        if (response.data.serverResponse.responseCode === 200) {            
+            setFetchedSongs(response.data.serverResponse.responseData);            
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
@@ -106,27 +104,49 @@ export const Home = () => {
                         <section className="memberImageContainer">
                             <img src="../../../Images/Chaitanya.JPG" alt="" loading="lazy" />
                         </section>
-                        <strong className="memberName">Chaitany Mistry</strong> <br/>
+                        <strong className="memberName">Chaitany Mistry</strong> <br />
                         <strong className="memberOccupation">JavaScript Developer</strong>
                         {/* Social Media Links */}
+                        <div className="memberContact">
+                            <a href="https://www.linkedin.com/in/chaitanya-mistry-6b536322a" target="_blank">
+                                <span className="fa-brands fa-linkedin faIcons" style={{ color: "dodgerblue" }}></span>
+                            </a>
+                            <a href="https://github.com/Chaitanya-Mistry" target="_blank">
+                                <span className="fa-brands fa-github faIcons" style={{ color: "rgb(213, 213, 213)" }} />
+                            </a>
+                            <a href="mailto:chaitanyam688@gmail.com">
+                                <span className="fa fa-envelope faIcons" style={{ color: "red" }} />
+                            </a>
+                        </div>
                     </div>
                     <div className="members">
                         {/* Member Image */}
                         <section className="memberImageContainer">
                             <img src="../../../Images/Slider1.jpg" alt="" loading="lazy" />
                         </section>
-                        <strong className="memberName">Jaypal Sinh</strong> <br/>
+                        <strong className="memberName">Jaypal Sinh</strong> <br />
                         <strong className="memberOccupation">Developer</strong>
                         {/* Social Media Links */}
+                        <div className="memberContact">
+                            <span className="fa-brands fa-linkedin faIcons" style={{ color: "dodgerblue" }} />
+                            <span className="fa-brands fa-github faIcons" style={{ color: "rgb(213, 213, 213)" }} />
+                            <span className="fa fa-envelope faIcons" style={{ color: "red" }} />
+                        </div>
+
                     </div>
                     <div className="members">
                         {/* Member Image */}
                         <section className="memberImageContainer">
                             <img src="../../../Images/Slider2.jpg" alt="" loading="lazy" />
                         </section>
-                        <strong className="memberName">Hevin Patel</strong> <br/>
+                        <strong className="memberName">Hevin Patel</strong> <br />
                         <strong className="memberOccupation">Developer</strong>
                         {/* Social Media Links */}
+                        <div className="memberContact">
+                            <span className="fa-brands fa-linkedin faIcons" style={{ color: "dodgerblue" }} />
+                            <span className="fa-brands fa-github faIcons" style={{ color: "rgb(213, 213, 213)" }} />
+                            <span className="fa fa-envelope faIcons" style={{ color: "red" }} />
+                        </div>
                     </div>
                 </div>
             </main>
