@@ -104,7 +104,7 @@ export function Navbar() {
                         <div className="navlist"><NavLink to='/'>Home</NavLink></div>
                         <div className="navlist"><NavLink to='/login'>Login</NavLink></div>
                         <div className="navlist"><NavLink to='/loginAdmin'>Admin Login</NavLink></div>
-                        <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div>
+                        {window.location.href === "http://localhost:3000/" || "http://localhost:3000/#mainTeamMembersContainer" ? <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div> : ""}                        
                         <div className="navlist"><NavLink to='/signUp'>Sign Up</NavLink></div>
                     </nav>
                 </header>
