@@ -83,7 +83,9 @@ export function Navbar() {
             )
         }
 
-    } else {
+    } 
+    // If a user is not logged in ❎
+    else {
         return (
             <>
                 <header>
@@ -102,6 +104,7 @@ export function Navbar() {
                         <div className="navlist"><NavLink to='/'>Home</NavLink></div>
                         <div className="navlist"><NavLink to='/login'>Login</NavLink></div>
                         <div className="navlist"><NavLink to='/loginAdmin'>Admin Login</NavLink></div>
+                        <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div>
                         <div className="navlist"><NavLink to='/signUp'>Sign Up</NavLink></div>
                     </nav>
                 </header>

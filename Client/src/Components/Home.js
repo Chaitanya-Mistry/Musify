@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
-    const [fetchedSongs,setFetchedSongs] = useState([]);
+    const [fetchedSongs, setFetchedSongs] = useState([]);
 
     // Fetch Demo Songs
     const fetchDemoSongs = async () => {
@@ -24,7 +24,7 @@ export const Home = () => {
         if (response.data.serverResponse.responseCode === 200) {
             // alert(`${response.data.serverResponse.message}`);
             setFetchedSongs(response.data.serverResponse.responseData);
-            console.log("wow",response.data.serverResponse.responseData[0].sung_by);
+            console.log("wow", response.data.serverResponse.responseData[0].sung_by);
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
@@ -93,9 +93,41 @@ export const Home = () => {
                     </div>
                 </div>
                 {/* Songs */}
-                <div id="featuredSong">       
-                <h1>Demo Songs</h1>
-                    {fetchedSongs ? fetchedSongs.map((currentSong)=> <Audio songData={currentSong} key={currentSong._id}/>) : ""}
+                <div id="featuredSong">
+                    <h1>Demo Songs</h1>
+                    {fetchedSongs ? fetchedSongs.map((currentSong) => <Audio songData={currentSong} key={currentSong._id} />) : ""}
+                </div>
+
+                {/* About Team Members 🧑‍🤝‍🧑*/}
+                <div id="mainTeamMembersContainer">
+                    <h1>Meet Our Developers</h1>
+                    <div className="members">
+                        {/* Member Image */}
+                        <section className="memberImageContainer">
+                            <img src="../../../Images/Chaitanya.JPG" alt="" loading="lazy" />
+                        </section>
+                        <strong className="memberName">Chaitany Mistry</strong> <br/>
+                        <strong className="memberOccupation">JavaScript Developer</strong>
+                        {/* Social Media Links */}
+                    </div>
+                    <div className="members">
+                        {/* Member Image */}
+                        <section className="memberImageContainer">
+                            <img src="../../../Images/Slider1.jpg" alt="" loading="lazy" />
+                        </section>
+                        <strong className="memberName">Jaypal Sinh</strong> <br/>
+                        <strong className="memberOccupation">Developer</strong>
+                        {/* Social Media Links */}
+                    </div>
+                    <div className="members">
+                        {/* Member Image */}
+                        <section className="memberImageContainer">
+                            <img src="../../../Images/Slider2.jpg" alt="" loading="lazy" />
+                        </section>
+                        <strong className="memberName">Hevin Patel</strong> <br/>
+                        <strong className="memberOccupation">Developer</strong>
+                        {/* Social Media Links */}
+                    </div>
                 </div>
             </main>
         )
