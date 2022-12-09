@@ -15,8 +15,8 @@ export const developer_data = [{
 }, {
     name: "Hevin Patel",
     occupation: "Software Engineer",
-    image: "../../../Images/Slider2.jpg",
-    linkedIn: "https://www.linkedin.com/in/hevin",
-    gitHub: "https://github.com/Hevin",
-    mail: "mailto:hp@gmail.com"
+    image: "../../../Images/Hevin.jpg",
+    linkedIn: "https://www.linkedin.com/in/hevin-patel-537a06121/",
+    gitHub: "https://github.com/hevin99",
+    mail: "mailto:hevinpatelhh@gmail.com"
 }];
