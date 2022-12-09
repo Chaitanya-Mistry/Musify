@@ -6,12 +6,12 @@ export const developer_data = [{
     gitHub: "https://github.com/Chaitanya-Mistry",
     mail: "mailto:chaitanyam688@gmail.com"
 }, {
-    name: "Jaypal Sinh",
+    name: "Jaypalsinh Ramlavat",
     occupation: "Software Engineer",
     image: "../../../Images/Slider1.jpg",
-    linkedIn: "https://www.linkedin.com/in/jayapl",
-    gitHub: "https://github.com/Jaypal",
-    mail: "mailto:jp@gmail.com"
+    linkedIn: "https://www.linkedin.com/in/jaypalsinh-ramlavat-6074a019b/",
+    gitHub: "https://github.com/Jaypalsinh-Ramlavat",
+    mail: "mailto:jaypalramlavat@gmail.com"
 }, {
     name: "Hevin Patel",
     occupation: "Software Engineer",
