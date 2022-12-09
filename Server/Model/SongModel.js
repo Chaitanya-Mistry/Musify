@@ -9,13 +9,21 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    song_location: {
+    song_image_type: {
+        type: String,
+        required: true
+    },
+    song_file: {
+        type: String,
+        required: true
+    },
+    song_file_type: {
         type: String,
         required: true
     },
     sung_by: {
-        type: mongoose.Types.ObjectId, // To store artist's id
-        ref: "artist",
+        type: mongoose.Schema.Types.ObjectId, // To store artist's id
+        ref: 'artist',
         required: true,
     },
     genre: {

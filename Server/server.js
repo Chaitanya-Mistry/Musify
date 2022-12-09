@@ -6,6 +6,7 @@ import cors from "cors";
 import * as Validation from "./Utility/validation.js";
 import * as userCntl from "./Controller/userController.js";
 import * as artistCntl from "./Controller/artistController.js";
+import * as songCntl from "./Controller/songController.js";
 import { authMiddleware } from "./Middleware/authMiddleware.js";
 import { logout } from "./Controller/logout.js";
 import cookieParser from 'cookie-parser';
@@ -39,6 +40,7 @@ app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an
 app.use(fileUpload()); // When you upload a file, the file will be accessible from req.files
 // To serve public files
 app.use("/Artist_Image", express.static(path.join(__dirname, "Public/Artist_Images")));
+app.use("/Song_Image", express.static(path.join(__dirname, "Public/Song_Images")));
 
 // API Routes
 // Admin 🦸‍♂️
@@ -51,28 +53,19 @@ app.get("/logout", authMiddleware, logout);
 // app.get("/myFavouriteSongs")
 
 /* Artist */
-app.get('/getAllArtists',authMiddleware,artistCntl.getAllArtists); // Done
+app.get("/getArtist/:artistID", artistCntl.getArtist);
+app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
 app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
-app.patch("/updateArtist", (req, res) => {
-    res.send("Update artist API ...");
-});
-app.delete("/deleteArtist", (req, res) => {
-    res.send("Delete artist API ...");
-});
+app.patch("/updateArtist/:artistID", artistCntl.updateArtist);
+app.delete("/deleteArtist/:artistID", artistCntl.deleteArtist);
 
 /* Song */
-app.get("/getSong", (req, res) => {
-    res.send("Get Song API");
-})
-app.post("/createSong", (req, res) => {
-    res.send("Create Song API");
-});
+app.get("/getAllSongs", authMiddleware, songCntl.getAllSongs);
+app.get("/getSampleSongs", songCntl.getSampleSongs);
+app.post("/createSong", Validation.validateCreateSong, songCntl.createSong);
 app.patch("/updateSong", (req, res) => {
     res.send("Update Song API");
 });
 app.delete("/deleteSong", (req, res) => {
     res.send("Delete Song API");
 });
-
-
-

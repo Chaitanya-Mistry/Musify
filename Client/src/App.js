@@ -8,11 +8,13 @@ import { Login } from './Components/Login';
 import { SignUp } from './Components/SignUp';
 import { Footer } from './Components/Footer';
 import { LoginAdmin } from './Components/loginAdmin';
-import { ManageArtist } from './Components/ManageArtist';
-import { ManageSong } from './Components/ManageSong';
+import { ManageArtist } from './Components/Admin_Components/ManageArtist';
+import { ManageSong } from './Components/Admin_Components/ManageSong';
 import axios from 'axios';
-import { DisplayArtists } from './Components/DisplayArtists';
+import { DisplayArtists } from './Components/Admin_Components/DisplayArtists';
 import SyncLoader from "react-spinners/SyncLoader";
+import { DisplaySongs } from './Components/Admin_Components/DisplaySongs';
+import { EditArtist } from './Components/Admin_Components/EditArtist';
 
 const UserLoginContext = createContext();
 
@@ -48,7 +50,7 @@ function App() {
     setloading(true)
     setTimeout(() => {
       setloading(false)
-    }, 3000);
+    }, 1000);
     // Check whether user is already logged in or not to prevent him/her to re-login every-time
     if (document.cookie.split("=")[0] === "jwtoken") {
       setLogIn(true); // user log in without admin type
@@ -94,7 +96,9 @@ function App() {
                 <Route path='/signUp' element={<SignUp />} />
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
+                {isAdminLoggedIn ? <Route path='/editArtist' element={<EditArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/displayArtists' element={<DisplayArtists />} /> : ""}
+                {isAdminLoggedIn ? <Route path='/displaySongs' element={<DisplaySongs />} /> : ""}
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
             </UserLoginContext.Provider>
