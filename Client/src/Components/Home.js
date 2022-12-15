@@ -3,11 +3,13 @@ import { UserLoginContext } from "../App";
 import { StackLayout } from "./StackLayout";
 import { genre } from "./ListContent";
 import { Audio } from "./Audio";
+import { developer_data } from "../developer_data.js";
+import { Developer } from "./Developer.js";
 import axios from "axios";
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
-    const [fetchedSongs,setFetchedSongs] = useState([]);
+    const [fetchedSongs, setFetchedSongs] = useState([]);
 
     // Fetch Demo Songs
     const fetchDemoSongs = async () => {
@@ -22,9 +24,7 @@ export const Home = () => {
         }
 
         if (response.data.serverResponse.responseCode === 200) {
-            // alert(`${response.data.serverResponse.message}`);
             setFetchedSongs(response.data.serverResponse.responseData);
-            console.log("wow",response.data.serverResponse.responseData[0].sung_by);
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
@@ -93,9 +93,17 @@ export const Home = () => {
                     </div>
                 </div>
                 {/* Songs */}
-                <div id="featuredSong">       
-                <h1>Demo Songs</h1>
-                    {fetchedSongs ? fetchedSongs.map((currentSong)=> <Audio songData={currentSong} key={currentSong._id}/>) : ""}
+                <div id="featuredSong">
+                    <h1>Demo Songs</h1>
+                    {/* Dynamic Rendering */}
+                    {fetchedSongs ? fetchedSongs.map((currentSong) => <Audio songData={currentSong} key={currentSong._id} />) : ""}
+                </div>
+
+                {/* About Team Members 🧑‍🤝‍🧑*/}
+                <div id="mainTeamMembersContainer">
+                    <h1>Meet Our Developers</h1>
+                    {/* Dynamic Rendering */}
+                    {developer_data.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
                 </div>
             </main>
         )

@@ -11,7 +11,7 @@ export const  PlaylistCard = ({obj}) => {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height="100"
+                    height="280"
                     image={obj.image}
                     alt={obj.title}
                 />
