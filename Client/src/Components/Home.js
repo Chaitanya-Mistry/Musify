@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserLoginContext } from "../App";
-import { StackLayout } from "./StackLayout";
+import { GridLayout } from "./GridLayout";
 import { genre } from "./ListContent";
 import { Audio } from "./Audio";
 import { developer_data } from "../developer_data.js";
@@ -49,7 +49,7 @@ export const Home = () => {
                 <>
                     <main>
                         {/* <h2>Welcome User {loggedInUserData?.name}</h2> */}
-                        <StackLayout list={genre} ></StackLayout>
+                        <GridLayout list={genre} ></GridLayout>
                     </main>
                 </>
             )
@@ -59,7 +59,7 @@ export const Home = () => {
         return (
             <main>
                 <h1 className="componentTitle">Wide range of song genre</h1>
-                <StackLayout list={genre}></StackLayout>
+                <GridLayout list={genre}></GridLayout>
                 {/* Featured Artist */}
                 <div id="featuredArtist">
                     <h1>Featured artists</h1>
