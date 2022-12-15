@@ -3,20 +3,11 @@ import { UserLoginContext } from "../App";
 import { StackLayout } from "./StackLayout";
 import { genre } from "./ListContent";
 import { Audio } from "./Audio";
-<<<<<<< HEAD
-=======
-import { developer_data } from "../developer_data.js";
-import { Developer } from "./Developer.js";
->>>>>>> 4dba031de8ff120893d14bba1569e7ca0686c24d
 import axios from "axios";
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
-<<<<<<< HEAD
     const [fetchedSongs,setFetchedSongs] = useState([]);
-=======
-    const [fetchedSongs, setFetchedSongs] = useState([]);
->>>>>>> 4dba031de8ff120893d14bba1569e7ca0686c24d
 
     // Fetch Demo Songs
     const fetchDemoSongs = async () => {
@@ -31,13 +22,9 @@ export const Home = () => {
         }
 
         if (response.data.serverResponse.responseCode === 200) {
-<<<<<<< HEAD
             // alert(`${response.data.serverResponse.message}`);
             setFetchedSongs(response.data.serverResponse.responseData);
             console.log("wow",response.data.serverResponse.responseData[0].sung_by);
-=======
-            setFetchedSongs(response.data.serverResponse.responseData);
->>>>>>> 4dba031de8ff120893d14bba1569e7ca0686c24d
         } else {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
@@ -106,23 +93,9 @@ export const Home = () => {
                     </div>
                 </div>
                 {/* Songs */}
-<<<<<<< HEAD
                 <div id="featuredSong">       
                 <h1>Demo Songs</h1>
                     {fetchedSongs ? fetchedSongs.map((currentSong)=> <Audio songData={currentSong} key={currentSong._id}/>) : ""}
-=======
-                <div id="featuredSong">
-                    <h1>Demo Songs</h1>
-                    {/* Dynamic Rendering */}
-                    {fetchedSongs ? fetchedSongs.map((currentSong) => <Audio songData={currentSong} key={currentSong._id} />) : ""}
-                </div>
-
-                {/* About Team Members 🧑‍🤝‍🧑*/}
-                <div id="mainTeamMembersContainer">
-                    <h1>Meet Our Developers</h1>
-                    {/* Dynamic Rendering */}
-                    {developer_data.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
->>>>>>> 4dba031de8ff120893d14bba1569e7ca0686c24d
                 </div>
             </main>
         )

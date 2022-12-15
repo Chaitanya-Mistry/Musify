@@ -83,13 +83,7 @@ export function Navbar() {
             )
         }
 
-<<<<<<< HEAD
     } else {
-=======
-    } 
-    // If a user is not logged in ❎
-    else {
->>>>>>> 4dba031de8ff120893d14bba1569e7ca0686c24d
         return (
             <>
                 <header>
@@ -108,7 +102,6 @@ export function Navbar() {
                         <div className="navlist"><NavLink to='/'>Home</NavLink></div>
                         <div className="navlist"><NavLink to='/login'>Login</NavLink></div>
                         <div className="navlist"><NavLink to='/loginAdmin'>Admin Login</NavLink></div>
-                        {window.location.href.endsWith("/") || window.location.href.endsWith("/#mainTeamMembersContainer")? <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div>  : ""}                        
                         <div className="navlist"><NavLink to='/signUp'>Sign Up</NavLink></div>
                     </nav>
                 </header>
