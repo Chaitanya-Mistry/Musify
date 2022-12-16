@@ -136,4 +136,15 @@ const addMyFavSong = async (req, res) => {
 
 
 }
-export { createUser, loginUser, adminLogin, adminTokenVerifier, addMyFavSong }
+
+// Show Fav Songs
+const myFavsongs = async (req,res) => {
+    let data;
+    try {
+       data = await UserModel.findOneData({ email: req.userEmail }).populate("favourite_songs");
+    } catch (err) {
+        return sendError(res, {}, `Error while fetching user's favourite song list: ${err}`, false, 500);
+    }
+    return sendResponse(res, data, ``, true, 200);
+}
+export { createUser, loginUser, adminLogin, adminTokenVerifier, addMyFavSong, myFavsongs }

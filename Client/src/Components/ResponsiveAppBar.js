@@ -23,12 +23,12 @@ const userPages = [
     { name: 'My Favourite Songs', link: '/myFavSongs' },
     { name: 'Search Songs', link: '/serchSongs' },
     // { name: 'My Account', link: '/myAccount' },
-    { name: 'Dontae', link: 'donate' }
+    { name: 'Donate', link: 'donate' }
 ];
 const adminPages = [
     { name: 'Manage Artist', link: '/manageArtist' },
     { name: 'Manage Song', link: '/manageSong' },
-]
+];
 
 
 function ResponsiveAppBar() {

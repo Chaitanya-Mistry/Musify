@@ -53,7 +53,7 @@ app.get("/logout", authMiddleware, logout);
 
 // User
 app.patch("/addMyFavSong/:song_id",authMiddleware,userCntl.addMyFavSong);
-// app.get("/myFavouriteSongs")
+app.get("/myFavouriteSongs",authMiddleware,userCntl.myFavsongs);
 
 /* Artist */
 app.get("/getArtist/:artistID", artistCntl.getArtist);

@@ -19,6 +19,7 @@ import ResponsiveAppBar from './Components/ResponsiveAppBar';
 import { Donation } from './Components/Donation';
 import MediaControlCard from './Components/MediaControlCard';
 import SongList from './Components/SongList';
+import { MyFavSongs } from './Components/MyFavSongs';
 
 const UserLoginContext = createContext();
 
@@ -101,6 +102,8 @@ function App() {
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/donate' element={<Donation />} />
                 <Route path='/playList' element={<SongList />} />
+                <Route path='/playList' element={<SongList />} />
+                <Route path='/myFavSongs' element={<MyFavSongs/>} />
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/editArtist' element={<EditArtist />} /> : ""}
@@ -108,18 +111,7 @@ function App() {
                 {isAdminLoggedIn ? <Route path='/displaySongs' element={<DisplaySongs />} /> : ""}
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
-            </UserLoginContext.Provider>
-            {/* {
-              isLoggedIn
-                ?
-                isAdminLoggedIn
-                  ?
-                  ""
-                  :
-                  <MediaControlCard />
-                :
-                ""
-            } */}
+            </UserLoginContext.Provider>           
             <Footer />
           </>
       }

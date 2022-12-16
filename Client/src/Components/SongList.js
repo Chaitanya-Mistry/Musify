@@ -13,7 +13,7 @@ import axios from 'axios';
 import { Divider } from '@mui/material';
 import { Audio } from "./Audio";
 
-export default function SongList() {
+export default function SongList({favSongs}) {
 
     const location = useLocation();
     const [songData, setSongData] = React.useState("");
@@ -54,7 +54,7 @@ export default function SongList() {
             alert(err);
         }
 
-        if (response.data.serverResponse.responseCode === 200) {
+        if (response.data.serverResponse.responseCode === 201) {
             alert("Song added to the favourite playlist");
             //console.log(songData);
         } else {
@@ -64,7 +64,12 @@ export default function SongList() {
     }
 
     React.useEffect(() => {
-        fetchSongs();
+        if(favSongs){
+            setSongData(favSongs.favourite_songs);
+            console.log("Wow",favSongs)
+        }else{
+            fetchSongs();
+        }
     }, []);
 
     if (songData) {
