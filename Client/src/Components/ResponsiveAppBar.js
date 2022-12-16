@@ -165,7 +165,7 @@ function ResponsiveAppBar() {
                                         </NavLink>
                                     </MenuItem>
                                     :
-                                    <></>
+                                    ""
                             }
                             {/* {pages.map((page, key) => (
                                 <MenuItem key={key} >

@@ -18,6 +18,7 @@ import { EditArtist } from './Components/Admin_Components/EditArtist';
 import ResponsiveAppBar from './Components/ResponsiveAppBar';
 import { Donation } from './Components/Donation';
 import MediaControlCard from './Components/MediaControlCard';
+import SongList from './Components/SongList';
 
 const UserLoginContext = createContext();
 
@@ -99,6 +100,7 @@ function App() {
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/donate' element={<Donation />} />
+                <Route path='/playList' element={<SongList />} />
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/editArtist' element={<EditArtist />} /> : ""}
