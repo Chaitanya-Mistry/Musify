@@ -15,6 +15,7 @@ import { DisplayArtists } from './Components/Admin_Components/DisplayArtists';
 import SyncLoader from "react-spinners/SyncLoader";
 import { DisplaySongs } from './Components/Admin_Components/DisplaySongs';
 import { EditArtist } from './Components/Admin_Components/EditArtist';
+import ResponsiveAppBar from './Components/ResponsiveAppBar';
 
 const UserLoginContext = createContext();
 
@@ -87,7 +88,8 @@ function App() {
           :
           <>
             <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
-              <Navbar />
+              {/* <Navbar /> */}
+              <ResponsiveAppBar></ResponsiveAppBar>
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />

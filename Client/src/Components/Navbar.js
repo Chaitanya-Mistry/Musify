@@ -11,7 +11,7 @@ export function Navbar() {
     const allowUserToLogout = async (event) => {
         event.preventDefault();
 
-        const baseURL = 'http://localhost:4000/logout'; // Our API server 
+        const baseURL = 'http://localhost:4000/logout'; // Our API server
         let response;
 
         try {
@@ -23,7 +23,7 @@ export function Navbar() {
         if (response.status === 200) {
             setLogIn(false); // set user login status
             setAdminLogIn(false); // set admin login status
-            navigate('/'); // Navigate to default home page after log out .. 
+            navigate('/'); // Navigate to default home page after log out ..
         } else {
             alert('ERROR in logout ..', response);
         }
@@ -83,7 +83,7 @@ export function Navbar() {
             )
         }
 
-    } 
+    }
     // If a user is not logged in ❎
     else {
         return (
@@ -104,7 +104,7 @@ export function Navbar() {
                         <div className="navlist"><NavLink to='/'>Home</NavLink></div>
                         <div className="navlist"><NavLink to='/login'>Login</NavLink></div>
                         <div className="navlist"><NavLink to='/loginAdmin'>Admin Login</NavLink></div>
-                        {window.location.href.endsWith("/") || window.location.href.endsWith("/#mainTeamMembersContainer")? <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div>  : ""}                        
+                        {window.location.href.endsWith("/") || window.location.href.endsWith("/#mainTeamMembersContainer")? <div className="navlist"><a href='#mainTeamMembersContainer' style={{cursor:'pointer'}}>Developers Contact</a></div>  : ""}
                         <div className="navlist"><NavLink to='/signUp'>Sign Up</NavLink></div>
                     </nav>
                 </header>
