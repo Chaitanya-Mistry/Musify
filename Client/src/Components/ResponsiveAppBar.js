@@ -21,7 +21,7 @@ const pages = [
 ];
 const userPages = [
     { name: 'My Favourite Songs', link: '/myFavSongs' },
-    { name: 'Search Songs', link: '/serchSongs' },
+    // { name: 'Search Songs', link: '/serchSongs' },
     // { name: 'My Account', link: '/myAccount' },
     { name: 'Donate', link: 'donate' }
 ];

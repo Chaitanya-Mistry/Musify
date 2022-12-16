@@ -20,7 +20,7 @@ export const Audio = ({ songData, isPlayList }) => {
             <div className="song" onClick={playAndPauseSong}>
                 {/* Song Image */}
                 <section className="songImageContainer">
-                    <img src={songData.song_image} alt={songData.son_name} loading="lazy" className={isAudioPlaying ? `playingAudio` : "notPlayingAudio"} />
+                    <img src={songData.song_image} alt={songData.song_name}  className={isAudioPlaying ? `playingAudio` : "notPlayingAudio"} />
                 </section>
                 <audio src={songData.song_file} controls={isAudioPlaying ? true : false} hidden={isAudioPlaying ? true : true} onTimeUpdate={(event) => {
                     // Keeping track of current timeStamp and total duration of current song 🔥
