@@ -10,7 +10,7 @@ export const PlaylistCard = ({ obj }) => {
     const navigate = useNavigate();
 
     const showPlaylist = (genre) => {
-        navigate("/playList", { state: genre });    
+        navigate("/playList", { state: genre });
     }
 
     return (

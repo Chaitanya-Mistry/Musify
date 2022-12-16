@@ -91,12 +91,12 @@ function ResponsiveAppBar() {
 
                     {/* Menu Icon in mobile view */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
+                        {/* <IconButton
                             onClick={handleOpenNavMenu}
                             color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        > */}
+                            <MenuIcon onClick={handleOpenNavMenu} />
+                        {/* </IconButton> */}
 
 
                         <Menu
