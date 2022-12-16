@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Tooltip from '@mui/material/Tooltip';
+// import Avatar from '@mui/material/Avatar';
+// import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from 'react';
@@ -16,20 +16,18 @@ import axios from 'axios';
 
 
 const pages = [
-    // { name: 'Home', link: '/' },
     { name: 'login', link: 'login' },
     { name: 'Admin Login', link: 'loginAdmin' },
     { name: 'Sign Up', link: 'signUp' },
     { name: 'Dontae', link: 'donate' }
 ];
 const userPages = [
-    // { name: 'Home', link: '/' },
     { name: 'My Favourite Songs', link: '/myFavSongs' },
     { name: 'Search Songs', link: '/serchSongs' },
-    { name: 'My Account', link: '/myAccount' }
+    { name: 'My Account', link: '/myAccount' },
+    { name: 'Dontae', link: 'donate' }
 ];
 const adminPages = [
-    // { name: 'Home', link: '/' },
     { name: 'Manage Artist', link: '/manageArtist' },
     { name: 'Manage Song', link: '/manageSong' },
 ]
@@ -101,6 +99,7 @@ function ResponsiveAppBar() {
 
                         </Typography>
                     </NavLink>
+
                     {/* Menu Icon in mobile view */}
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -139,74 +138,67 @@ function ResponsiveAppBar() {
                     </Box>
 
                     {/* Logo in mobile view */}
-                    <NavLink to='/'>
-                        <Typography
-                            variant="h5"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                            }}
-                        >
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component="a"
+                        sx={{
+                            mr: 2,
+                            display: { xs: 'flex', md: 'none' },
+                            flexGrow: 1,
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            color: 'inherit',
+                        }}
+                    >
+                        <NavLink to='/'>
                             <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="45" />
-                        </Typography>
-                    </NavLink>
+                        </NavLink>
+                    </Typography>
+
                     {/* menu in desktop view */}
-                    {
-                        isLoggedIn
-                            ?
-                            userPages.map((page, key) => (
-                                <MenuItem  >
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {
+                            isLoggedIn
+                                ?
+                                userPages.map((page, key) => (
                                     <NavLink key={key} to={page.link}>
-                                        <Typography color='white' fontSize={18} textAlign="center">
+                                        <Typography color='white' fontSize={18} margin={2} textAlign="center">
                                             {page.name}
                                         </Typography>
                                     </NavLink>
-                                </MenuItem>
-                            ))
-                            :
-                            isAdminLoggedIn
-                                ?
-                                adminPages.map((page, key) => (
-                                    <MenuItem  >
-                                        <NavLink key={key} to={page.link}>
-                                            <Typography color='white' fontSize={18} textAlign="center">
-                                                {page.name}
-                                            </Typography>
-                                        </NavLink>
-                                    </MenuItem>
                                 ))
                                 :
-                                pages.map((page, key) => (
-                                    <MenuItem  >
+                                isAdminLoggedIn
+                                    ?
+                                    adminPages.map((page, key) => (
                                         <NavLink key={key} to={page.link}>
-                                            <Typography color='white' fontSize={18} textAlign="center">
+                                            <Typography color='white' fontSize={18} margin={2} textAlign="center">
                                                 {page.name}
                                             </Typography>
                                         </NavLink>
-                                    </MenuItem>
-                                ))
-
-
-                    }
-                    {
-                        isLoggedIn
-                            ?
-                            <MenuItem>
+                                    ))
+                                    :
+                                    pages.map((page, key) => (
+                                        <NavLink key={key} to={page.link}>
+                                            <Typography color='white' fontSize={18} margin={2} textAlign="center">
+                                                {page.name}
+                                            </Typography>
+                                        </NavLink>
+                                    ))
+                        }
+                        {
+                            isLoggedIn
+                                ?
                                 <NavLink to='' onClick={allowUserToLogout}>
                                     <Typography color='white' fontSize={18} textAlign="center">
-                                        Logout</Typography></NavLink>
-                            </MenuItem>
-                            :
-                            <MenuItem>
-                            </MenuItem>
-                    }
-
+                                        Logout
+                                    </Typography>
+                                </NavLink>
+                                :
+                                <></>
+                        }
+                    </Box>
                     {/* {pages.map((page, key) => (
                             <NavLink key={key} to={page.link}>
                                 <Typography color='white' fontSize={18} margin={2}>
