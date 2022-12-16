@@ -19,7 +19,8 @@ const pages = [
     // { name: 'Home', link: '/' },
     { name: 'login', link: 'login' },
     { name: 'Admin Login', link: 'loginAdmin' },
-    { name: 'Sign Up', link: 'signUp' }
+    { name: 'Sign Up', link: 'signUp' },
+    { name: 'Dontae', link: 'donate' }
 ];
 const userPages = [
     // { name: 'Home', link: '/' },
