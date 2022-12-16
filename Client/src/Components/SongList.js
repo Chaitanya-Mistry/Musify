@@ -4,9 +4,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-// import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 
@@ -42,21 +39,22 @@ export default function SongList() {
         const data = songData.map((currData, index) => <ListItem>
             <ListItemAvatar key={index}>
                 <Avatar>
-                    {currData.song_image}
+                    <img src={currData.song_image} alt={currData.sung_by.artist_name} width="100%" />
                 </Avatar>
             </ListItemAvatar>
             <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
         </ListItem>)
 
         return (
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                {data}
-            </List>
+            <main>
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                    {data}
+                </List>
+            </main>
         );
     } else {
         return (
             <h2>Error</h2>
         )
     }
-
 }
