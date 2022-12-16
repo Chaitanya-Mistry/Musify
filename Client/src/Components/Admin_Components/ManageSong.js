@@ -43,7 +43,7 @@ export const ManageSong = () => {
         setShowArtist(true);
     };
 
-    // Add Song Form Submit Event Handler 
+    // Add Song Form Submit Event Handler
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -86,7 +86,7 @@ export const ManageSong = () => {
                 alert('Song has been added 😀');
                 // Clear form entries
                 document.getElementById("addSongForm").reset();
-                // Reset state 
+                // Reset state
                 setSelectedSong("");
                 setSelectedSongImage("");
                 setSungBy("");
@@ -140,19 +140,16 @@ export const ManageSong = () => {
                             {/* Genre */}
                             <strong>Song Genre:</strong>
                             <div id="songGenre">
-                                <input type="radio" id="classical" name="genre" value="Classical" required defaultChecked />
-                                <label htmlFor="classical">Classical</label><br />
+                                <input type="radio" id="Pop" name="genre" value="Pop" required defaultChecked />
+                                <label htmlFor="Pop">Pop</label><br />
                                 <input type="radio" id="hiphop" name="genre" value="HipHop" onChange={handleGenre} />
-                                <label htmlFor="hiphop">HipHop</label><br />
+                                <label htmlFor="hiphop">Hip Hop</label><br />
                                 <input type="radio" id="rock" name="genre" value="Rock" onChange={handleGenre} />
                                 <label htmlFor="rock">Rock</label>
-                                <input type="radio" id="instrumental" name="genre" value="Instrumental" onChange={handleGenre} />
-                                <label htmlFor="instrumental">Instrumental</label>
-                                <input type="radio" id="romance" name="genre" value="Romance" onChange={handleGenre} />
-                                <label htmlFor="romance">Romance</label>
-
-                                <input type="radio" id="party" name="genre" value="Party" onChange={handleGenre} />
-                                <label htmlFor="party">Party</label>
+                                <input type="radio" id="Jazz" name="genre" value="Jazz" onChange={handleGenre} />
+                                <label htmlFor="Jazz">Jazz</label>
+                                <input type="radio" id="EDM" name="genre" value="EDM" onChange={handleGenre} />
+                                <label htmlFor="EDM">EDM</label>
 
                             </div>
                             <p id="selectArtist" onClick={selectArtist}>Select Artist</p>

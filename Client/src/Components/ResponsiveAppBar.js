@@ -66,7 +66,7 @@ function ResponsiveAppBar() {
         }
     }
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{ bgcolor: 'black' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
 
@@ -117,12 +117,61 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
+                            {
+                                isLoggedIn
+                                    ?
+                                    isAdminLoggedIn
+                                        ?
+                                        adminPages.map((page, key) => (
+                                            <MenuItem key={key} >
+                                                <NavLink to={page.link}>
+                                                    <Typography textAlign="center">
+                                                        {page.name}
+                                                    </Typography>
+                                                </NavLink>
+                                            </MenuItem>
+                                        ))
+                                        :
 
-                            {pages.map((page, key) => (
+                                        userPages.map((page, key) => (
+                                            <MenuItem key={key} >
+                                                <NavLink to={page.link}>
+                                                    <Typography textAlign="center">
+                                                        {page.name}
+                                                    </Typography>
+                                                </NavLink>
+                                            </MenuItem>
+                                        ))
+                                    :
+
+                                    pages.map((page, key) => (
+                                        <MenuItem key={key} >
+                                            <NavLink to={page.link}>
+                                                <Typography textAlign="center">
+                                                    {page.name}
+                                                </Typography>
+                                            </NavLink>
+                                        </MenuItem>
+                                    ))
+                            }
+                            {
+                                isLoggedIn
+                                    ?
+                                    <MenuItem>
+                                        <NavLink to='' onClick={allowUserToLogout}>
+                                            <Typography textAlign="center">
+                                                Logout
+                                            </Typography>
+                                        </NavLink>
+                                    </MenuItem>
+                                    :
+                                    <></>
+                            }
+                            {/* {pages.map((page, key) => (
                                 <MenuItem key={key} >
                                     <Typography textAlign="center"><NavLink to={page.link}>{page.name}</NavLink></Typography>
                                 </MenuItem>
-                            ))}
+                            ))} */}
                         </Menu>
                     </Box>
 
@@ -153,7 +202,7 @@ function ResponsiveAppBar() {
                                 isAdminLoggedIn
                                     ?
                                     adminPages.map((page, key) => (
-                                        <NavLink key={key} to={page.link}>
+                                        <NavLink to={page.link}>
                                             <Typography color='white' fontSize={18} margin={2} textAlign="center">
                                                 {page.name}
                                             </Typography>
