@@ -7,64 +7,56 @@ import Avatar from '@mui/material/Avatar';
 // import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-// import { useLocation } from 'react-router';
-// import axios from 'axios';
+import { useLocation } from 'react-router';
+import axios from 'axios';
 
-export default function SongList({ obj }) {
+export default function SongList() {
 
-    // const location = useLocation();
-    // const [songData, setSongData] = React.useState("");
+    const location = useLocation();
+    const [songData, setSongData] = React.useState("");
 
-    // const fetchSongs = async () => {
-    //     const baseUrl = `http://localhost:4000/getFilteredSongs/${location.state}`;
-    //     let response;
-    //     try {
-    //         // response = await axios.get(baseUrl);
-    //         response = await fetch(baseUrl);
+    const fetchSongs = async () => {
+        const baseUrl = `http://localhost:4000/getFilteredSongs/${location.state}`;
+        let response;
+        try {
+            response = await axios.get(baseUrl);
+        } catch (err) {
+            alert(err);
+        }
 
-    //     } catch (err) {
-    //         alert(err);
-    //     }
+        //     console.log(response)
 
-    //     console.log(response)
+        if (response.data.serverResponse.responseCode === 200) {
+            setSongData(response.data.serverResponse.responseData);
+            console.log(songData);
+        } else {
+            alert(`ERROR : ${response.data.serverResponse.message}`);
+        }
+    }
 
-    //     // if (response.data.serverResponse.responseCode === 200) {
-    //     //     setSongData(response.data.serverResponse.responseData);
-    //     // } else {
-    //     //     alert(`ERROR : ${response.data.serverResponse.message}`);
-    //     // }
-    // }
+    React.useEffect(() => {
+        fetchSongs();
+    }, []);
 
-    // React.useEffect(() => {
-    //     fetchSongs();
-    // }, []);
+    if (songData) {
+        const data = songData.map((currData, index) => <ListItem>
+            <ListItemAvatar key={index}>
+                <Avatar>
+                    {currData.song_image}
+                </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
+        </ListItem>)
 
-    return (
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        {/* {obj.img} */}
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Photos" secondary="Jan 9, 2014" />
-            </ListItem>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <WorkIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                {/* <ListItemText primary={obj.name} secondary={obj.artist} /> */}
-            </ListItem>
-            <ListItem>
-                <ListItemAvatar>
-                    <Avatar>
-                        <BeachAccessIcon />
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Vacation" secondary="July 20, 2014" />
-            </ListItem>
-        </List>
-    );
+        return (
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                {data}
+            </List>
+        );
+    } else {
+        return (
+            <h2>Error</h2>
+        )
+    }
+
 }
