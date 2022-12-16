@@ -17,7 +17,7 @@ const pages = [
     { name: 'login', link: 'login' },
     { name: 'Admin Login', link: 'loginAdmin' },
     { name: 'Sign Up', link: 'signUp' },
-    { name: 'Dontae', link: 'donate' }
+    { name: 'Donate', link: 'donate' }
 ];
 const userPages = [
     { name: 'My Favourite Songs', link: '/myFavSongs' },

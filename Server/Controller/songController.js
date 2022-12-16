@@ -4,7 +4,7 @@ import { artist as ArtistModel } from "../Model/Artist_Song_Model.js";
 // import { resolve } from "path";
 
 // Get Sample Songs
-const getSampleSongs = async (req,res) => {
+const getSampleSongs = async (req, res) => {
     let songs;
     // Fetch all stored songs ...
     try {
@@ -36,6 +36,25 @@ const getAllSongs = async (req, res) => {
     }
 }
 
+// Get Filtered Songs
+const getFilteredSongs = async (req, res) => {
+    console.log("Hit ❤️‍🔥");
+    let songs;
+    const { filter } = req.params;
+
+    // Fetch filtered stored songs ...
+    try {
+        songs = await SongModel.findData({ genre: filter }).populate("sung_by");
+    } catch (error) {
+        return sendError(res, {}, `${error}`, false, 500);
+    }
+
+    if (songs) {
+        return sendResponse(res, songs, `Songs fetched successfully ...✅`, true, 200);
+    } else {
+        return sendError(res, {}, `No songs were uploaded ... 😕`, false, 204);
+    }
+}
 // Create song
 const createSong = async (req, res) => {
     // const currentTimeStamp = new Date().getTime();
@@ -105,4 +124,4 @@ const createSong = async (req, res) => {
     }
 }
 
-export { getAllSongs, createSong, getSampleSongs }
+export { getAllSongs, createSong, getSampleSongs, getFilteredSongs }

@@ -39,8 +39,8 @@ app.use(compression(9));
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 app.use(fileUpload()); // When you upload a file, the file will be accessible from req.files
 // To serve public files
-app.use("/Artist_Image", express.static(path.join(__dirname, "Public/Artist_Images")));
-app.use("/Song_Image", express.static(path.join(__dirname, "Public/Song_Images")));
+// app.use("/Artist_Image", express.static(path.join(__dirname, "Public/Artist_Images")));
+// app.use("/Song_Image", express.static(path.join(__dirname, "Public/Song_Images")));
 
 // API Routes
 // Admin 🦸‍♂️
@@ -54,13 +54,14 @@ app.get("/logout", authMiddleware, logout);
 
 /* Artist */
 app.get("/getArtist/:artistID", artistCntl.getArtist);
-app.get('/getAllArtists', authMiddleware, artistCntl.getAllArtists); // Done
-app.post("/createArtist",/*check admin rights*/ Validation.validateCreateArtist, artistCntl.createArtist); // Done
+app.get('/getAllArtists', artistCntl.getAllArtists); // Done
+app.post("/createArtist", Validation.validateCreateArtist, artistCntl.createArtist); // Done
 app.patch("/updateArtist/:artistID", artistCntl.updateArtist);
 app.delete("/deleteArtist/:artistID", artistCntl.deleteArtist);
 
 /* Song */
 app.get("/getAllSongs", authMiddleware, songCntl.getAllSongs);
+app.get("/getFilteredSongs/:filter", songCntl.getFilteredSongs); // Filter Songs 
 app.get("/getSampleSongs", songCntl.getSampleSongs);
 app.post("/createSong", Validation.validateCreateSong, songCntl.createSong);
 app.patch("/updateSong", (req, res) => {
