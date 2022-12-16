@@ -3,12 +3,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import Avatar from '@mui/material/Avatar';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import Avatar from '@mui/material/Avatar';
 // import ImageIcon from '@mui/icons-material/Image';
-import { Audio } from "./Audio";
-// import WorkIcon from '@mui/icons-material/Work';
-// import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import WorkIcon from '@mui/icons-material/Work';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import { Divider } from '@mui/material';
@@ -68,33 +66,23 @@ export default function SongList() {
     }, []);
 
     if (songData) {
+        const data = songData.map((currData, index) => <ListItem>
+            <ListItemAvatar key={index}>
+                <Avatar>
+                    {currData.song_image}
+                </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
+        </ListItem>)
+
         return (
-            <main>
-                <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-                    {
-                        songData.map((currData, index) =>
-                            <>
-                                <ListItem>
-                                    <ListItemAvatar key={index}>
-                                        {/* <Avatar >
-                                        <img src={currData.song_image} width='100%' style={{ objectFit: "cover" }} alt="" />
-                                    </Avatar> */}
-                                        <Audio songData={currData} isPlayList={true}></Audio>
-                                    </ListItemAvatar>
-                                    <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
-                                    <FavoriteIcon sx={{ margin: 3 }} onClick={() => addToLike(currData._id)} />
-                                </ListItem>
-                                <Divider variant="inset" component="li" />
-                            </>
-                        )
-                    }
-                </List>
-            </main>
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                {data}
+            </List>
         );
     } else {
         return (
             <h2>Error</h2>
         )
     }
-
 }

@@ -1,4 +1,5 @@
 import { UserModel } from "../Model/UserModel.js";
+import { song as SongModel } from "../Model/Artist_Song_Model.js";
 import { sendResponse, sendError } from "../Utility/responseMessage.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -123,4 +124,16 @@ const adminTokenVerifier = async (req, res) => {
     }
 }
 
-export { createUser, loginUser, adminLogin, adminTokenVerifier }
+// My Fav song playlist
+const addMyFavSong = async (req, res) => {
+    const { song_id } = req.params; // Song id
+    try {
+        await UserModel.findOneDataAndUpdate({ email: req.userEmail }, { $push: { favourite_songs: song_id} });
+    } catch (err) {
+        return sendError(res, {}, `Error while updating user's favourite song list: ${err}`, false, 500);
+    }
+    return sendResponse(res, {}, ``, true, 201);
+
+
+}
+export { createUser, loginUser, adminLogin, adminTokenVerifier, addMyFavSong }

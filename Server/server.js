@@ -50,6 +50,9 @@ app.post("/adminLogin", Validation.loginValidation, userCntl.adminLogin);
 app.post("/login", Validation.loginValidation, userCntl.loginUser);
 app.post("/createUser", Validation.validateCreateUser, userCntl.createUser);
 app.get("/logout", authMiddleware, logout);
+
+// User
+app.patch("/addMyFavSong/:song_id",authMiddleware,userCntl.addMyFavSong);
 // app.get("/myFavouriteSongs")
 
 /* Artist */

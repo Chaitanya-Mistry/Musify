@@ -28,9 +28,9 @@ export const Donation = () => {
                                 },
                                 items: [
                                     {
-                                        name: "Cat Fundraiser",
+                                        name: "Musify donations",
                                         description:
-                                            "All proceeds directly support Furby's care and recovery.",
+                                            "This helps musify to keep ongoing.",
                                         quantity: "1",
                                         unit_amount: {
                                             currency_code: currency,
@@ -42,6 +42,11 @@ export const Donation = () => {
                             }
                         ]
                     });
+                }}
+                onApprove={(data, actions) => {
+                    return actions.order.capture().then(function(details){
+                        alert("ThankYou very much for donating to musify, "+ details.payer.name.given_name);
+                    })
                 }}
             />
         );
