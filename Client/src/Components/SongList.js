@@ -54,7 +54,7 @@ export default function SongList() {
             alert(err);
         }
 
-        if (response.data.serverResponse.responseCode === 200) {
+        if (response.data.serverResponse.responseCode === 201) {
             alert("Song added to the favourite playlist");
             //console.log(songData);
         } else {

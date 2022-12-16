@@ -1,5 +1,3 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material"
-
 export const Developer = ({ devData }) => {
     return (
         <>
@@ -14,33 +12,18 @@ export const Developer = ({ devData }) => {
                 <div className="memberContact">
                     <a href={devData.linkedIn} target="_blank" rel='noreferrer'>
                         <span className="fa-brands fa-linkedin faIcons" style={{ color: "dodgerblue" }}></span>
+                        <span style={{ display: "none", color:'white' }}>LinkedIn</span>
                     </a>
                     <a href={devData.gitHub} target="_blank" rel='noreferrer' >
                         <span className="fa-brands fa-github faIcons" style={{ color: "rgb(213, 213, 213)" }} />
+                        <span style={{ display: "none", color:'white' }}>GitHub</span>
                     </a>
                     <a href={devData.mail} alt="email id of developers">
                         <span className="fa fa-envelope faIcons" style={{ color: "red" }} />
+                        <span style={{ display: "none", color:'white' }}>Email</span>
                     </a>
                 </div>
             </div>
         </>
-        // <Card sx={{ width: 230, height: 400}}>
-        //     <CardActionArea>
-        //         <CardMedia
-        //             component="img"
-        //             height="280"
-        //             image={devData.image}
-        //             alt={devData.title}
-        //         />
-        //         <CardContent>
-        //             <Typography gutterBottom variant="h5" component="div" >
-        //                 {devData.title}
-        //             </Typography>
-        //             <Typography variant="body2" color="text.secondary">
-        //                 {devData.content}
-        //             </Typography>
-        //         </CardContent>
-        //     </CardActionArea>
-        // </Card>
     )
 }
