@@ -49,7 +49,7 @@ export const Home = () => {
                 <>
                     <main>
                         {/* <h2>Welcome User {loggedInUserData?.name}</h2> */}
-                        <GridLayout list={genre} ></GridLayout>
+                        <GridLayout list={genre} alt="" ></GridLayout>
                     </main>
                 </>
             )
