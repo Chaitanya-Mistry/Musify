@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { Navbar } from './Components/Navbar';
+// import { Navbar } from './Components/Navbar';
 import { CMP404 } from './Components/404';
 import { Home } from './Components/Home';
 import { createContext, useEffect, useState } from 'react';
@@ -89,7 +89,7 @@ function App() {
           <>
             <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
               {/* <Navbar /> */}
-              <ResponsiveAppBar></ResponsiveAppBar>
+              <ResponsiveAppBar />
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />

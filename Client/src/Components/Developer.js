@@ -11,10 +11,10 @@ export const Developer = ({ devData }) => {
                 <strong className="memberOccupation">{devData.occupation}</strong>
                 {/* Social Media Links */}
                 <div className="memberContact">
-                    <a href={devData.linkedIn} target="_blank">
+                    <a href={devData.linkedIn} target="_blank" rel="noreferrer">
                         <span className="fa-brands fa-linkedin faIcons" style={{ color: "dodgerblue" }}></span>
                     </a>
-                    <a href={devData.gitHub} target="_blank">
+                    <a href={devData.gitHub} target="_blank" rel="noreferrer">
                         <span className="fa-brands fa-github faIcons" style={{ color: "rgb(213, 213, 213)" }} />
                     </a>
                     <a href={devData.mail}>

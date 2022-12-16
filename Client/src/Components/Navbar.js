@@ -74,7 +74,7 @@ export function Navbar() {
                         <nav>
                             <div className="navlist"><NavLink to='/'>Home</NavLink></div>
                             <div className="navlist"><NavLink to='/myFavSongs'>My Favourite Songs</NavLink></div>
-                            <div className="navlist"><NavLink to='/serchSongs'>Search Songs</NavLink></div>
+                            <div className="navlist"><NavLink to='/ '>Search Songs</NavLink></div>
                             <div className="navlist"><NavLink to='/myAccount'>My Account</NavLink></div>
                             <div className="navlist"><NavLink to='' onClick={allowUserToLogout}>Logout</NavLink></div>
                         </nav>
