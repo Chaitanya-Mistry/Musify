@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserLoginContext } from "../App";
 import { GridLayout } from "./GridLayout";
-import { genre } from "./ListContent";
+import { developer, genre } from "./ListContent";
 import { Audio } from "./Audio";
 import { developer_data } from "../developer_data.js";
 import { Developer } from "./Developer.js";
@@ -103,7 +103,7 @@ export const Home = () => {
                 <div id="mainTeamMembersContainer">
                     <h1>Meet Our Developers</h1>
                     {/* Dynamic Rendering */}
-                    {developer_data.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
+                    {developer.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
                 </div>
 
             </main>
