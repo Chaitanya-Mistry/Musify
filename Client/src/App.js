@@ -17,6 +17,7 @@ import { DisplaySongs } from './Components/Admin_Components/DisplaySongs';
 import { EditArtist } from './Components/Admin_Components/EditArtist';
 import ResponsiveAppBar from './Components/ResponsiveAppBar';
 import { Donation } from './Components/Donation';
+import MediaControlCard from './Components/MediaControlCard';
 
 const UserLoginContext = createContext();
 
@@ -106,6 +107,17 @@ function App() {
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
             </UserLoginContext.Provider>
+            {
+              isLoggedIn
+                ?
+                isAdminLoggedIn
+                  ?
+                  ""
+                  :
+                  <MediaControlCard />
+                :
+                ""
+            }
             <Footer />
           </>
       }

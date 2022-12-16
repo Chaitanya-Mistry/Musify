@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-// import Avatar from '@mui/material/Avatar';
-// import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from 'react';
@@ -24,7 +22,7 @@ const pages = [
 const userPages = [
     { name: 'My Favourite Songs', link: '/myFavSongs' },
     { name: 'Search Songs', link: '/serchSongs' },
-    { name: 'My Account', link: '/myAccount' },
+    // { name: 'My Account', link: '/myAccount' },
     { name: 'Dontae', link: 'donate' }
 ];
 const adminPages = [
@@ -32,7 +30,6 @@ const adminPages = [
     { name: 'Manage Song', link: '/manageSong' },
 ]
 
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
     const { isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn } = useContext(UserLoginContext);
@@ -46,14 +43,6 @@ function ResponsiveAppBar() {
     const handleCloseNavMenu = () => {
         setAnchorElNav("");
     };
-    // const [anchorElUser, setAnchorElUser] = useState("");
-    // const handleOpenUserMenu = (event) => {
-    //     setAnchorElUser(event.currentTarget);
-    // };
-    // const handleCloseUserMenu = () => {
-    //     setAnchorElUser("");
-    // };
-
 
     // Logout functionality ..
     const allowUserToLogout = async (event) => {
@@ -161,14 +150,6 @@ function ResponsiveAppBar() {
                         {
                             isLoggedIn
                                 ?
-                                userPages.map((page, key) => (
-                                    <NavLink key={key} to={page.link}>
-                                        <Typography color='white' fontSize={18} margin={2} textAlign="center">
-                                            {page.name}
-                                        </Typography>
-                                    </NavLink>
-                                ))
-                                :
                                 isAdminLoggedIn
                                     ?
                                     adminPages.map((page, key) => (
@@ -179,19 +160,29 @@ function ResponsiveAppBar() {
                                         </NavLink>
                                     ))
                                     :
-                                    pages.map((page, key) => (
+
+                                    userPages.map((page, key) => (
                                         <NavLink key={key} to={page.link}>
                                             <Typography color='white' fontSize={18} margin={2} textAlign="center">
                                                 {page.name}
                                             </Typography>
                                         </NavLink>
                                     ))
+                                :
+
+                                pages.map((page, key) => (
+                                    <NavLink key={key} to={page.link}>
+                                        <Typography color='white' fontSize={18} margin={2} textAlign="center">
+                                            {page.name}
+                                        </Typography>
+                                    </NavLink>
+                                ))
                         }
                         {
                             isLoggedIn
                                 ?
                                 <NavLink to='' onClick={allowUserToLogout}>
-                                    <Typography color='white' fontSize={18} textAlign="center">
+                                    <Typography color='white' fontSize={18} margin={2} textAlign="center">
                                         Logout
                                     </Typography>
                                 </NavLink>
@@ -199,43 +190,6 @@ function ResponsiveAppBar() {
                                 <></>
                         }
                     </Box>
-                    {/* {pages.map((page, key) => (
-                            <NavLink key={key} to={page.link}>
-                                <Typography color='white' fontSize={18} margin={2}>
-                                    {page.name}
-                                </Typography>
-                            </NavLink>
-                        ))} */}
-
-                    {/* <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> */}
                 </Toolbar>
             </Container>
         </AppBar>

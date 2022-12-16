@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserLoginContext } from "../App";
 import { GridLayout } from "./GridLayout";
 import { genre } from "./ListContent";
@@ -32,7 +32,7 @@ export const Home = () => {
     useEffect(() => {
         fetchDemoSongs();
     }, []);
-                                 
+
     // if user is logged in greet them
     if (isLoggedIn) {
         // Admin
@@ -105,7 +105,7 @@ export const Home = () => {
                     {/* Dynamic Rendering */}
                     {developer_data.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
                 </div>
-             
+
             </main>
         )
     }
