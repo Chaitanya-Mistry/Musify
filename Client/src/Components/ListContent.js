@@ -32,7 +32,7 @@ const artist = []
 const developer = [{
     name: "Chaitanya Mistry",
     occupation: "Software Engineer",
-    image: "../../../Images/Chaitanya.JPG",
+    image: "../../../Images/Chaitanya.jpg",
     linkedIn: "https://www.linkedin.com/in/chaitanya-mistry-6b536322a",
     gitHub: "https://github.com/Chaitanya-Mistry",
     mail: "mailto:chaitanyam688@gmail.com"
