@@ -10,6 +10,7 @@ import axios from "axios";
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
     const [fetchedSongs, setFetchedSongs] = useState([]);
+    const [fetchedArtist, setFetchedArtist] = useState([]);
 
     // Fetch Demo Songs
     const fetchDemoSongs = async () => {
@@ -29,8 +30,26 @@ export const Home = () => {
             alert(`ERROR : ${response.data.serverResponse.message}`);
         }
     }
+
+    const fetchArtist = async () => {
+        const baseURL = 'http://localhost:4000/getAllArtists       ';
+        let response;
+
+        try {
+            response = await axios.get(baseURL);
+        } catch (err) {
+            response = err.response;
+        }
+
+        if (response.data.serverResponse.responseCode === 200) {
+            setFetchedArtist(response.data.serverResponse.responseData);
+        } else {
+            alert(`ERROR : ${response.data.serverResponse.message}`);
+        }
+    }
     useEffect(() => {
         fetchDemoSongs();
+        fetchArtist();
     }, []);
 
     // if user is logged in greet them
@@ -56,42 +75,27 @@ export const Home = () => {
         }
 
     } else {
+        const data = fetchedArtist.map((currArtist, index) => <div className="artist">
+            {/* Artist Image */}
+            <section className="artistImageContainer">
+                <img src={currArtist.artist_image} alt={currArtist.artist_name} />
+            </section>
+            <strong className="artistName">{currArtist.artist_name}</strong>
+        </div>)
+
         return (
+
             <main>
                 <h1 className="componentTitle">Wide range of song genre</h1>
                 <GridLayout list={genre}></GridLayout>
                 {/* Featured Artist */}
                 <div id="featuredArtist">
                     <h1>Featured artists</h1>
-                    <div className="artist">
-                        {/* Artist Image */}
-                        <section className="artistImageContainer">
-                            <img src={`http://localhost:4000/Artist_Image/1669322507000_Shreya_Goshal_Twitter (2).jfif`} alt="" loading="lazy" />
-                        </section>
-                        <strong className="artistName">Shreya Goshal</strong>
-                    </div>
-                    <div className="artist">
-                        {/* Artist Image */}
-                        <section className="artistImageContainer">
-                            <img src={`http://localhost:4000/Artist_Image/1669321850637_Photo by Elizeu Dias on Unsplash.jpg`} alt="" loading="lazy" />
-                        </section>
-                        <strong className="artistName">Barra da Tijuca</strong>
-                    </div>
-                    <div className="artist">
-                        {/* Artist Image */}
-                        <section className="artistImageContainer">
-                            <img src={`http://localhost:4000/Artist_Image/1669323635305_Shaan_Facebook.jpg`} alt="" loading="lazy" />
-                        </section>
-                        <strong className="artistName">Shaan</strong>
-                    </div>
-                    <div className="artist">
-                        {/* Artist Image */}
-                        <section className="artistImageContainer">
-                            <img src={`http://localhost:4000/Artist_Image/1669321965384_Photo by Claudia Raya on Unsplash.jpg`} alt="" loading="lazy" />
-                        </section>
-                        <strong className="artistName">Claudia Raya</strong>
-                    </div>
+                    {data}
+
                 </div>
+
+                
                 {/* Songs */}
                 <div id="featuredSong">
                     <h1>Demo Songs</h1>

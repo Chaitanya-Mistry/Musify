@@ -109,7 +109,7 @@ function App() {
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
             </UserLoginContext.Provider>
-            {
+            {/* {
               isLoggedIn
                 ?
                 isAdminLoggedIn
@@ -119,7 +119,7 @@ function App() {
                   <MediaControlCard />
                 :
                 ""
-            }
+            } */}
             <Footer />
           </>
       }

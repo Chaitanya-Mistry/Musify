@@ -1,7 +1,7 @@
 import { style } from "@mui/system";
 import { useState } from "react";
 
-export const Audio = ({ songData }) => {
+export const Audio = ({ songData, isPlayList }) => {
     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
     const playAndPauseSong = (event) => {
         const audioElem = event.target.parentElement.parentElement.querySelector("audio");
@@ -29,7 +29,8 @@ export const Audio = ({ songData }) => {
                     }
                 }
                 } crossOrigin="anonymous"></audio>
-                <strong className="songName">{songData.song_name}</strong>
+                {isPlayList ? "" : <strong className="songName">{songData.song_name}</strong>}
+
             </div>
         </>
     )
