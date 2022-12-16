@@ -16,6 +16,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { DisplaySongs } from './Components/Admin_Components/DisplaySongs';
 import { EditArtist } from './Components/Admin_Components/EditArtist';
 import ResponsiveAppBar from './Components/ResponsiveAppBar';
+import { Donation } from './Components/Donation';
 
 const UserLoginContext = createContext();
 
@@ -96,6 +97,7 @@ function App() {
                 <Route path='/loginAdmin' element={<LoginAdmin />} />
                 <Route path='/signUp' element={<SignUp />} />
                 <Route path='/signUp' element={<SignUp />} />
+                <Route path='/donate' element={<Donation />} />
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/editArtist' element={<EditArtist />} /> : ""}

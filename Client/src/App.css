@@ -193,13 +193,31 @@ main {
 #loginContainer,
 #signUpContainer,
 #addArtistMainContainer,#editArtistMainContainer,
-#addSongMainContainer {
+#addSongMainContainer,#donationContainer {
     box-shadow: 0px 0px 13px rgb(137, 172, 208);
     width: 60%;
     height: auto;
     display: flex;
 }
-
+#donationContainer{
+    height: fit-content;
+}
+.DonateForm fieldset{
+    display: flex;
+    justify-content: space-around;  
+    font-weight: bold;
+    font-family: var(--fontFamily);
+    font-size: 19px;
+}
+#donationImage{
+    height: 50%;
+    width: 45%;
+}
+#donationImage img{    
+    object-fit: cover;
+    width: 100%!important;
+    height: 200%!important;
+}
 #loginImage,
 #signUpImage,
 #addArtistIllustration,
@@ -211,7 +229,7 @@ main {
 #loginImage img,
 #signUpImage img,
 #addArtistIllustration img,
-#addSongIllustration img,#artistImage img {
+#addSongIllustration img,#artistImage img,#donationImage img {
     border-right: 1px solid rgb(234, 234, 234);
     width: 100%;
     height: 100%;
@@ -221,7 +239,7 @@ main {
 #loginDetails,
 #signUpDetails,
 #artistDetails,
-#songDetails {
+#songDetails,#donateDetails{
     padding: 13px;
     width: 55%;
 }
@@ -229,10 +247,14 @@ main {
 #loginTitle,
 #signUpTitle,
 #addArtistTitle,
-#addSongTitle,#editArtistTitle {
+#addSongTitle,#editArtistTitle,#donateTitle {
     font-size: 30px;
     margin: 17px 0px;
     color: rgb(8, 108, 215);
+}
+#donateTitle{
+    font-family: var(--fontFamily);
+    text-align: center;
 }
 
 #signUpTitle {
@@ -516,7 +538,7 @@ footer {
     }
 
     #loginContainer,
-    #signUpContainer {
+    #signUpContainer,#donationContainer {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -526,7 +548,7 @@ footer {
     }
 
     #loginImage,
-    #signUpImage {
+    #signUpImage,#donationImage {
         height: 100%;
         width: 100%;
     }
@@ -534,9 +556,17 @@ footer {
     #signUpTitle {
         font-size: 25px;
     }
+    #donationContainer{
+        width: 90%;
+    }
+    #donateTitle{
+        font-size: 25px;
+        margin-top: 100px;
+        width: 100%;        
+    }
 
     #addArtistMainContainer,
-    #addSongMainContainer {
+    #addSongMainContainer,#donateDetails {
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -6,7 +6,6 @@ import { Audio } from "./Audio";
 import { developer_data } from "../developer_data.js";
 import { Developer } from "./Developer.js";
 import axios from "axios";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 
 export const Home = () => {
     const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
@@ -33,88 +32,7 @@ export const Home = () => {
     useEffect(() => {
         fetchDemoSongs();
     }, []);
-
-        //paypal sandbox
-        const DonateButton = ({ currency, amount }) => {
-            const amountRef = useRef(amount);
-            useEffect(() => {
-              amountRef.current = amount;
-            }, [amount]);
-            return (
-                <PayPalButtons
-                  // forceReRender={[currency, amount]}
-                  style={{ color: "black", label: "donate" }}
-                  fundingSource="paypal"
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: {
-                            value: amountRef.current,
-                            breakdown: {
-                              item_total: {
-                                currency_code: currency,
-                                value: amountRef.current
-                              }
-                            }
-                          },
-                          items: [
-                            {
-                              name: "Cat Fundraiser",
-                              description:
-                                "All proceeds directly support Furby's care and recovery.",
-                              quantity: "1",
-                              unit_amount: {
-                                currency_code: currency,
-                                value: amountRef.current
-                              },
-                              category: "DONATION"
-                            }
-                          ]
-                        }
-                      ]
-                    });
-                  }}
-                />
-              );
-            };
-            
-            function DonateForm() {
-              const [amount, setAmount] = useState("5.00");
-              return (
-                <form className="DonateForm">
-                  <AmountPicker
-                    onAmountChange={(e) => {
-                      setAmount(e.target.value);
-                    }}
-                  />
-                  <DonateButton currency="USD" amount={amount} />
-                </form>
-              );
-            }
-            function AmountPicker({ onAmountChange }) {
-                return (
-                  <fieldset onChange={onAmountChange}>
-                    <legend>Donation Amount</legend>
-                    <label>
-                      <input type="radio" value="5.00" defaultChecked="true" name="amount" />
-                      5.00
-                    </label>
-                    <label>
-                      <input type="radio" value="10.00" name="amount" id="radio-6" />
-                      10.00
-                    </label>
-                    <label>
-                      <input type="radio" value="15.00" name="amount" id="radio-9" />
-                      15.00
-                    </label>
-                  </fieldset>
-                );
-              }
-              
-              
-
-
+                                 
     // if user is logged in greet them
     if (isLoggedIn) {
         // Admin
@@ -187,19 +105,7 @@ export const Home = () => {
                     {/* Dynamic Rendering */}
                     {developer_data.map((currentDeveloper) => <Developer devData={currentDeveloper} key={currentDeveloper.gitHub} />)}
                 </div>
-
-                {/* Paypal donate */} 
-                
-                  <PayPalScriptProvider
-                    options={{
-                      "client-id": "AU-vXTfev0mZxlIxqLWL_fW3jppHWiRJ1FZHgfcOOVSU5VzLW_2uwnVU-wXz0HdG5trzwfhvUJVYjIRp",
-                      components: "buttons",
-                      currency: "CAD"
-                    }}
-                  >
-                    <h1>Donate to our musify</h1>
-                    <DonateForm />
-                  </PayPalScriptProvider>
+             
             </main>
         )
     }
