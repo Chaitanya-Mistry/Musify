@@ -2,7 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import compression from "compression";
-import cors from "cors";
 import * as Validation from "./Utility/validation.js";
 import * as userCntl from "./Controller/userController.js";
 import * as artistCntl from "./Controller/artistController.js";
