@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useContext } from "react";
-import UserLoginContext from "../../App";
+import {UserLoginContext} from "../../App";
 
 export const ManageArtist = () => {
     const navigate = useNavigate();
