@@ -32,7 +32,7 @@ const adminPages = [
 
 
 function ResponsiveAppBar() {
-    const { isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn } = useContext(UserLoginContext);
+    const { isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, serverEndPoint } = useContext(UserLoginContext);
     const navigate = useNavigate();
 
     const [anchorElNav, setAnchorElNav] = useState("");
@@ -48,7 +48,7 @@ function ResponsiveAppBar() {
     const allowUserToLogout = async (event) => {
         event.preventDefault();
 
-        const baseURL = 'http://localhost:4000/logout'; // Our API server
+        const baseURL = `${serverEndPoint}/logout`; // Our API server
         let response;
 
         try {

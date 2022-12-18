@@ -1,6 +1,5 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-// import { Navbar } from './Components/Navbar';
 import { CMP404 } from './Components/404';
 import { Home } from './Components/Home';
 import { createContext, useEffect, useState } from 'react';
@@ -17,7 +16,6 @@ import { DisplaySongs } from './Components/Admin_Components/DisplaySongs';
 import { EditArtist } from './Components/Admin_Components/EditArtist';
 import ResponsiveAppBar from './Components/ResponsiveAppBar';
 import { Donation } from './Components/Donation';
-import MediaControlCard from './Components/MediaControlCard';
 import SongList from './Components/SongList';
 import { MyFavSongs } from './Components/MyFavSongs';
 
@@ -28,6 +26,8 @@ function App() {
   const [isLoggedIn, setLogIn] = useState();
   const [isAdminLoggedIn, setAdminLogIn] = useState();
   const [loggedInUserData, setLoggedInUserData] = useState();
+  // Server Endpoint
+  const serverEndPoint = "https://musify.herokuapp.com";
 
   const adminLogInVerifier = async () => {
     console.log("Admin log in verifier ❤️‍🔥");
@@ -69,11 +69,11 @@ function App() {
   }, []);
 
   return (
-    // Basic Web Page Layout goes here without login..
     <>
       {
         loading ?
 
+        // Splash Screen Loading
           <div className='splashload'>
 
             <img src="https://cdn-icons-png.flaticon.com/512/2829/2829076.png" alt="site logo" width="90" />
@@ -91,7 +91,7 @@ function App() {
           </div>
           :
           <>
-            <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData }}>
+            <UserLoginContext.Provider value={{ isLoggedIn, setLogIn, isAdminLoggedIn, setAdminLogIn, loggedInUserData, setLoggedInUserData, serverEndPoint }}>
               {/* <Navbar /> */}
               <ResponsiveAppBar />
               <Routes>
@@ -103,7 +103,7 @@ function App() {
                 <Route path='/donate' element={<Donation />} />
                 <Route path='/playList' element={<SongList />} />
                 <Route path='/playList' element={<SongList />} />
-                <Route path='/myFavSongs' element={<MyFavSongs/>} />
+                <Route path='/myFavSongs' element={<MyFavSongs />} />
                 {isAdminLoggedIn ? <Route path='/manageArtist' element={<ManageArtist />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/manageSong' element={<ManageSong />} /> : ""}
                 {isAdminLoggedIn ? <Route path='/editArtist' element={<EditArtist />} /> : ""}
@@ -111,7 +111,7 @@ function App() {
                 {isAdminLoggedIn ? <Route path='/displaySongs' element={<DisplaySongs />} /> : ""}
                 <Route path='*' element={<CMP404 />} />  {/* 404 error page */}
               </Routes>
-            </UserLoginContext.Provider>           
+            </UserLoginContext.Provider>
             <Footer />
           </>
       }

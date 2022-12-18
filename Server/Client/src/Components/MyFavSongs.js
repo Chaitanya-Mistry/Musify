@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SongList from "./SongList";
+import { UserLoginContext } from '../App';
 
 export const MyFavSongs = () => {
 
     const [favSongs, setFavSongs] = useState();
+    const { serverEndPoint } = useContext(UserLoginContext);
+
     const fetchFavSongs = async () => {
         let response;
-        const baseURL = "http://localhost:4000/myFavouriteSongs";
+        const baseURL = `${serverEndPoint}/myFavouriteSongs`;
         try {
             response = await axios.get(baseURL, { withCredentials: true });
         } catch (err) {

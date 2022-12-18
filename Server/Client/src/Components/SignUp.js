@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserLoginContext } from "../App";
 
 export const SignUp = () => {
 
     // To Navigate to a different component 
     const navigate = useNavigate();
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     // Submit event handler of sign up form
     const handleSubmit = async (event) => {
-        const baseURL = 'http://localhost:4000/createUser'; // Our API server 
+        const baseURL = `${serverEndPoint}/createUser`; // Our API server 
 
         event.preventDefault();
 

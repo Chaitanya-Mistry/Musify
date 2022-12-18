@@ -28,19 +28,21 @@ mongoose.connect(process.env.MONGO_URI, { keepAlive: true }).then(() => app.list
     console.log(`Express is connected to the database ...`);
 }).catch(error => console.log(error));
 
+// TO SERVE FRONT-END 🚅
+app.use(express.static(path.join(__dirname, "/Client/build")));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/Client/build', 'index.html'));
+});
+// 
+
 // Middlewares
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression(9));
 app.use(cookieParser()); // Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
 app.use(fileUpload()); // When you upload a file, the file will be accessible from req.files
-// To serve public files
-// app.use("/Artist_Image", express.static(path.join(__dirname, "Public/Artist_Images")));
-// app.use("/Song_Image", express.static(path.join(__dirname, "Public/Song_Images")));
 
 // API Routes
 // Admin 🦸‍♂️
@@ -52,8 +54,8 @@ app.post("/createUser", Validation.validateCreateUser, userCntl.createUser);
 app.get("/logout", authMiddleware, logout);
 
 // User
-app.patch("/addMyFavSong/:song_id",authMiddleware,userCntl.addMyFavSong);
-app.get("/myFavouriteSongs",authMiddleware,userCntl.myFavsongs);
+app.patch("/addMyFavSong/:song_id", authMiddleware, userCntl.addMyFavSong);
+app.get("/myFavouriteSongs", authMiddleware, userCntl.myFavsongs);
 
 /* Artist */
 app.get("/getArtist/:artistID", artistCntl.getArtist);

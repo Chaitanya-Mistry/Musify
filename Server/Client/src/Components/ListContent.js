@@ -27,8 +27,6 @@ const genre = [
     }
 ]
 
-const artist = []
-
 const developer = [{
     name: "Chaitanya Mistry",
     occupation: "Software Engineer",
@@ -52,4 +50,4 @@ const developer = [{
     mail: "mailto:hevinpatelhh@gmail.com"
 }];
 
-export  {genre,artist, developer};
+export  {genre, developer};

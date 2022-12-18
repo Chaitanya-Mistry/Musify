@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon server.js",
+    "heroku-postbuild": "cd Client && npm install && npm run build"
   },
   "author": "Chaitanya Mistry, Jaypal Sinh Ramlavat and Hevin Yogeshkumar Patel",
   "license": "ISC",
@@ -17,7 +18,6 @@
     "bcrypt": "^5.1.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",

@@ -45,7 +45,7 @@ export const Donation = () => {
                 }}
                 onApprove={(data, actions) => {
                     return actions.order.capture().then(function(details){
-                        alert("ThankYou very much for donating to musify, "+ details.payer.name.given_name);
+                        alert("ThankYou very much for donating to musify 🥰, "+ details.payer.name.given_name);
                     })
                 }}
             />

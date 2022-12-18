@@ -3,19 +3,18 @@ import { UserLoginContext } from "../App";
 import { GridLayout } from "./GridLayout";
 import { developer, genre } from "./ListContent";
 import { Audio } from "./Audio";
-import { developer_data } from "../developer_data.js";
 import { Developer } from "./Developer.js";
 import axios from "axios";
 
 export const Home = () => {
-    const { isLoggedIn, isAdminLoggedIn, loggedInUserData } = useContext(UserLoginContext);
+    const { isLoggedIn, isAdminLoggedIn, loggedInUserData, serverEndPoint } = useContext(UserLoginContext);
     const [fetchedSongs, setFetchedSongs] = useState([]);
     const [fetchedArtist, setFetchedArtist] = useState([]);
 
     // Fetch Demo Songs
     const fetchDemoSongs = async () => {
         // GET request to our API server .. ⬆
-        const baseURL = 'http://localhost:4000/getSampleSongs';
+        const baseURL = `${serverEndPoint}/getSampleSongs`;
         let response;
 
         try {
@@ -32,7 +31,7 @@ export const Home = () => {
     }
 
     const fetchArtist = async () => {
-        const baseURL = 'http://localhost:4000/getAllArtists       ';
+        const baseURL = `${serverEndPoint}/getAllArtists`;
         let response;
 
         try {

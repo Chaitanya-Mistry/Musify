@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UserLoginContext } from "../App";
 
 export const Login = () => {
-    const { isLoggedIn, setLogIn, setLoggedInUserData } = useContext(UserLoginContext);
+    const { isLoggedIn, setLogIn, setLoggedInUserData, serverEndPoint } = useContext(UserLoginContext);
 
     // To Navigate to a different component 
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ export const Login = () => {
         }
 
         // Sending POST request to our API server .. ⬆
-        const baseURL = 'http://localhost:4000/login';
+        const baseURL = `${serverEndPoint}/login`;
         let response;
 
         try {

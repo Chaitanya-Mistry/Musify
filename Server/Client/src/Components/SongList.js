@@ -3,25 +3,22 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import Avatar from '@mui/material/Avatar';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-// import ImageIcon from '@mui/icons-material/Image';
-// import WorkIcon from '@mui/icons-material/Work';
-// import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import { Divider } from '@mui/material';
 import { Audio } from "./Audio";
+import { useContext } from "react";
+import { UserLoginContext } from "../App";
 
 export default function SongList({favSongs}) {
 
     const location = useLocation();
     const [songData, setSongData] = React.useState("");
-    // const [fetchedSongs, setFetchedSongs] = React.useState([]);
-
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     const fetchSongs = async () => {
-        const baseUrl = `http://localhost:4000/getFilteredSongs/${location.state}`;
+        const baseUrl = `${serverEndPoint}/getFilteredSongs/${location.state}`;
         let response;
         try {
             response = await axios.get(baseUrl);
@@ -40,7 +37,7 @@ export default function SongList({favSongs}) {
     }
 
     const addToLike = async (songId) => {
-        const baseUrl = `http://localhost:4000/addMyFavSong/${songId}`;
+        const baseUrl = `${serverEndPoint}/addMyFavSong/${songId}`;
 
 
         let response;
@@ -73,23 +70,7 @@ export default function SongList({favSongs}) {
     }, []);
 
     if (songData) {
-        return (
-            // <main>
-            //     <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
-            //         {songData.map((currData, index) =>
-            //             <>
-            //                 <ListItem>
-            //                     <ListItemAvatar key={index}>
-            //                         <Avatar>
-            //                             <img src={currData.song_image} alt="" />
-            //                         </Avatar>
-            //                     </ListItemAvatar>
-            //                     <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
-            //                 </ListItem>
-            //             </>
-            //         )}
-            //     </List>
-            // </main>
+        return (            
             <main>
                 <List sx={{ width: '100%', maxWidth: 800, bgcolor: 'background.paper' }}>
                     {
@@ -97,9 +78,7 @@ export default function SongList({favSongs}) {
                             <>
                                 <ListItem>
                                     <ListItemAvatar key={index}>
-                                        {/* <Avatar >
-                                        <img src={currData.song_image} width='100%' style={{ objectFit: "cover" }} alt="" />
-                                    </Avatar> */}
+                                        
                                         <Audio songData={currData} isPlayList={true}></Audio>
                                     </ListItemAvatar>
                                     <ListItemText primary={currData.song_name} secondary={currData.sung_by.artist_name} />
