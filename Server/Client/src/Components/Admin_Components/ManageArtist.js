@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 export const ManageArtist = () => {
     const navigate = useNavigate();
     const [selectedImage, setSelectedImage] = useState("");
     const [selectedImageType, setSelectedImageType] = useState("");
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     const showArtists = () => navigate("/displayArtists");
 
@@ -25,7 +26,7 @@ export const ManageArtist = () => {
         event.preventDefault();
 
         if (selectedImage && selectedImageType) {
-            const baseUrl = `http://localhost:4000/createArtist`;
+            const baseUrl = `${serverEndPoint}/createArtist`;
             let response;
             try {
                 const formData = new FormData();

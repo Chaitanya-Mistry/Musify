@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useContext } from "react";
 export const Artist = ({ artistData, fetchArtist }) => {
     const navigate = useNavigate();
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     // To delete artist
     const deleteArtist = async (event) => {
@@ -11,7 +12,7 @@ export const Artist = ({ artistData, fetchArtist }) => {
 
         if (confirmation) {
             const currentArtistId = event.target.dataset.artist_id;
-            const baseURL = `http://localhost:4000/deleteArtist/${currentArtistId}`;
+            const baseURL = `${serverEndPoint}/deleteArtist/${currentArtistId}`;
             let response;
             // Send delete request to our API
             try {

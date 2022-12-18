@@ -1,15 +1,16 @@
 import { Artist } from "./Artist";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 export const DisplayArtists = ({ selectArtist, setArtist }) => {
     const [artists, setArtists] = useState([]);
     const [noArtists, setNoArtists] = useState(false);
     const [selectedArtist, setSelectedArtist] = useState(false);
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     // Fetch all artists
     const fetchAllArtists = async () => {
-        const baseURL = 'http://localhost:4000/getAllArtists'; // Our API server 
+        const baseURL = `${serverEndPoint}/getAllArtists`; // Our API server 
         let response;
 
         // Get Request

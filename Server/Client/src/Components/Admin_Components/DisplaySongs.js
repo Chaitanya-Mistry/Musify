@@ -1,15 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import { Song } from "./Song";
 
 export const DisplaySongs = () => {
     const [songs, setSongs] = useState([]);
     const [noSongs, setNoSongs] = useState(false);
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     // Fetch all songs
     const fetchAllSongs = async () => {
-        const baseURL = 'http://localhost:4000/getAllSongs'; // Our API server 
+        const baseURL = `${serverEndPoint}/getAllSongs`; // Our API server 
         let response;
 
         // Get Request

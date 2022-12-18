@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,12 +9,12 @@ export const EditArtist = () => {
     const [artistImageType, setArtistImageType] = useState(''); // To store selected artist image
     const [dataLoaded, setDataLoaded] = useState(false);
     const navigate = useNavigate(); // To navigate to a different route
-
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     // When admin finally submits the form
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const baseURL = `http://localhost:4000/updateArtist/${artistID}`;
+        const baseURL = `${serverEndPoint}/${artistID}`;
 
         let response;
         try {
@@ -60,7 +60,7 @@ export const EditArtist = () => {
     // Get Artist Details By ID 
     const fetchArtist = async () => {
         let response;
-        const baseURL = `http://localhost:4000/getArtist/${artistID}`;
+        const baseURL = `${serverEndPoint}/getArtist/${artistID}`;
 
         try {
             response = await axios({

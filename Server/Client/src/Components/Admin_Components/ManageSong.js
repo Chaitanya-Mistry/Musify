@@ -1,7 +1,8 @@
 import { DisplayArtists } from "./DisplayArtists";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserLoginContext } from "../App";
 
 export const ManageSong = () => {
     const [selectedSong, setSelectedSong] = useState("");
@@ -12,6 +13,7 @@ export const ManageSong = () => {
     const [selectedGenre, setSelectedGenre] = useState("");
     const [songDetails, setSongDetails] = useState("");
     const [showArtist, setShowArtist] = useState(false);
+    const { serverEndPoint } = useContext(UserLoginContext);
 
     const navigate = useNavigate();
 
@@ -67,7 +69,7 @@ export const ManageSong = () => {
             formData.append("song_image", selectedSongImage);
             formData.append("song_image_type", selectedSongImageType);
 
-            const baseUrl = `http://localhost:4000/createSong`;
+            const baseUrl = `${serverEndPoint}/createSong`;
             let response;
             try {
                 response = await axios({
