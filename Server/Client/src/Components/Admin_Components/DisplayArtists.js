@@ -1,6 +1,7 @@
 import { Artist } from "./Artist";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
+import UserLoginContext from "../../App";
 
 export const DisplayArtists = ({ selectArtist, setArtist }) => {
     const [artists, setArtists] = useState([]);

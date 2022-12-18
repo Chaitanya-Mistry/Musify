@@ -2,7 +2,7 @@ import { DisplayArtists } from "./DisplayArtists";
 import axios from "axios";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserLoginContext } from "../App";
+import UserLoginContext from "../../App";
 
 export const ManageSong = () => {
     const [selectedSong, setSelectedSong] = useState("");

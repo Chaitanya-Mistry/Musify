@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import UserLoginContext from "../../App";
 import axios from "axios";
 
 export const EditArtist = () => {
